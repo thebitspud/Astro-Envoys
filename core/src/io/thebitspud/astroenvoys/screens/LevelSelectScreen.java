@@ -34,7 +34,15 @@ public class LevelSelectScreen implements Screen {
 		title.setPosition(midX - (title.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.75f);
 		title.setAlignment(Align.center);
 
-		Label levelName = new Label("Level I", app.assets.subTitleStyle);
+		Label levelTitle= new Label("The Delivery", app.assets.subTitleStyle);
+		levelTitle.setPosition(midX - (levelTitle.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.65f);
+		levelTitle.setAlignment(Align.center);
+
+		Label levelDesc = new Label("*Insert description here*", app.assets.textStyle);
+		levelDesc.setPosition(midX - (levelDesc.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.60f);
+		levelDesc.setAlignment(Align.center);
+
+		Label levelName = new Label("Level 01", app.assets.subTitleStyle);
 		levelName.setPosition(midX - (levelName.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.336f);
 		levelName.setAlignment(Align.center);
 
@@ -66,6 +74,8 @@ public class LevelSelectScreen implements Screen {
 		nextButton.setPosition((Gdx.graphics.getWidth() * 0.95f) - 180, Gdx.graphics.getHeight() * 0.32f);
 
 		stage.addActor(title);
+		stage.addActor(levelTitle);
+		stage.addActor(levelDesc);
 		stage.addActor(levelName);
 		stage.addActor(playButton);
 		stage.addActor(prevButton);
@@ -77,14 +87,7 @@ public class LevelSelectScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
-		camera.update();
-		app.batch.setProjectionMatrix(camera.combined);
 		app.renderStage(stage);
-
-		app.batch.begin();
-		app.batch.draw(app.assets.shuttle, (float) Gdx.graphics.getWidth() / 2 - 100, Gdx.graphics.getHeight() * 0.6f);
-
-		app.batch.end();
 	}
 
 	@Override

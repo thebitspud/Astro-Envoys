@@ -10,12 +10,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class AssetLibrary extends AssetManager {
-	public TextureRegion missing, shuttle;
+	public TextureRegion missing, playerShip[];
 	public TextureRegionDrawable[][] buttons;
-	public Label.LabelStyle titleStyle, smallTitleStyle, subTitleStyle;
+	public Label.LabelStyle titleStyle, smallTitleStyle, subTitleStyle, textStyle;
 
 	public AssetLibrary() {
 		buttons = new TextureRegionDrawable[12][2];
+		playerShip = new TextureRegion[4];
 	}
 
 	public void loadAll() {
@@ -24,6 +25,9 @@ public class AssetLibrary extends AssetManager {
 		this.load("buttons.png", Texture.class);
 		this.load("missing.png", Texture.class);
 		this.load("shuttle.png", Texture.class);
+		this.load("frigate.png", Texture.class);
+		this.load("bomber.png", Texture.class);
+		this.load("interceptor.png", Texture.class);
 
 		finishLoading();
 		assign();
@@ -31,7 +35,10 @@ public class AssetLibrary extends AssetManager {
 
 	private void assign() {
 		missing = new TextureRegion(this.get("missing.png", Texture.class));
-		shuttle = new TextureRegion(this.get("shuttle.png", Texture.class));
+		playerShip[0] = new TextureRegion(this.get("shuttle.png", Texture.class));
+		playerShip[1] = new TextureRegion(this.get("frigate.png", Texture.class));
+		playerShip[2] = new TextureRegion(this.get("bomber.png", Texture.class));
+		playerShip[3] = new TextureRegion(this.get("interceptor.png", Texture.class));
 
 		for(int i = 0; i < 6; i++) {
 			buttons[i] = getButton(0,i * 180,800);
@@ -63,6 +70,10 @@ public class AssetLibrary extends AssetManager {
 
 		parameter.size = Gdx.graphics.getWidth() / 12;
 		subTitleStyle = new Label.LabelStyle(generator.generateFont(parameter), Color.WHITE);
+
+		parameter.size = Gdx.graphics.getWidth() / 24;
+		textStyle =  new Label.LabelStyle(generator.generateFont(parameter), Color.WHITE);
+
 		generator.dispose();
 	}
 }

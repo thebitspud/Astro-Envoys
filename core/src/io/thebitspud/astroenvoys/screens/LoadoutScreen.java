@@ -67,7 +67,7 @@ public class LoadoutScreen implements Screen {
 		app.renderStage(stage);
 
 		app.batch.begin();
-		app.batch.draw(app.assets.shuttle, (float) Gdx.graphics.getWidth() / 2 - 100, Gdx.graphics.getHeight() * 0.6f);
+		app.batch.draw(app.assets.playerShip[0], (float) Gdx.graphics.getWidth() / 2 - 100, Gdx.graphics.getHeight() * 0.6f);
 
 		app.batch.end();
 	}
