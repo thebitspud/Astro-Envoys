@@ -12,40 +12,37 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.thebitspud.astroenvoys.AstroEnvoys;
 import io.thebitspud.astroenvoys.tools.JInputListener;
 
-public class LevelSelectScreen implements Screen {
+public class LoadoutScreen implements Screen {
 	private AstroEnvoys app;
 	private Stage stage;
 
-	public LevelSelectScreen(AstroEnvoys app) {
+	public LoadoutScreen(AstroEnvoys app) {
 		this.app = app;
 	}
 
 	@Override
 	public void show() {
-		app.setLastScreen(this);
 		stage = new Stage(new ScreenViewport(new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())));
 		Gdx.input.setInputProcessor(stage);
 
 		final int midX = Gdx.graphics.getWidth() / 2;
 
-		Label title = new Label("Level\nSelect", app.assets.titleStyle);
-		title.setPosition(midX - (title.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.75f);
+		Label title = new Label("Loadout", app.assets.smallTitleStyle);
+		title.setPosition(midX - (title.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.86f);
 		title.setAlignment(Align.center);
 
 		ImageButton playButton = new ImageButton(app.assets.buttons[0][0], app.assets.buttons[0][1]);
 		playButton.addListener(new JInputListener() {
 			@Override
 			public void onClick() {
-				app.setScreen(app.gameScreen);
+				app.setScreen(app.menuScreen);
 			}
 		});
-		playButton.setPosition(midX - 400, Gdx.graphics.getHeight() * 0.4f);
+		playButton.setPosition(midX - 400, Gdx.graphics.getHeight() * 0.6f);
 
 		stage.addActor(title);
 		stage.addActor(playButton);
-		app.addBackButton(stage, app.menuScreen);
-		app.addLoadoutButton(stage);
-		app.addSettingsButton(stage);
+		app.addBackButton(stage, app.getLastScreen());
 	}
 
 	@Override

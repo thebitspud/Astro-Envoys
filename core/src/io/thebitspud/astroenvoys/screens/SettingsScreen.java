@@ -4,13 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import io.thebitspud.astroenvoys.AstroEnvoys;
 import io.thebitspud.astroenvoys.tools.JInputListener;
-import io.thebitspud.astroenvoys.tools.JTextButton;
 
 public class SettingsScreen implements Screen {
 	private AstroEnvoys app;
@@ -25,22 +25,24 @@ public class SettingsScreen implements Screen {
 		stage = new Stage(new ScreenViewport(new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())));
 		Gdx.input.setInputProcessor(stage);
 
-		final int midX = Gdx.graphics.getWidth() / 2, midY = Gdx.graphics.getHeight() / 2;
+		final int midX = Gdx.graphics.getWidth() / 2;
 
-		Label title = new Label("Settings", app.assets.titleFont);
-		title.setPosition(midX - (title.getPrefWidth() / 2), midY);
+		Label title = new Label("Settings", app.assets.smallTitleStyle);
+		title.setPosition(midX - (title.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.86f);
 		title.setAlignment(Align.center);
 
-		JTextButton playButton = new JTextButton(midX, midY - 100, JTextButton.Size.LARGE, "Menu", app.assets.qHorizon);
+		ImageButton playButton = new ImageButton(app.assets.buttons[0][0], app.assets.buttons[0][1]);
 		playButton.addListener(new JInputListener() {
 			@Override
 			public void onClick() {
-				app.setScreen(app.levelSelectScreen);
+				app.setScreen(app.menuScreen);
 			}
 		});
+		playButton.setPosition(midX - 400, Gdx.graphics.getHeight() * 0.6f);
 
 		stage.addActor(title);
 		stage.addActor(playButton);
+		app.addBackButton(stage, app.getLastScreen());
 	}
 
 	@Override

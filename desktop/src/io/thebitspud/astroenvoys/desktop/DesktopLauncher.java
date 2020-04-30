@@ -2,6 +2,7 @@ package io.thebitspud.astroenvoys.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+
 import io.thebitspud.astroenvoys.AstroEnvoys;
 
 public class DesktopLauncher {
