@@ -2,6 +2,7 @@ package io.thebitspud.astroenvoys.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -15,6 +16,7 @@ import io.thebitspud.astroenvoys.tools.JInputListener;
 public class LoadoutScreen implements Screen {
 	private AstroEnvoys app;
 	private Stage stage;
+	private Camera camera;
 
 	public LoadoutScreen(AstroEnvoys app) {
 		this.app = app;
@@ -22,32 +24,52 @@ public class LoadoutScreen implements Screen {
 
 	@Override
 	public void show() {
-		stage = new Stage(new ScreenViewport(new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())));
+		stage = new Stage(new ScreenViewport(camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())));
 		Gdx.input.setInputProcessor(stage);
 
-		final int midX = Gdx.graphics.getWidth() / 2;
-
 		Label title = new Label("Loadout", app.assets.smallTitleStyle);
-		title.setPosition(midX - (title.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.86f);
+		title.setPosition((Gdx.graphics.getWidth() - title.getPrefWidth()) / 2, Gdx.graphics.getHeight() * 0.86f);
 		title.setAlignment(Align.center);
 
-		ImageButton playButton = new ImageButton(app.assets.buttons[0][0], app.assets.buttons[0][1]);
-		playButton.addListener(new JInputListener() {
+		Label shipName = new Label("Basic Fighter", app.assets.subTitleStyle);
+		shipName.setPosition((Gdx.graphics.getWidth() - shipName.getPrefWidth()) / 2, Gdx.graphics.getHeight() * 0.75f);
+		shipName.setAlignment(Align.center);
+
+		ImageButton prevButton = new ImageButton(app.assets.buttons[10][0], app.assets.buttons[10][1]);
+		prevButton.addListener(new JInputListener() {
 			@Override
 			public void onClick() {
-				app.setScreen(app.menuScreen);
+
 			}
 		});
-		playButton.setPosition(midX - 400, Gdx.graphics.getHeight() * 0.6f);
+		prevButton.setPosition(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() * 0.6f);
+
+		ImageButton nextButton = new ImageButton(app.assets.buttons[11][0], app.assets.buttons[11][1]);
+		nextButton.addListener(new JInputListener() {
+			@Override
+			public void onClick() {
+
+			}
+		});
+		nextButton.setPosition((Gdx.graphics.getWidth() * 0.95f) - 180, Gdx.graphics.getHeight() * 0.6f);
 
 		stage.addActor(title);
-		stage.addActor(playButton);
+		stage.addActor(shipName);
+		stage.addActor(prevButton);
+		stage.addActor(nextButton);
 		app.addBackButton(stage, app.getLastScreen());
 	}
 
 	@Override
 	public void render(float delta) {
+		camera.update();
+		app.batch.setProjectionMatrix(camera.combined);
 		app.renderStage(stage);
+
+		app.batch.begin();
+		app.batch.draw(app.assets.shuttle, (float) Gdx.graphics.getWidth() / 2 - 100, Gdx.graphics.getHeight() * 0.6f);
+
+		app.batch.end();
 	}
 
 	@Override

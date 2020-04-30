@@ -4,48 +4,35 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import io.thebitspud.astroenvoys.AstroEnvoys;
-import io.thebitspud.astroenvoys.tools.JInputListener;
 
-public class WinScreen implements Screen {
+public class CreditsScreen implements Screen {
 	private AstroEnvoys app;
 	private Stage stage;
 
-	public WinScreen(AstroEnvoys app) {
+	public CreditsScreen(AstroEnvoys app) {
 		this.app = app;
 	}
 
 	@Override
 	public void show() {
-		app.setLastScreen(this);
 		stage = new Stage(new ScreenViewport(new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())));
 		Gdx.input.setInputProcessor(stage);
 
-		final int midX = Gdx.graphics.getWidth() / 2;
-
-		Label title = new Label("Level\nClear!", app.assets.titleStyle);
-		title.setPosition(midX - (title.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.75f);
+		Label title = new Label("Credits", app.assets.smallTitleStyle);
+		title.setPosition((Gdx.graphics.getWidth() - title.getPrefWidth()) / 2, Gdx.graphics.getHeight() * 0.86f);
 		title.setAlignment(Align.center);
 
-		ImageButton playButton = new ImageButton(app.assets.buttons[2][0], app.assets.buttons[2][1]);
-		playButton.addListener(new JInputListener() {
-			@Override
-			public void onClick() {
-				app.setScreen(app.levelSelectScreen);
-			}
-		});
-		playButton.setPosition(midX - 400, Gdx.graphics.getHeight() * 0.6f);
+		Label creditRoll = new Label("Programming:\nJames Zhong\n\nGame Design:\nJames Zhong\n\nAssets: itch.io", app.assets.subTitleStyle);
+		creditRoll.setPosition(Gdx.graphics.getWidth() * 0.1f, Gdx.graphics.getHeight() * 0.4f);
 
 		stage.addActor(title);
-		stage.addActor(playButton);
-		app.addBackButton(stage, app.menuScreen);
-		app.addLoadoutButton(stage);
-		app.addSettingsButton(stage);
+		stage.addActor(creditRoll);
+		app.addBackButton(stage, app.getLastScreen());
 	}
 
 	@Override

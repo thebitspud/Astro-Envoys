@@ -31,17 +31,7 @@ public class SettingsScreen implements Screen {
 		title.setPosition(midX - (title.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.86f);
 		title.setAlignment(Align.center);
 
-		ImageButton playButton = new ImageButton(app.assets.buttons[0][0], app.assets.buttons[0][1]);
-		playButton.addListener(new JInputListener() {
-			@Override
-			public void onClick() {
-				app.setScreen(app.menuScreen);
-			}
-		});
-		playButton.setPosition(midX - 400, Gdx.graphics.getHeight() * 0.6f);
-
 		stage.addActor(title);
-		stage.addActor(playButton);
 		app.addBackButton(stage, app.getLastScreen());
 	}
 

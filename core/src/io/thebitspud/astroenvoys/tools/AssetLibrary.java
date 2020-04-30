@@ -12,10 +12,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 public class AssetLibrary extends AssetManager {
 	public TextureRegion missing, shuttle;
 	public TextureRegionDrawable[][] buttons;
-	public Label.LabelStyle titleStyle, smallTitleStyle;
+	public Label.LabelStyle titleStyle, smallTitleStyle, subTitleStyle;
 
 	public AssetLibrary() {
-		buttons = new TextureRegionDrawable[5][2];
+		buttons = new TextureRegionDrawable[12][2];
 	}
 
 	public void loadAll() {
@@ -29,35 +29,40 @@ public class AssetLibrary extends AssetManager {
 		assign();
 	}
 
-	public void assign() {
+	private void assign() {
 		missing = new TextureRegion(this.get("missing.png", Texture.class));
 		shuttle = new TextureRegion(this.get("shuttle.png", Texture.class));
 
-		buttons[0][0] = getButton(0,0,800);
-		buttons[0][1] = getButton(0,180,800);
-		buttons[1][0] = getButton(0,360,180);
-		buttons[1][1] = getButton(0,540,180);
-		buttons[2][0] = getButton(180,360,180);
-		buttons[2][1] = getButton(180,540,180);
-		buttons[3][0] = getButton(360,360,180);
-		buttons[3][1] = getButton(360,540,180);
-		buttons[4][0] = getButton(540,360,180);
-		buttons[4][1] = getButton(540,540,180);
+		for(int i = 0; i < 6; i++) {
+			buttons[i] = getButton(0,i * 180,800);
+			buttons[6 + i] = getButton(1600, i * 180, 180);
+		}
 	}
 
-	private TextureRegionDrawable getButton(int x, int y, int width) {
-		TextureRegion icon = new TextureRegion(this.get("buttons.png", Texture.class),x,y,width, 180);
-		return new TextureRegionDrawable(icon);
+	private TextureRegionDrawable[] getButton(int x, int y, int width) {
+		TextureRegion iconUp = new TextureRegion(this.get("buttons.png", Texture.class), x, y, width, 180);
+		TextureRegion iconDown = new TextureRegion(this.get("buttons.png", Texture.class),x + width, y, width, 180);
+
+		TextureRegionDrawable[] button = new TextureRegionDrawable[2];
+		button[0] = new TextureRegionDrawable(iconUp);
+		button[1] = new TextureRegionDrawable(iconDown);
+
+		return button;
 	}
 
 	private void loadFonts() {
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("good_times.ttf"));
 		FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 		parameter.incremental = true;
+
 		parameter.size = Gdx.graphics.getWidth() / 6;
 		titleStyle = new Label.LabelStyle(generator.generateFont(parameter), new Color(1,0.2f,0.2f,1));
+
 		parameter.size = Gdx.graphics.getWidth() / 7;
 		smallTitleStyle = new Label.LabelStyle(generator.generateFont(parameter), new Color(1,0.2f,0.2f,1));
+
+		parameter.size = Gdx.graphics.getWidth() / 12;
+		subTitleStyle = new Label.LabelStyle(generator.generateFont(parameter), Color.WHITE);
 		generator.dispose();
 	}
 }
