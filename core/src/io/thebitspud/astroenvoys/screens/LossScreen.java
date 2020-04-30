@@ -32,11 +32,11 @@ public class LossScreen implements Screen {
 		title.setPosition(midX - (title.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.75f);
 		title.setAlignment(Align.center);
 
-		ImageButton playButton = new ImageButton(app.assets.buttons[0][0], app.assets.buttons[0][1]);
+		ImageButton playButton = new ImageButton(app.assets.buttons[1][0], app.assets.buttons[1][1]);
 		playButton.addListener(new JInputListener() {
 			@Override
 			public void onClick() {
-				app.setScreen(app.menuScreen);
+				app.setScreen(app.gameScreen);
 			}
 		});
 		playButton.setPosition(midX - 400, Gdx.graphics.getHeight() * 0.6f);

@@ -42,11 +42,11 @@ public class MenuScreen implements Screen {
 		});
 		playButton.setPosition(midX - 400, Gdx.graphics.getHeight() * 0.4f);
 
-		ImageButton aboutButton = new ImageButton(app.assets.buttons[3][0], app.assets.buttons[3][1]);
+		ImageButton aboutButton = new ImageButton(app.assets.buttons[8][0], app.assets.buttons[8][1]);
 		aboutButton.addListener(new JInputListener() {
 			@Override
 			public void onClick() {
-				app.setScreen(app.lossScreen);
+				app.setScreen(app.creditsScreen);
 			}
 		});
 		aboutButton.setPosition(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getWidth() * 0.05f);
@@ -65,7 +65,7 @@ public class MenuScreen implements Screen {
 		app.renderStage(stage);
 
 		app.batch.begin();
-		app.batch.draw(app.assets.shuttle, (float) Gdx.graphics.getWidth() / 2 - 100, Gdx.graphics.getHeight() * 0.55f);
+		app.batch.draw(app.assets.shuttle, (float) Gdx.graphics.getWidth() / 2 - 100, Gdx.graphics.getHeight() * 0.6f);
 
 		app.batch.end();
 	}

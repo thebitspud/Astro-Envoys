@@ -16,7 +16,7 @@ public class AstroEnvoys extends Game {
 	public SpriteBatch batch;
 	public AssetLibrary assets;
 
-	public Screen menuScreen, gameScreen, winScreen, lossScreen, levelSelectScreen;
+	public Screen menuScreen, gameScreen, winScreen, lossScreen, levelSelectScreen, creditsScreen;
 	private Screen settingsScreen, loadoutScreen, lastScreen;
 	
 	@Override
@@ -33,6 +33,7 @@ public class AstroEnvoys extends Game {
 		levelSelectScreen = new LevelSelectScreen(this);
 		settingsScreen = new SettingsScreen(this);
 		loadoutScreen = new LoadoutScreen(this);
+		creditsScreen = new CreditsScreen(this);
 
 		setScreen(menuScreen);
 	}
@@ -59,7 +60,7 @@ public class AstroEnvoys extends Game {
 	}
 
 	public void addSettingsButton(Stage stage) {
-		ImageButton settingsButton = new ImageButton(assets.buttons[1][0], assets.buttons[1][1]);
+		ImageButton settingsButton = new ImageButton(assets.buttons[6][0], assets.buttons[6][1]);
 		settingsButton.addListener(new JInputListener() {
 			@Override
 			public void onClick() {
@@ -72,7 +73,7 @@ public class AstroEnvoys extends Game {
 	}
 
 	public void addBackButton(Stage stage, Screen nextScreen) {
-		ImageButton backButton = new ImageButton(assets.buttons[2][0], assets.buttons[2][1]);
+		ImageButton backButton = new ImageButton(assets.buttons[7][0], assets.buttons[7][1]);
 		backButton.addListener(new JInputListener() {
 			@Override
 			public void onClick() {
@@ -85,7 +86,7 @@ public class AstroEnvoys extends Game {
 	}
 
 	public void addLoadoutButton(Stage stage) {
-		ImageButton loadoutButton = new ImageButton(assets.buttons[4][0], assets.buttons[4][1]);
+		ImageButton loadoutButton = new ImageButton(assets.buttons[9][0], assets.buttons[9][1]);
 		loadoutButton.addListener(new JInputListener() {
 			@Override
 			public void onClick() {
