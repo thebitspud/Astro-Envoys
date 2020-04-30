@@ -10,12 +10,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class AssetLibrary extends AssetManager {
-	public TextureRegion missing, playerShip[];
+	public TextureRegion asteroid;
+	public TextureRegion[] playerShip;
 	public TextureRegionDrawable[][] buttons;
 	public Label.LabelStyle titleStyle, smallTitleStyle, subTitleStyle, textStyle;
 
 	public AssetLibrary() {
-		buttons = new TextureRegionDrawable[12][2];
+		buttons = new TextureRegionDrawable[13][2];
 		playerShip = new TextureRegion[4];
 	}
 
@@ -23,7 +24,7 @@ public class AssetLibrary extends AssetManager {
 		loadFonts();
 
 		this.load("buttons.png", Texture.class);
-		this.load("missing.png", Texture.class);
+		this.load("asteroid.png", Texture.class);
 		this.load("shuttle.png", Texture.class);
 		this.load("frigate.png", Texture.class);
 		this.load("bomber.png", Texture.class);
@@ -34,7 +35,7 @@ public class AssetLibrary extends AssetManager {
 	}
 
 	private void assign() {
-		missing = new TextureRegion(this.get("missing.png", Texture.class));
+		asteroid = new TextureRegion(this.get("asteroid.png", Texture.class));
 		playerShip[0] = new TextureRegion(this.get("shuttle.png", Texture.class));
 		playerShip[1] = new TextureRegion(this.get("frigate.png", Texture.class));
 		playerShip[2] = new TextureRegion(this.get("bomber.png", Texture.class));
@@ -44,6 +45,8 @@ public class AssetLibrary extends AssetManager {
 			buttons[i] = getButton(0,i * 180,800);
 			buttons[6 + i] = getButton(1600, i * 180, 180);
 		}
+
+		buttons[12] = getButton(1600, 1080, 180);
 	}
 
 	private TextureRegionDrawable[] getButton(int x, int y, int width) {
@@ -68,10 +71,10 @@ public class AssetLibrary extends AssetManager {
 		parameter.size = Gdx.graphics.getWidth() / 7;
 		smallTitleStyle = new Label.LabelStyle(generator.generateFont(parameter), new Color(1,0.2f,0.2f,1));
 
-		parameter.size = Gdx.graphics.getWidth() / 12;
+		parameter.size = Gdx.graphics.getWidth() / 15;
 		subTitleStyle = new Label.LabelStyle(generator.generateFont(parameter), Color.WHITE);
 
-		parameter.size = Gdx.graphics.getWidth() / 24;
+		parameter.size = Gdx.graphics.getWidth() / 25;
 		textStyle =  new Label.LabelStyle(generator.generateFont(parameter), Color.WHITE);
 
 		generator.dispose();

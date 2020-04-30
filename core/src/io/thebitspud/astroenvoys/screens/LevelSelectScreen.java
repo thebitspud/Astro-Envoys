@@ -34,7 +34,7 @@ public class LevelSelectScreen implements Screen {
 		title.setPosition(midX - (title.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.75f);
 		title.setAlignment(Align.center);
 
-		Label levelTitle= new Label("The Delivery", app.assets.subTitleStyle);
+		Label levelTitle= new Label("01: The Delivery", app.assets.subTitleStyle);
 		levelTitle.setPosition(midX - (levelTitle.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.65f);
 		levelTitle.setAlignment(Align.center);
 
@@ -43,7 +43,7 @@ public class LevelSelectScreen implements Screen {
 		levelDesc.setAlignment(Align.center);
 
 		Label levelName = new Label("Level 01", app.assets.subTitleStyle);
-		levelName.setPosition(midX - (levelName.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.336f);
+		levelName.setPosition(midX - (levelName.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.342f);
 		levelName.setAlignment(Align.center);
 
 		ImageButton playButton = new ImageButton(app.assets.buttons[0][0], app.assets.buttons[0][1]);

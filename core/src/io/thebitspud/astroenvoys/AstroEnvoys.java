@@ -16,7 +16,7 @@ public class AstroEnvoys extends Game {
 	public SpriteBatch batch;
 	public AssetLibrary assets;
 
-	public Screen menuScreen, gameScreen, winScreen, lossScreen, levelSelectScreen, creditsScreen;
+	public Screen menuScreen, gameScreen, winScreen, lossScreen, levelSelectScreen, creditsScreen, pauseScreen;
 	private Screen settingsScreen, loadoutScreen, lastScreen;
 	
 	@Override
@@ -34,6 +34,7 @@ public class AstroEnvoys extends Game {
 		settingsScreen = new SettingsScreen(this);
 		loadoutScreen = new LoadoutScreen(this);
 		creditsScreen = new CreditsScreen(this);
+		pauseScreen = new PauseScreen(this);
 
 		setScreen(menuScreen);
 	}

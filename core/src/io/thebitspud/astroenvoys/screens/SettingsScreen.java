@@ -25,10 +25,8 @@ public class SettingsScreen implements Screen {
 		stage = new Stage(new ScreenViewport(new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())));
 		Gdx.input.setInputProcessor(stage);
 
-		final int midX = Gdx.graphics.getWidth() / 2;
-
 		Label title = new Label("Settings", app.assets.smallTitleStyle);
-		title.setPosition(midX - (title.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.86f);
+		title.setPosition((Gdx.graphics.getWidth() - title.getPrefWidth()) / 2, Gdx.graphics.getHeight() * 0.86f);
 		title.setAlignment(Align.center);
 
 		stage.addActor(title);
