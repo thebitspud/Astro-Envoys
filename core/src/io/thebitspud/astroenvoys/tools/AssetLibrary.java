@@ -9,15 +9,19 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
+import io.thebitspud.astroenvoys.entities.EntityID;
+
 public class AssetLibrary extends AssetManager {
-	public TextureRegion asteroid;
-	public TextureRegion[] playerShip;
+	private TextureRegion missing;
+	private TextureRegion[] playerShips, enemyShips, projectiles;
 	public TextureRegionDrawable[][] buttons;
 	public Label.LabelStyle titleStyle, smallTitleStyle, subTitleStyle, textStyle;
 
 	public AssetLibrary() {
 		buttons = new TextureRegionDrawable[13][2];
-		playerShip = new TextureRegion[4];
+		playerShips = new TextureRegion[4];
+		enemyShips = new TextureRegion[16];
+		projectiles = new TextureRegion[16];
 	}
 
 	public void loadAll() {
@@ -25,21 +29,27 @@ public class AssetLibrary extends AssetManager {
 
 		this.load("buttons.png", Texture.class);
 		this.load("asteroid.png", Texture.class);
-		this.load("shuttle.png", Texture.class);
-		this.load("frigate.png", Texture.class);
-		this.load("bomber.png", Texture.class);
-		this.load("interceptor.png", Texture.class);
+		this.load("missing.png", Texture.class);
+		this.load("player.png", Texture.class);
+		this.load("az_raider.png", Texture.class);
+		this.load("projectiles.png", Texture.class);
 
 		finishLoading();
 		assign();
 	}
 
 	private void assign() {
-		asteroid = new TextureRegion(this.get("asteroid.png", Texture.class));
-		playerShip[0] = new TextureRegion(this.get("shuttle.png", Texture.class));
-		playerShip[1] = new TextureRegion(this.get("frigate.png", Texture.class));
-		playerShip[2] = new TextureRegion(this.get("bomber.png", Texture.class));
-		playerShip[3] = new TextureRegion(this.get("interceptor.png", Texture.class));
+		missing = new TextureRegion(this.get("missing.png", Texture.class));
+
+		for(int i = 0; i < 4; i++)
+			playerShips[i] = new TextureRegion(this.get("player.png", Texture.class),i * 200, 0, 200, 200);
+
+		enemyShips[0] = new TextureRegion(this.get("asteroid.png", Texture.class));
+		enemyShips[1] = new TextureRegion(this.get("az_raider.png", Texture.class));
+
+		projectiles[0] = new TextureRegion(this.get("projectiles.png", Texture.class), 0, 0, 25, 50);
+		projectiles[1] = new TextureRegion(this.get("projectiles.png", Texture.class),25, 0, 25, 50);
+		projectiles[1].flip(false, true);
 
 		for(int i = 0; i < 6; i++) {
 			buttons[i] = getButton(0,i * 180,800);
@@ -58,6 +68,19 @@ public class AssetLibrary extends AssetManager {
 		button[1] = new TextureRegionDrawable(iconDown);
 
 		return button;
+	}
+
+	public TextureRegion getTexture(EntityID id) {
+		switch (id.type()) {
+			case ENEMY:
+				return enemyShips[id.numID()];
+			case PROJECTILE:
+				return projectiles[id.numID()];
+			case PLAYER:
+				return playerShips[id.numID()];
+			default:
+				return missing;
+		}
 	}
 
 	private void loadFonts() {

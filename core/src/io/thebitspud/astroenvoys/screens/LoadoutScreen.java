@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import io.thebitspud.astroenvoys.AstroEnvoys;
+import io.thebitspud.astroenvoys.entities.EntityID;
 import io.thebitspud.astroenvoys.tools.JInputListener;
 
 public class LoadoutScreen implements Screen {
@@ -67,7 +68,7 @@ public class LoadoutScreen implements Screen {
 		app.renderStage(stage);
 
 		app.batch.begin();
-		app.batch.draw(app.assets.playerShip[0], (float) Gdx.graphics.getWidth() / 2 - 100, Gdx.graphics.getHeight() * 0.6f);
+		app.batch.draw(app.assets.getTexture(EntityID.PLAYER), (float) Gdx.graphics.getWidth() / 2 - 100, Gdx.graphics.getHeight() * 0.6f);
 
 		app.batch.end();
 	}

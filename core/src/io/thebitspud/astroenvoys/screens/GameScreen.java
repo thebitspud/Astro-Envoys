@@ -2,6 +2,7 @@ package io.thebitspud.astroenvoys.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -19,12 +20,12 @@ public class GameScreen implements Screen {
 
 	public GameScreen(AstroEnvoys app) {
 		this.app = app;
-		game = new CampaignGame();
+		game = new CampaignGame(app);
 	}
 
 	@Override
 	public void show() {
-		hud = new Stage(new ScreenViewport(new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())));
+		hud = new Stage(new ScreenViewport(camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())));
 		Gdx.input.setInputProcessor(hud);
 
 		ImageButton pauseButton = new ImageButton(app.assets.buttons[12][0], app.assets.buttons[12][1]);
@@ -37,11 +38,25 @@ public class GameScreen implements Screen {
 		pauseButton.setPosition(Gdx.graphics.getWidth() - 180, Gdx.graphics.getHeight() - 180);
 
 		hud.addActor(pauseButton);
+
+		game.init();
 	}
 
 	@Override
 	public void render(float delta) {
-		app.renderStage(hud);
+		camera.update();
+		app.batch.setProjectionMatrix(camera.combined);
+
+		Gdx.gl.glClearColor(0, 0f, 0.1f, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+		hud.act();
+		game.tick(delta);
+
+		app.batch.begin();
+		game.render();
+		app.batch.end();
+		hud.draw();
 	}
 
 	@Override
