@@ -26,16 +26,17 @@ public class CampaignGame {
 	public CampaignGame(AstroEnvoys app) {
 		this.app = app;
 
-		player = new Player(Gdx.graphics.getWidth() / 2 - 90, Gdx.graphics.getHeight() / 5, app, this);
 		enemies = new ArrayList<>();
 		projectiles = new ArrayList<>();
 
+		player = new Player(app);
 		level = new Level(this);
 
 		init();
 	}
 
 	public void init() {
+		player.init();
 		projectiles.clear();
 		enemies.clear();
 		level.init();

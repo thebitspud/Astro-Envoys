@@ -33,7 +33,7 @@ public class LoadoutScreen implements Screen {
 		title.setAlignment(Align.center);
 
 		Label shipName = new Label("Basic Fighter", app.assets.subTitleStyle);
-		shipName.setPosition((Gdx.graphics.getWidth() - shipName.getPrefWidth()) / 2, Gdx.graphics.getHeight() * 0.75f);
+		shipName.setPosition((Gdx.graphics.getWidth() - shipName.getPrefWidth()) / 2, Gdx.graphics.getHeight() * 0.77f);
 		shipName.setAlignment(Align.center);
 
 		ImageButton prevButton = new ImageButton(app.assets.buttons[10][0], app.assets.buttons[10][1]);
@@ -43,7 +43,7 @@ public class LoadoutScreen implements Screen {
 
 			}
 		});
-		prevButton.setPosition(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() * 0.6f);
+		prevButton.setPosition(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() * 0.65f);
 
 		ImageButton nextButton = new ImageButton(app.assets.buttons[11][0], app.assets.buttons[11][1]);
 		nextButton.addListener(new JInputListener() {
@@ -52,7 +52,7 @@ public class LoadoutScreen implements Screen {
 
 			}
 		});
-		nextButton.setPosition((Gdx.graphics.getWidth() * 0.95f) - 180, Gdx.graphics.getHeight() * 0.6f);
+		nextButton.setPosition((Gdx.graphics.getWidth() * 0.95f) - 180, Gdx.graphics.getHeight() * 0.65f);
 
 		stage.addActor(title);
 		stage.addActor(shipName);
@@ -68,7 +68,7 @@ public class LoadoutScreen implements Screen {
 		app.renderStage(stage);
 
 		app.batch.begin();
-		app.batch.draw(app.assets.getTexture(EntityID.PLAYER), (float) Gdx.graphics.getWidth() / 2 - 90, Gdx.graphics.getHeight() * 0.6f);
+		app.batch.draw(app.assets.getTexture(EntityID.PLAYER), (float) Gdx.graphics.getWidth() / 2 - 90, Gdx.graphics.getHeight() * 0.65f);
 
 		app.batch.end();
 	}

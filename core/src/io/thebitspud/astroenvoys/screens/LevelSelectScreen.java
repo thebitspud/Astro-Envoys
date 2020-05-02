@@ -35,15 +35,15 @@ public class LevelSelectScreen implements Screen {
 		title.setAlignment(Align.center);
 
 		Label levelTitle = new Label("01: The Delivery", app.assets.subTitleStyle);
-		levelTitle.setPosition(midX - (levelTitle.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.65f);
+		levelTitle.setPosition(midX - (levelTitle.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.67f);
 		levelTitle.setAlignment(Align.center);
 
 		Label levelDesc = new Label("*Insert description here*", app.assets.textStyle);
-		levelDesc.setPosition(midX - (levelDesc.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.60f);
+		levelDesc.setPosition(midX - (levelDesc.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.62f);
 		levelDesc.setAlignment(Align.center);
 
 		Label levelName = new Label("Level 01", app.assets.subTitleStyle);
-		levelName.setPosition(midX - (levelName.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.342f);
+		levelName.setPosition(midX - (levelName.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.322f);
 		levelName.setAlignment(Align.center);
 
 		ImageButton playButton = new ImageButton(app.assets.buttons[0][0], app.assets.buttons[0][1]);
@@ -54,7 +54,7 @@ public class LevelSelectScreen implements Screen {
 				app.gameScreen.game.init();
 			}
 		});
-		playButton.setPosition(midX - 400, Gdx.graphics.getHeight() * 0.2f);
+		playButton.setPosition(midX - 400, Gdx.graphics.getHeight() * 0.18f);
 
 		ImageButton prevButton = new ImageButton(app.assets.buttons[10][0], app.assets.buttons[10][1]);
 		prevButton.addListener(new JInputListener() {
@@ -63,7 +63,7 @@ public class LevelSelectScreen implements Screen {
 
 			}
 		});
-		prevButton.setPosition(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() * 0.32f);
+		prevButton.setPosition(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() * 0.30f);
 
 		ImageButton nextButton = new ImageButton(app.assets.buttons[11][0], app.assets.buttons[11][1]);
 		nextButton.addListener(new JInputListener() {
@@ -72,7 +72,7 @@ public class LevelSelectScreen implements Screen {
 
 			}
 		});
-		nextButton.setPosition((Gdx.graphics.getWidth() * 0.95f) - 180, Gdx.graphics.getHeight() * 0.32f);
+		nextButton.setPosition((Gdx.graphics.getWidth() * 0.95f) - 180, Gdx.graphics.getHeight() * 0.30f);
 
 		stage.addActor(title);
 		stage.addActor(levelTitle);

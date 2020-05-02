@@ -3,7 +3,6 @@ package io.thebitspud.astroenvoys.entities;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import io.thebitspud.astroenvoys.AstroEnvoys;
-import io.thebitspud.astroenvoys.CampaignGame;
 
 public abstract class Entity extends Sprite {
 	protected AstroEnvoys app;
