@@ -45,7 +45,7 @@ public class Level {
 				final int x = r.nextInt(Gdx.graphics.getWidth() - 120),
 				y = Gdx.graphics.getHeight() + 200;
 				game.spawnEnemy(x, y, 0, -100, EntityID.AZ_RAIDER);
-				if(getTimerDuration() > 2.5) setTimerDuration(getTimerDuration() * 0.98f);
+				if(getTimerDuration() > 2.5) setTimerDuration(getTimerDuration() * 0.96f);
 			}
 		});
 	}

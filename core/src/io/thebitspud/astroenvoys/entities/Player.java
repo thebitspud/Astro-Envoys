@@ -10,7 +10,6 @@ import io.thebitspud.astroenvoys.tools.InputManager;
 import io.thebitspud.astroenvoys.tools.JTimerUtil;
 
 public class Player extends Entity {
-	private InputManager input;
 	private JTimerUtil attackTimer;
 	private Random r;
 
@@ -18,7 +17,6 @@ public class Player extends Entity {
 		super(x, y, 250, EntityID.PLAYER, app);
 
 		r = new Random();
-		input = new InputManager(app, this);
 		attackTimer = new JTimerUtil(0.25, true, true) {
 			@Override
 			public void onActivation() {
@@ -30,12 +28,7 @@ public class Player extends Entity {
 
 	@Override
 	public void tick(float delta) {
-		getInput(delta);
 		attackTimer.tick(delta);
-	}
-
-	private void getInput(float delta) {
-
 	}
 
 	// Triangle on rectangle collisions

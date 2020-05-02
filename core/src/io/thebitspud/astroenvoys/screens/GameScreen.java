@@ -1,6 +1,7 @@
 package io.thebitspud.astroenvoys.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -10,12 +11,14 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import io.thebitspud.astroenvoys.AstroEnvoys;
 import io.thebitspud.astroenvoys.CampaignGame;
+import io.thebitspud.astroenvoys.tools.InputManager;
 import io.thebitspud.astroenvoys.tools.JInputListener;
 
 public class GameScreen implements Screen {
 	public CampaignGame game;
 	private AstroEnvoys app;
 	private Stage hud;
+	private InputManager gameInput;
 	private OrthographicCamera camera;
 
 	public GameScreen(AstroEnvoys app) {
@@ -25,8 +28,10 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void show() {
+		gameInput = new InputManager(app, game.player);
 		hud = new Stage(new ScreenViewport(camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())));
-		Gdx.input.setInputProcessor(hud);
+		InputMultiplexer multiplexer = new InputMultiplexer(hud, gameInput);
+		Gdx.input.setInputProcessor(multiplexer);
 
 		ImageButton pauseButton = new ImageButton(app.assets.buttons[12][0], app.assets.buttons[12][1]);
 		pauseButton.addListener(new JInputListener() {

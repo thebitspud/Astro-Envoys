@@ -28,7 +28,7 @@ public abstract class Enemy extends Entity {
 		} else if (getX() + getWidth() < 0) kill();
 
 		if (yVel > 0) {
-			if (getY() + getHeight() > Gdx.graphics.getHeight()) kill();
-		} else if (getY() < 0) kill();
+			if (getY() > Gdx.graphics.getHeight()) kill();
+		} else if (getY() + getHeight() < 0) kill();
 	}
 }

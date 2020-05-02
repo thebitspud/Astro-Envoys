@@ -1,5 +1,6 @@
 package io.thebitspud.astroenvoys.tools;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 
 import io.thebitspud.astroenvoys.AstroEnvoys;
@@ -21,12 +22,14 @@ public class InputManager implements InputProcessor {
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		return false;
+		player.setCenter(screenX, Gdx.graphics.getHeight() - screenY);
+
+		return true;
 	}
 
 	// Irrelevant
