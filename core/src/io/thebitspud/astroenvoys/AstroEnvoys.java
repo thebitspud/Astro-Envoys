@@ -24,7 +24,8 @@ public class AstroEnvoys extends Game {
 	public SpriteBatch batch;
 	public AssetLibrary assets;
 
-	public Screen menuScreen, gameScreen, winScreen, lossScreen, levelSelectScreen, creditsScreen, pauseScreen;
+	public GameScreen gameScreen;
+	public Screen menuScreen, winScreen, lossScreen, levelSelectScreen, creditsScreen, pauseScreen;
 	private Screen settingsScreen, loadoutScreen, lastScreen;
 
 	@Override

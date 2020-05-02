@@ -5,14 +5,16 @@ import com.badlogic.gdx.Gdx;
 import io.thebitspud.astroenvoys.AstroEnvoys;
 import io.thebitspud.astroenvoys.entities.Entity;
 import io.thebitspud.astroenvoys.entities.EntityID;
+import io.thebitspud.astroenvoys.entities.Player;
+import io.thebitspud.astroenvoys.entities.enemies.Enemy;
 
 public class Projectile extends Entity {
 	private float xVel, yVel;
 	private boolean canHitPlayers, canHitEnemies;
 
-	Projectile(int x, int y, int width, int height, int damage, float xVel, float yVel,
+	Projectile(int x, int y, int damage, float xVel, float yVel,
 	           boolean canHitPlayers, boolean canHitEnemies, EntityID id, AstroEnvoys app) {
-		super(x, y, width, height, damage, id, app);
+		super(x, y, damage, id, app);
 
 		this.xVel = xVel;
 		this.yVel = yVel;
@@ -34,11 +36,14 @@ public class Projectile extends Entity {
 		else if (getY() + health < 0) kill();
 	}
 
-	public void checkForCollision(Entity e) {
-		if ((canHitPlayers && e.getID().type() == EntityID.Type.PLAYER)
-				|| (canHitEnemies && e.getID().type() == EntityID.Type.ENEMY)) {
-			if (e.getBoundingRectangle().overlaps(this.getBoundingRectangle())) onHit(e);
-		}
+	public void checkForCollision(Enemy e) {
+		if(!canHitEnemies) return;
+		if (e.getBoundingRectangle().overlaps(this.getBoundingRectangle())) onHit(e);
+	}
+
+	public void checkForCollision(Player p) {
+		if(!canHitPlayers) return;
+		if (p.overlaps(getBoundingRectangle())) onHit(p);
 	}
 
 	private void onHit(Entity e) {

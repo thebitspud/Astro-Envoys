@@ -37,6 +37,7 @@ public class LossScreen implements Screen {
 			@Override
 			public void onClick() {
 				app.setScreen(app.gameScreen);
+				app.gameScreen.game.init();
 			}
 		});
 		playButton.setPosition(midX - 400, Gdx.graphics.getHeight() * 0.6f);

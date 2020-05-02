@@ -9,8 +9,8 @@ import io.thebitspud.astroenvoys.entities.EntityID;
 public abstract class Enemy extends Entity {
 	float xVel, yVel;
 
-	Enemy(int x, int y, int width, int height, float xVel, float yVel, int health, EntityID id, AstroEnvoys app) {
-		super(x, y, width, height, health, id, app);
+	Enemy(int x, int y, float xVel, float yVel, int health, EntityID id, AstroEnvoys app) {
+		super(x, y, health, id, app);
 
 		this.xVel = xVel;
 		this.yVel = yVel;

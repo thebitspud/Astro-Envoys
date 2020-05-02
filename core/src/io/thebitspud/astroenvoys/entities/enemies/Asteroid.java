@@ -9,7 +9,7 @@ public class Asteroid extends Enemy {
 	private int aVel;
 
 	public Asteroid(int x, int y, float xVel, float yVel, AstroEnvoys app) {
-		super(x, y, 100, 100, xVel, yVel, 200, EntityID.ASTEROID, app);
+		super(x, y, xVel, yVel, 100, EntityID.ASTEROID, app);
 
 		Random r = new Random();
 		 aVel = r.nextInt(40) + 20;

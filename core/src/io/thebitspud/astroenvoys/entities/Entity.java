@@ -3,6 +3,7 @@ package io.thebitspud.astroenvoys.entities;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import io.thebitspud.astroenvoys.AstroEnvoys;
+import io.thebitspud.astroenvoys.CampaignGame;
 
 public abstract class Entity extends Sprite {
 	protected AstroEnvoys app;
@@ -10,13 +11,12 @@ public abstract class Entity extends Sprite {
 	protected EntityID id;
 	private boolean active;
 
-	public Entity(int x, int y, int width, int height, int health, EntityID id, AstroEnvoys app) {
+	public Entity(int x, int y, int health, EntityID id, AstroEnvoys app) {
 		super(app.assets.getTexture(id));
 
 		setPosition(x, y);
-		setSize(width, height);
 
-		this.app = app;
+		this.app = app;;
 		this.active = true;
 		this.maxHealth = health;
 		this.health = health;
@@ -41,9 +41,5 @@ public abstract class Entity extends Sprite {
 
 	protected void kill() {
 		this.active = false;
-	}
-
-	public EntityID getID() {
-		return id;
 	}
 }

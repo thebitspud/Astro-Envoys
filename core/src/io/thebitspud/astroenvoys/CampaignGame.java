@@ -8,6 +8,7 @@ import io.thebitspud.astroenvoys.entities.EntityID;
 import io.thebitspud.astroenvoys.entities.Player;
 import io.thebitspud.astroenvoys.entities.enemies.Asteroid;
 import io.thebitspud.astroenvoys.entities.enemies.Enemy;
+import io.thebitspud.astroenvoys.entities.enemies.Raider;
 import io.thebitspud.astroenvoys.entities.projectiles.EnergyShot;
 import io.thebitspud.astroenvoys.entities.projectiles.PlasmaBolt;
 import io.thebitspud.astroenvoys.entities.projectiles.Projectile;
@@ -16,20 +17,20 @@ import io.thebitspud.astroenvoys.levels.Level;
 public class CampaignGame {
 	private AstroEnvoys app;
 
-	private Player player;
-	private ArrayList<Enemy> enemies;
-	private ArrayList<Projectile> projectiles;
+	public Player player;
+	public ArrayList<Enemy> enemies;
+	public ArrayList<Projectile> projectiles;
 
 	private Level level;
 
 	public CampaignGame(AstroEnvoys app) {
 		this.app = app;
 
-		player = new Player(Gdx.graphics.getWidth() / 2 - 90, Gdx.graphics.getHeight() / 5, app);
+		player = new Player(Gdx.graphics.getWidth() / 2 - 90, Gdx.graphics.getHeight() / 5, app, this);
 		enemies = new ArrayList<>();
 		projectiles = new ArrayList<>();
 
-		level = new Level();
+		level = new Level(this);
 
 		init();
 	}
@@ -37,15 +38,12 @@ public class CampaignGame {
 	public void init() {
 		projectiles.clear();
 		enemies.clear();
-		level.reset();
-
-		for (int i = 0; i < 9; i++)
-			enemies.add(new Asteroid(i * 120, Gdx.graphics.getHeight() + 100, 0, -100, app));
-		for (int i = 0; i < 12; i++)
-			addProjectile(i * 100, Gdx.graphics.getHeight() + 100, 0, -500, EntityID.ENERGY_SHOT);
+		level.init();
 	}
 
 	public void tick(float delta) {
+		level.tick(delta);
+
 		for (int i = 0; i < enemies.size(); i++) {
 			Enemy e = enemies.get(i);
 			if (e.isDead()) enemies.remove(e);
@@ -58,7 +56,6 @@ public class CampaignGame {
 
 		player.tick(delta);
 		for (Enemy e : enemies) e.tick(delta);
-
 		for (Projectile p : projectiles) {
 			p.tick(delta);
 			p.checkForCollision(player);
@@ -66,10 +63,27 @@ public class CampaignGame {
 		}
 	}
 
+	public void spawnEnemy(int x, int y, float xVel, float yVel, EntityID id) {
+		switch (id) {
+			case AZ_RAIDER: enemies.add(new Raider(x, y, xVel, yVel, app));
+				break;
+			case ASTEROID:
+			default:
+				enemies.add(new Asteroid(x, y, xVel, yVel, app));
+				break;
+		}
+	}
+
+	public void endGame(boolean victory) {
+		if(victory) app.setScreen(app.winScreen);
+		else app.setScreen(app.lossScreen);
+	}
+
 	public void addProjectile(int x, int y, float xVel, float yVel, EntityID id) {
 		switch (id) {
 			case PLASMA_BOLT:
 				projectiles.add(new PlasmaBolt(x, y, xVel, yVel, app));
+				break;
 			case ENERGY_SHOT:
 			default:
 				projectiles.add(new EnergyShot(x, y, xVel, yVel, app));

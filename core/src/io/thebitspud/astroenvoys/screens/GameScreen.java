@@ -38,8 +38,6 @@ public class GameScreen implements Screen {
 		pauseButton.setPosition(Gdx.graphics.getWidth() - 180, Gdx.graphics.getHeight() - 180);
 
 		hud.addActor(pauseButton);
-
-		game.init();
 	}
 
 	@Override
