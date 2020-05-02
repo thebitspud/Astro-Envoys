@@ -1,33 +1,32 @@
 package io.thebitspud.astroenvoys.entities.enemies;
 
+import com.badlogic.gdx.Gdx;
+
 import io.thebitspud.astroenvoys.AstroEnvoys;
 import io.thebitspud.astroenvoys.entities.Entity;
 import io.thebitspud.astroenvoys.entities.EntityID;
-import io.thebitspud.astroenvoys.entities.Player;
 
 public abstract class Enemy extends Entity {
 	private float xVel, yVel;
-	private int damage;
 
 	public Enemy(int x, int y, int width, int height, float xVel, float yVel, int health, EntityID id, AstroEnvoys app) {
 		super(x, y, width, height, health, id, app);
 
 		this.xVel = xVel;
 		this.yVel = yVel;
-
-		damage = health / 4;
-	}
-
-	public void checkForCollision(Player p) {
-		if (overlaps(p)) {
-			p.adjustHealth(-damage);
-			setActive(false);
-		}
 	}
 
 	@Override
 	public void tick(float delta) {
-		x += (xVel * delta);
-		y += (yVel * delta);
+		translate(xVel * delta, yVel * delta);
+		checkBounds();
+	}
+
+	private void checkBounds() {
+		if (xVel > 0) if (getX() > Gdx.graphics.getWidth()) kill();
+		else if (getX() + getWidth() < 0) kill();
+
+		if (yVel > 0) if (getY() > Gdx.graphics.getHeight()) kill();
+		else if (getY() + health < 0) kill();
 	}
 }

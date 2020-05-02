@@ -13,10 +13,10 @@ import io.thebitspud.astroenvoys.CampaignGame;
 import io.thebitspud.astroenvoys.tools.JInputListener;
 
 public class GameScreen implements Screen {
+	public CampaignGame game;
 	private AstroEnvoys app;
 	private Stage hud;
 	private OrthographicCamera camera;
-	public CampaignGame game;
 
 	public GameScreen(AstroEnvoys app) {
 		this.app = app;

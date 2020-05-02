@@ -34,7 +34,7 @@ public class LevelSelectScreen implements Screen {
 		title.setPosition(midX - (title.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.75f);
 		title.setAlignment(Align.center);
 
-		Label levelTitle= new Label("01: The Delivery", app.assets.subTitleStyle);
+		Label levelTitle = new Label("01: The Delivery", app.assets.subTitleStyle);
 		levelTitle.setPosition(midX - (levelTitle.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.65f);
 		levelTitle.setAlignment(Align.center);
 

@@ -9,7 +9,7 @@ public class InputManager implements InputProcessor {
 	private AstroEnvoys app;
 	private Player player;
 
-	public InputManager (AstroEnvoys app, Player player) {
+	public InputManager(AstroEnvoys app, Player player) {
 		this.app = app;
 		this.player = player;
 	}

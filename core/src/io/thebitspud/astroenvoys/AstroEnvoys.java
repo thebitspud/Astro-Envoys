@@ -8,7 +8,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 
-import io.thebitspud.astroenvoys.screens.*;
+import io.thebitspud.astroenvoys.screens.CreditsScreen;
+import io.thebitspud.astroenvoys.screens.GameScreen;
+import io.thebitspud.astroenvoys.screens.LevelSelectScreen;
+import io.thebitspud.astroenvoys.screens.LoadoutScreen;
+import io.thebitspud.astroenvoys.screens.LossScreen;
+import io.thebitspud.astroenvoys.screens.MenuScreen;
+import io.thebitspud.astroenvoys.screens.PauseScreen;
+import io.thebitspud.astroenvoys.screens.SettingsScreen;
+import io.thebitspud.astroenvoys.screens.WinScreen;
 import io.thebitspud.astroenvoys.tools.AssetLibrary;
 import io.thebitspud.astroenvoys.tools.JInputListener;
 
@@ -18,9 +26,9 @@ public class AstroEnvoys extends Game {
 
 	public Screen menuScreen, gameScreen, winScreen, lossScreen, levelSelectScreen, creditsScreen, pauseScreen;
 	private Screen settingsScreen, loadoutScreen, lastScreen;
-	
+
 	@Override
-	public void create () {
+	public void create() {
 		assets = new AssetLibrary();
 		batch = new SpriteBatch();
 
@@ -39,16 +47,16 @@ public class AstroEnvoys extends Game {
 		setScreen(menuScreen);
 	}
 
-	public void setLastScreen(Screen screen) {
-		lastScreen = screen;
-	}
-
 	public Screen getLastScreen() {
 		return lastScreen;
 	}
 
+	public void setLastScreen(Screen screen) {
+		lastScreen = screen;
+	}
+
 	@Override
-	public void render () {
+	public void render() {
 		super.render();
 	}
 
@@ -98,9 +106,9 @@ public class AstroEnvoys extends Game {
 
 		stage.addActor(loadoutButton);
 	}
-	
+
 	@Override
-	public void dispose () {
+	public void dispose() {
 		batch.dispose();
 		assets.dispose();
 	}

@@ -7,15 +7,8 @@ public enum EntityID {
 	PLASMA_BOLT(Type.PROJECTILE, 0),
 	ENERGY_SHOT(Type.PROJECTILE, 1);
 
-	public enum Type {
-		PLAYER,
-		ENEMY,
-		PROJECTILE
-	}
-
 	private final Type type;
 	private final int numID;
-
 	EntityID(Type type, int numID) {
 		this.type = type;
 		this.numID = numID;
@@ -27,5 +20,11 @@ public enum EntityID {
 
 	public int numID() {
 		return numID;
+	}
+
+	public enum Type {
+		PLAYER,
+		ENEMY,
+		PROJECTILE
 	}
 }

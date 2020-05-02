@@ -4,9 +4,13 @@ import com.badlogic.gdx.Gdx;
 
 import java.util.ArrayList;
 
+import io.thebitspud.astroenvoys.entities.EntityID;
 import io.thebitspud.astroenvoys.entities.Player;
-import io.thebitspud.astroenvoys.entities.enemies.*;
-import io.thebitspud.astroenvoys.entities.projectiles.*;
+import io.thebitspud.astroenvoys.entities.enemies.Asteroid;
+import io.thebitspud.astroenvoys.entities.enemies.Enemy;
+import io.thebitspud.astroenvoys.entities.projectiles.EnergyShot;
+import io.thebitspud.astroenvoys.entities.projectiles.PlasmaBolt;
+import io.thebitspud.astroenvoys.entities.projectiles.Projectile;
 import io.thebitspud.astroenvoys.levels.Level;
 
 public class CampaignGame {
@@ -21,7 +25,7 @@ public class CampaignGame {
 	public CampaignGame(AstroEnvoys app) {
 		this.app = app;
 
-		player = new Player(Gdx.graphics.getWidth() / 2 - 100, Gdx.graphics.getHeight() / 5, app);
+		player = new Player(Gdx.graphics.getWidth() / 2 - 90, Gdx.graphics.getHeight() / 5, app);
 		enemies = new ArrayList<>();
 		projectiles = new ArrayList<>();
 
@@ -35,19 +39,21 @@ public class CampaignGame {
 		enemies.clear();
 		level.reset();
 
-		for (int i = 0; i < 9; i++) enemies.add(new Asteroid(i * 120, Gdx.graphics.getHeight() + 100, 0, -100, app));
-		for(int i = 0; i < 60; i++) projectiles.add(new EnergyShot(i * 18, Gdx.graphics.getHeight() + 100, 0, -200, app));
+		for (int i = 0; i < 9; i++)
+			enemies.add(new Asteroid(i * 120, Gdx.graphics.getHeight() + 100, 0, -100, app));
+		for (int i = 0; i < 12; i++)
+			addProjectile(i * 100, Gdx.graphics.getHeight() + 100, 0, -500, EntityID.ENERGY_SHOT);
 	}
 
 	public void tick(float delta) {
 		for (int i = 0; i < enemies.size(); i++) {
 			Enemy e = enemies.get(i);
-			if(!e.isActive()) enemies.remove(e);
+			if (e.isDead()) enemies.remove(e);
 		}
 
 		for (int i = 0; i < projectiles.size(); i++) {
 			Projectile p = projectiles.get(i);
-			if(!p.isActive()) projectiles.remove(p);
+			if (p.isDead()) projectiles.remove(p);
 		}
 
 		player.tick(delta);
@@ -60,9 +66,20 @@ public class CampaignGame {
 		}
 	}
 
+	public void addProjectile(int x, int y, float xVel, float yVel, EntityID id) {
+		switch (id) {
+			case PLASMA_BOLT:
+				projectiles.add(new PlasmaBolt(x, y, xVel, yVel, app));
+			case ENERGY_SHOT:
+			default:
+				projectiles.add(new EnergyShot(x, y, xVel, yVel, app));
+				break;
+		}
+	}
+
 	public void render() {
-		for (Enemy e : enemies) e.render();
-		for (Projectile p : projectiles) p.render();
-		player.render();
+		for (Enemy e : enemies) e.draw(app.batch);
+		for (Projectile p : projectiles) p.draw(app.batch);
+		player.draw(app.batch);
 	}
 }

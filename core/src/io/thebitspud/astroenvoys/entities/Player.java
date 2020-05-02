@@ -9,7 +9,7 @@ public class Player extends Entity {
 	private InputManager input;
 
 	public Player(int x, int y, AstroEnvoys app) {
-		super(x, y, 200, 200, 250, EntityID.PLAYER, app);
+		super(x, y, 180, 180, 250, EntityID.PLAYER, app);
 
 		input = new InputManager(app, this);
 	}
@@ -25,17 +25,17 @@ public class Player extends Entity {
 
 	// Triangle on rectangle collisions
 
-	@Override
 	public boolean overlaps(Rectangle r) {
-		if(!super.overlaps(r)) return false;
+		if (getBoundingRectangle().overlaps(r)) return false;
 
-		float dx = r.x - x;
-		float dy = r.y - y;
+		float dx = r.x - getX();
+		float dy = r.y - getY();
 
-		if(dy < 20) return true;
-		if(r.contains(x + width / 2, y + height)) return  true;
+		if (dy < 20) return true;
+		if (r.contains(getX() + getWidth() / 2, getY() + getHeight())) return true;
 
-		if(dx + r.width / 2 < width / 2) return dx + r.width + (height - dy) / 2 > (width / 2) + 20;
-		else return dx - (height - dy) / 2 < (width / 2) - 20;
+		if (dx + r.width / 2 < getWidth() / 2)
+			return dx + r.width + (getHeight() - dy) / 2 > (getWidth() / 2) + 15;
+		else return dx - (getHeight() - dy) / 2 < (getWidth() / 2) - 15;
 	}
 }

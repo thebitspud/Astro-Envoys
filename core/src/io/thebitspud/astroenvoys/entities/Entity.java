@@ -1,19 +1,20 @@
 package io.thebitspud.astroenvoys.entities;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import io.thebitspud.astroenvoys.AstroEnvoys;
 
-public abstract class Entity extends Rectangle {
+public abstract class Entity extends Sprite {
 	protected AstroEnvoys app;
-	protected TextureRegion texture;
 	protected int health, maxHealth;
-	private boolean active;
 	protected EntityID id;
+	private boolean active;
 
 	public Entity(int x, int y, int width, int height, int health, EntityID id, AstroEnvoys app) {
-		super(x, y, width, height);
+		super(app.assets.getTexture(id));
+
+		setPosition(x, y);
+		setSize(width, height);
 
 		this.app = app;
 		this.active = true;
@@ -23,11 +24,6 @@ public abstract class Entity extends Rectangle {
 	}
 
 	public abstract void tick(float delta);
-
-	public void render() {
-		if (texture == null) texture = app.assets.getTexture(id);
-		else app.batch.draw(texture, x, y, width, height);
-	}
 
 	public void adjustHealth(int value) {
 		health += value;
@@ -39,12 +35,12 @@ public abstract class Entity extends Rectangle {
 		}
 	}
 
-	public boolean isActive() {
-		return active;
+	public boolean isDead() {
+		return !active;
 	}
 
-	public void setActive(boolean active) {
-		this.active = active;
+	protected void kill() {
+		this.active = false;
 	}
 
 	public EntityID getID() {
