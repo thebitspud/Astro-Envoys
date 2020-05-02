@@ -10,7 +10,9 @@ import io.thebitspud.astroenvoys.tools.JTimerUtil;
 
 public class Player extends Entity {
 	private JTimerUtil attackTimer;
+	private float moveSpeed, desX, desY;
 	private Random r;
+	private boolean moveIssued;
 
 	public Player(AstroEnvoys app) {
 		super(0, 0, 250, EntityID.PLAYER, app);
@@ -19,14 +21,15 @@ public class Player extends Entity {
 	}
 
 	public void init() {
-		maxHealth = 100;
-		health = 100;
+		maxHealth = 250;
+		health = 250;
+		moveSpeed = 1500;
 		setCenter(Gdx.graphics.getWidth() * 0.5f, Gdx.graphics.getHeight() * 0.25f);
 
-		attackTimer = new JTimerUtil(0.25, true, true) {
+		attackTimer = new JTimerUtil(0.18, true, true) {
 			@Override
 			public void onActivation() {
-				app.gameScreen.game.addProjectile((int) getX() + 72, (int) getY() + 50,
+				app.gameScreen.game.addProjectile((int) getX() + 77, (int) getY() + 50,
 						r.nextInt(100) - 50, 1500, EntityID.PLASMA_BOLT);
 			}
 		};
@@ -35,6 +38,10 @@ public class Player extends Entity {
 	@Override
 	public void tick(float delta) {
 		attackTimer.tick(delta);
+		if(moveIssued) {
+			move();
+			moveIssued = false;
+		}
 	}
 
 	// Triangle on rectangle collisions
@@ -42,8 +49,7 @@ public class Player extends Entity {
 	public boolean overlaps(Rectangle r) {
 		if (!getBoundingRectangle().overlaps(r)) return false;
 
-		float dx = r.x - getX();
-		float dy = r.y - getY();
+		float dx = r.x - getX(), dy = r.y - getY();
 
 		if (dy < 20) return true;
 		if (r.contains(getX() + getWidth() / 2, getY() + getHeight())) return true;
@@ -59,5 +65,24 @@ public class Player extends Entity {
 
 		if (health > maxHealth) health = maxHealth;
 		else if (health <= 0) app.gameScreen.game.endGame(false);
+	}
+
+	public void setDesignation(float x, float y) {
+		this.moveIssued = true;
+		this.desX = x;
+		this.desY = y;
+	}
+
+	private void move() {
+		float dx = desX - (getX() + getWidth() / 2);
+		float dy = desY - (getY() + getHeight() / 2);
+		float delta = Gdx.graphics.getDeltaTime();
+		double hyp = Math.hypot(dx, dy);
+
+		if(hyp < moveSpeed * delta) setCenter(desX, desY);
+		else {
+			float scale = (float) (moveSpeed * delta / hyp);
+			translate(dx * scale,  dy * scale);
+		}
 	}
 }

@@ -39,8 +39,10 @@ public class Projectile extends Entity {
 	}
 
 	public void checkForCollision(Enemy e) {
-		if(!canHitEnemies) return;
-		if (e.getBoundingRectangle().overlaps(this.getBoundingRectangle())) onHit(e);
+		if(!canHitEnemies && !(e.getID() == EntityID.ASTEROID)) return;
+		if(yVel < 0) {
+			if(e.circleContains(getX() + getWidth() / 2, getY())) onHit(e);
+		} else if(e.circleContains(getX() + getWidth() / 2, getY() + getHeight())) onHit(e);
 	}
 
 	public void checkForCollision(Player p) {

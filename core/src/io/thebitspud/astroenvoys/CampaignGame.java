@@ -93,8 +93,8 @@ public class CampaignGame {
 	}
 
 	public void render() {
-		for (Enemy e : enemies) e.draw(app.batch);
 		for (Projectile p : projectiles) p.draw(app.batch);
+		for (Enemy e : enemies) e.draw(app.batch);
 		player.draw(app.batch);
 	}
 }

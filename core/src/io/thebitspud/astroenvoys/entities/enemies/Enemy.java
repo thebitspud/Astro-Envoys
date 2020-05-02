@@ -8,6 +8,7 @@ import io.thebitspud.astroenvoys.entities.EntityID;
 
 public abstract class Enemy extends Entity {
 	float xVel, yVel;
+	int cYOffset; // Circle collision detection offset
 
 	Enemy(int x, int y, float xVel, float yVel, int health, EntityID id, AstroEnvoys app) {
 		super(x, y, health, id, app);
@@ -20,6 +21,15 @@ public abstract class Enemy extends Entity {
 	public void tick(float delta) {
 		translate(xVel * delta, yVel * delta);
 		checkBounds();
+	}
+
+	public boolean circleContains(float x, float y) {
+		float dx = x - (getX() + getWidth() / 2);
+		float dy = y - (getY() + getHeight() / 2 + cYOffset);
+		double hyp = Math.hypot(dx, dy);
+		float rad = getWidth() / 2;
+
+		return hyp < rad;
 	}
 
 	void checkBounds() {

@@ -7,7 +7,7 @@ import io.thebitspud.astroenvoys.AstroEnvoys;
 public abstract class Entity extends Sprite {
 	protected AstroEnvoys app;
 	protected int health, maxHealth;
-	protected EntityID id;
+	private EntityID id;
 	private boolean active;
 
 	public Entity(int x, int y, int health, EntityID id, AstroEnvoys app) {
@@ -32,6 +32,10 @@ public abstract class Entity extends Sprite {
 			health = 0;
 			active = false;
 		}
+	}
+
+	public EntityID getID() {
+		return id;
 	}
 
 	public boolean isDead() {

@@ -16,10 +16,12 @@ public class Raider extends Enemy {
 		attackTimer = new JTimerUtil(3.0, true, true) {
 			@Override
 			public void onActivation() {
-				app.gameScreen.game.addProjectile((int) getX() + 48, (int) getY() + 50,
+				app.gameScreen.game.addProjectile((int) getX() + 48, (int) getY() + 20,
 				r.nextInt(200) - 100, -1000, EntityID.ENERGY_SHOT);
 			}
 		};
+
+		cYOffset = -20;
 	}
 
 	@Override
