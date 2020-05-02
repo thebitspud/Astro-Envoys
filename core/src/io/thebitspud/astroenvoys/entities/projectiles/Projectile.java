@@ -7,12 +7,11 @@ import io.thebitspud.astroenvoys.entities.Entity;
 import io.thebitspud.astroenvoys.entities.EntityID;
 
 public class Projectile extends Entity {
-	protected int pierce;
 	private float xVel, yVel;
 	private boolean canHitPlayers, canHitEnemies;
 
-	public Projectile(int x, int y, int width, int height, int damage, float xVel, float yVel,
-	                  boolean canHitPlayers, boolean canHitEnemies, EntityID id, AstroEnvoys app) {
+	Projectile(int x, int y, int width, int height, int damage, float xVel, float yVel,
+	           boolean canHitPlayers, boolean canHitEnemies, EntityID id, AstroEnvoys app) {
 		super(x, y, width, height, damage, id, app);
 
 		this.xVel = xVel;
@@ -44,8 +43,6 @@ public class Projectile extends Entity {
 
 	private void onHit(Entity e) {
 		e.adjustHealth(-health);
-
-		pierce -= 1;
-		if (pierce < 0) adjustHealth(-health);
+		adjustHealth(-health);
 	}
 }

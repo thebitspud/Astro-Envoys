@@ -47,7 +47,7 @@ public class GameScreen implements Screen {
 		camera.update();
 		app.batch.setProjectionMatrix(camera.combined);
 
-		Gdx.gl.glClearColor(0, 0f, 0.1f, 1);
+		Gdx.gl.glClearColor(0, 0f, 0.05f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		hud.act();

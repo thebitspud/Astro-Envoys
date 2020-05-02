@@ -7,9 +7,9 @@ import io.thebitspud.astroenvoys.entities.Entity;
 import io.thebitspud.astroenvoys.entities.EntityID;
 
 public abstract class Enemy extends Entity {
-	private float xVel, yVel;
+	float xVel, yVel;
 
-	public Enemy(int x, int y, int width, int height, float xVel, float yVel, int health, EntityID id, AstroEnvoys app) {
+	Enemy(int x, int y, int width, int height, float xVel, float yVel, int health, EntityID id, AstroEnvoys app) {
 		super(x, y, width, height, health, id, app);
 
 		this.xVel = xVel;
@@ -22,7 +22,7 @@ public abstract class Enemy extends Entity {
 		checkBounds();
 	}
 
-	private void checkBounds() {
+	void checkBounds() {
 		if (xVel > 0) if (getX() > Gdx.graphics.getWidth()) kill();
 		else if (getX() + getWidth() < 0) kill();
 
