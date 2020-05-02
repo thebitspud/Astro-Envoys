@@ -12,6 +12,7 @@ import io.thebitspud.astroenvoys.tools.JTimerUtil;
 public class Level {
 	private CampaignGame game;
 	private ArrayList<JTimerUtil> timers;
+	private JTimerUtil levelTime;
 	private Random r;
 
 	public Level(CampaignGame game) {
@@ -19,6 +20,10 @@ public class Level {
 
 		r = new Random();
 		timers =  new ArrayList<>();
+		levelTime = new JTimerUtil(true) {
+			@Override
+			public void onActivation() {}
+		};
 	}
 
 	public void init() {
@@ -30,6 +35,7 @@ public class Level {
 				final int x = r.nextInt(Gdx.graphics.getWidth() - 100),
 				y = Gdx.graphics.getHeight() + 100;
 				game.spawnEnemy(x, y,0, -100, EntityID.ASTEROID);
+				if(getTimerDuration() > 1.0) setTimerDuration(getTimerDuration() * 0.98f);
 			}
 		});
 
@@ -39,7 +45,7 @@ public class Level {
 				final int x = r.nextInt(Gdx.graphics.getWidth() - 120),
 				y = Gdx.graphics.getHeight() + 200;
 				game.spawnEnemy(x, y, 0, -100, EntityID.AZ_RAIDER);
-				if(getTimerDuration() > 2.5) setTimerDuration(getTimerDuration() * 0.95f);
+				if(getTimerDuration() > 2.5) setTimerDuration(getTimerDuration() * 0.98f);
 			}
 		});
 	}

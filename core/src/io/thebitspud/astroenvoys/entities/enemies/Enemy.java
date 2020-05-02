@@ -23,10 +23,12 @@ public abstract class Enemy extends Entity {
 	}
 
 	void checkBounds() {
-		if (xVel > 0) if (getX() > Gdx.graphics.getWidth()) kill();
-		else if (getX() + getWidth() < 0) kill();
+		if (xVel > 0) {
+			if (getX() > Gdx.graphics.getWidth()) kill();
+		} else if (getX() + getWidth() < 0) kill();
 
-		if (yVel > 0) if (getY() > Gdx.graphics.getHeight()) kill();
-		else if (getY() + health < 0) kill();
+		if (yVel > 0) {
+			if (getY() + getHeight() > Gdx.graphics.getHeight()) kill();
+		} else if (getY() < 0) kill();
 	}
 }

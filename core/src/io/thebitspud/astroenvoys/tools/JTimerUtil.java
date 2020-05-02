@@ -11,6 +11,17 @@ public abstract class JTimerUtil {
 		this.active = active;
 	}
 
+	/**
+	 * A JTimerUtil that counts endlessly and never activates
+	 */
+
+	public JTimerUtil(boolean active) {
+		this.timerDuration = Double.MAX_VALUE;
+		this.autoRepeat = true;
+
+		this.active = active;
+	}
+
 	public void tick(float delta) {
 		if(!active) return;
 
