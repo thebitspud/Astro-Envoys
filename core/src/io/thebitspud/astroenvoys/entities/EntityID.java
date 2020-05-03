@@ -8,9 +8,9 @@ public enum EntityID {
 	AZ_HUNTER(Type.ENEMY, 2),
 	AZ_PREDATOR(Type.ENEMY, 3),
 
-	PLASMA_BOLT(Type.PROJECTILE, 0),
-	ENERGY_SHOT(Type.PROJECTILE, 1),
-	HEAVY_ENERGY_SHOT(Type.PROJECTILE, 2);
+	ENERGY_SHOT(Type.PROJECTILE, 0),
+	PLASMA_SHOT(Type.PROJECTILE, 1),
+	HEAVY_PLASMA_SHOT(Type.PROJECTILE, 2);
 
 	private final Type type;
 	private final int numID;

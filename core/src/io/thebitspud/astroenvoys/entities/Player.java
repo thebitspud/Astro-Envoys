@@ -30,7 +30,7 @@ public class Player extends Entity {
 			@Override
 			public void onActivation() {
 				app.gameScreen.game.addProjectile((int) getX() + 77, (int) getY() + 50,
-						r.nextInt(100) - 50, 1500, EntityID.PLASMA_BOLT);
+						r.nextInt(100) - 50, 1500, EntityID.ENERGY_SHOT);
 			}
 		};
 	}

@@ -1,7 +1,5 @@
 package io.thebitspud.astroenvoys;
 
-import com.badlogic.gdx.Gdx;
-
 import java.util.ArrayList;
 
 import io.thebitspud.astroenvoys.entities.EntityID;
@@ -11,9 +9,9 @@ import io.thebitspud.astroenvoys.entities.enemies.Enemy;
 import io.thebitspud.astroenvoys.entities.enemies.Hunter;
 import io.thebitspud.astroenvoys.entities.enemies.Predator;
 import io.thebitspud.astroenvoys.entities.enemies.Raider;
+import io.thebitspud.astroenvoys.entities.projectiles.PlasmaShot;
+import io.thebitspud.astroenvoys.entities.projectiles.HeavyPlasmaShot;
 import io.thebitspud.astroenvoys.entities.projectiles.EnergyShot;
-import io.thebitspud.astroenvoys.entities.projectiles.HeavyEnergyShot;
-import io.thebitspud.astroenvoys.entities.projectiles.PlasmaBolt;
 import io.thebitspud.astroenvoys.entities.projectiles.Projectile;
 import io.thebitspud.astroenvoys.levels.Level;
 
@@ -88,15 +86,15 @@ public class CampaignGame {
 
 	public void addProjectile(int x, int y, float xVel, float yVel, EntityID id) {
 		switch (id) {
-			case PLASMA_BOLT:
-				projectiles.add(new PlasmaBolt(x, y, xVel, yVel, app));
-				break;
-			case HEAVY_ENERGY_SHOT:
-				projectiles.add(new HeavyEnergyShot(x, y, xVel, yVel, app));
-				break;
 			case ENERGY_SHOT:
-			default:
 				projectiles.add(new EnergyShot(x, y, xVel, yVel, app));
+				break;
+			case HEAVY_PLASMA_SHOT:
+				projectiles.add(new HeavyPlasmaShot(x, y, xVel, yVel, app));
+				break;
+			case PLASMA_SHOT:
+			default:
+				projectiles.add(new PlasmaShot(x, y, xVel, yVel, app));
 				break;
 		}
 	}

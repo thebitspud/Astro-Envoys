@@ -18,7 +18,7 @@ public class Predator extends Enemy {
 			@Override
 			public void onActivation() {
 				app.gameScreen.game.addProjectile((int) getX() + 55, (int) getY() + 150,
-						r.nextInt(60) - 30, -2000, EntityID.HEAVY_ENERGY_SHOT);
+						r.nextInt(60) - 30, -1500, EntityID.HEAVY_PLASMA_SHOT);
 			}
 		};
 
