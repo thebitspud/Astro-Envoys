@@ -32,6 +32,8 @@ public class AssetLibrary extends AssetManager {
 		this.load("missing.png", Texture.class);
 		this.load("player.png", Texture.class);
 		this.load("az_raider.png", Texture.class);
+		this.load("az_hunter.png", Texture.class);
+		this.load("az_predator.png", Texture.class);
 		this.load("projectiles.png", Texture.class);
 
 		finishLoading();
@@ -46,10 +48,14 @@ public class AssetLibrary extends AssetManager {
 
 		enemyShips[0] = new TextureRegion(this.get("asteroid.png", Texture.class));
 		enemyShips[1] = new TextureRegion(this.get("az_raider.png", Texture.class));
+		enemyShips[2] = new TextureRegion(this.get("az_hunter.png", Texture.class));
+		enemyShips[3] = new TextureRegion(this.get("az_predator.png", Texture.class));
 
 		projectiles[0] = new TextureRegion(this.get("projectiles.png", Texture.class), 0, 0, 25, 50);
 		projectiles[1] = new TextureRegion(this.get("projectiles.png", Texture.class), 25, 0, 25, 50);
+		projectiles[2] = new TextureRegion(this.get("projectiles.png", Texture.class), 50, 0, 40, 50);
 		projectiles[1].flip(false, true);
+		projectiles[2].flip(false, true);
 
 		for (int i = 0; i < 6; i++) {
 			buttons[i] = getButton(0, i * 180, 800);

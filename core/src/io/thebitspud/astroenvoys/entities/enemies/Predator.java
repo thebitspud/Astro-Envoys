@@ -6,22 +6,23 @@ import io.thebitspud.astroenvoys.AstroEnvoys;
 import io.thebitspud.astroenvoys.entities.EntityID;
 import io.thebitspud.astroenvoys.tools.JTimerUtil;
 
-public class Raider extends Enemy {
+public class Predator extends Enemy {
 	private Random r;
 	private JTimerUtil attackTimer;
 
-	public Raider(int x, int y, float xVel, float yVel, AstroEnvoys app) {
-		super(x, y, xVel, yVel, 150, EntityID.AZ_RAIDER, app);
+	public Predator(int x, int y, float xVel, float yVel, AstroEnvoys app) {
+		super(x, y, xVel, yVel, 300, EntityID.AZ_PREDATOR, app);
+
 		r = new Random();
-		attackTimer = new JTimerUtil(2.5, true, true) {
+		attackTimer = new JTimerUtil(1.5, true, true) {
 			@Override
 			public void onActivation() {
-				app.gameScreen.game.addProjectile((int) getX() + 48, (int) getY() + 20,
-				r.nextInt(200) - 100, -1000, EntityID.ENERGY_SHOT);
+				app.gameScreen.game.addProjectile((int) getX() + 55, (int) getY() + 150,
+						r.nextInt(60) - 30, -2000, EntityID.HEAVY_ENERGY_SHOT);
 			}
 		};
 
-		cYOffset = -20;
+		cYOffset = -50;
 	}
 
 	@Override

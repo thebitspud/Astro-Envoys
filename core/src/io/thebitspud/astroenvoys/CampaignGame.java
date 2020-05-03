@@ -8,8 +8,11 @@ import io.thebitspud.astroenvoys.entities.EntityID;
 import io.thebitspud.astroenvoys.entities.Player;
 import io.thebitspud.astroenvoys.entities.enemies.Asteroid;
 import io.thebitspud.astroenvoys.entities.enemies.Enemy;
+import io.thebitspud.astroenvoys.entities.enemies.Hunter;
+import io.thebitspud.astroenvoys.entities.enemies.Predator;
 import io.thebitspud.astroenvoys.entities.enemies.Raider;
 import io.thebitspud.astroenvoys.entities.projectiles.EnergyShot;
+import io.thebitspud.astroenvoys.entities.projectiles.HeavyEnergyShot;
 import io.thebitspud.astroenvoys.entities.projectiles.PlasmaBolt;
 import io.thebitspud.astroenvoys.entities.projectiles.Projectile;
 import io.thebitspud.astroenvoys.levels.Level;
@@ -68,8 +71,11 @@ public class CampaignGame {
 		switch (id) {
 			case AZ_RAIDER: enemies.add(new Raider(x, y, xVel, yVel, app));
 				break;
+			case AZ_HUNTER: enemies.add(new Hunter(x, y, xVel, yVel, app));
+				break;
+			case AZ_PREDATOR: enemies.add(new Predator(x, y, xVel, yVel, app));
+				break;
 			case ASTEROID:
-			default:
 				enemies.add(new Asteroid(x, y, xVel, yVel, app));
 				break;
 		}
@@ -84,6 +90,9 @@ public class CampaignGame {
 		switch (id) {
 			case PLASMA_BOLT:
 				projectiles.add(new PlasmaBolt(x, y, xVel, yVel, app));
+				break;
+			case HEAVY_ENERGY_SHOT:
+				projectiles.add(new HeavyEnergyShot(x, y, xVel, yVel, app));
 				break;
 			case ENERGY_SHOT:
 			default:
