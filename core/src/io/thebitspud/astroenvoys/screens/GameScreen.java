@@ -3,10 +3,13 @@ package io.thebitspud.astroenvoys.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import io.thebitspud.astroenvoys.AstroEnvoys;
@@ -18,7 +21,7 @@ public class GameScreen implements Screen {
 	public CampaignGame game;
 	private AstroEnvoys app;
 	private Stage hud;
-	private InputManager gameInput;
+	private Label healthIndicator;
 	private OrthographicCamera camera;
 
 	public GameScreen(AstroEnvoys app) {
@@ -28,10 +31,14 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void show() {
-		gameInput = new InputManager(app, game.player);
+		InputManager gameInput = new InputManager(app, game.player);
 		hud = new Stage(new ScreenViewport(camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())));
 		InputMultiplexer multiplexer = new InputMultiplexer(hud, gameInput);
 		Gdx.input.setInputProcessor(multiplexer);
+
+		healthIndicator = new Label(game.player.getHealthText(), app.assets.subTitleStyle);
+		healthIndicator.setPosition(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() - 140);
+		healthIndicator.setColor(1, 1,1, 0.5f);
 
 		ImageButton pauseButton = new ImageButton(app.assets.buttons[12][0], app.assets.buttons[12][1]);
 		pauseButton.addListener(new JInputListener() {
@@ -42,6 +49,7 @@ public class GameScreen implements Screen {
 		});
 		pauseButton.setPosition(Gdx.graphics.getWidth() - 180, Gdx.graphics.getHeight() - 180);
 
+		hud.addActor(healthIndicator);
 		hud.addActor(pauseButton);
 	}
 
@@ -85,5 +93,9 @@ public class GameScreen implements Screen {
 	@Override
 	public void dispose() {
 		hud.dispose();
+	}
+
+	public void setHealthIndicatorText(String text) {
+		healthIndicator.setText(text);
 	}
 }

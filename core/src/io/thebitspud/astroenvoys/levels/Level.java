@@ -33,8 +33,9 @@ public class Level {
 			@Override
 			public void onActivation() {
 				final int x = r.nextInt(Gdx.graphics.getWidth() - 100),
-				y = Gdx.graphics.getHeight() + 100;
-				game.spawnEnemy(x, y,0, -50, EntityID.ASTEROID);
+				y = Gdx.graphics.getHeight() + 100,
+				yVel = -r.nextInt(40) - 20;
+				game.spawnEnemy(x, y,0, yVel, EntityID.ASTEROID);
 				if(getTimerDuration() > 1.0) setTimerDuration(getTimerDuration() * 0.98f);
 			}
 		});
@@ -44,22 +45,22 @@ public class Level {
 			public void onActivation() {
 				final int x = r.nextInt(Gdx.graphics.getWidth() - 120),
 				y = Gdx.graphics.getHeight() + 200;
-				game.spawnEnemy(x, y, 0, -100, EntityID.AZ_RAIDER);
+				game.spawnEnemy(x, y, 0, -50, EntityID.AZ_RAIDER);
 				if(getTimerDuration() > 2.5) setTimerDuration(getTimerDuration() * 0.95f);
 			}
 		});
 
-		timers.add(new JTimerUtil(24.0, true, true) {
+		timers.add(new JTimerUtil(40.0, true, true) {
 			@Override
 			public void onActivation() {
 				final int x = r.nextInt(Gdx.graphics.getWidth() - 150),
 						y = Gdx.graphics.getHeight() + 250;
-				game.spawnEnemy(x, y, 0, -100, EntityID.AZ_HUNTER);
-				if(getTimerDuration() > 5.0) setTimerDuration(getTimerDuration() * 0.92f);
+				game.spawnEnemy(x, y, 0, -75, EntityID.AZ_HUNTER);
+				if(getTimerDuration() > 5.0) setTimerDuration(getTimerDuration() * 0.90f);
 			}
 		});
 
-		timers.add(new JTimerUtil(50.0, true, true) {
+		timers.add(new JTimerUtil(100.0, true, true) {
 			@Override
 			public void onActivation() {
 				final int x = r.nextInt(Gdx.graphics.getWidth() - 150),

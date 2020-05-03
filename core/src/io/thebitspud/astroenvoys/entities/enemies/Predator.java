@@ -11,7 +11,7 @@ public class Predator extends Enemy {
 	private JTimerUtil attackTimer;
 
 	public Predator(int x, int y, float xVel, float yVel, AstroEnvoys app) {
-		super(x, y, xVel, yVel, 300, EntityID.AZ_PREDATOR, app);
+		super(x, y, xVel, yVel, 150, EntityID.AZ_PREDATOR, app);
 
 		r = new Random();
 		attackTimer = new JTimerUtil(1.5, true, true) {

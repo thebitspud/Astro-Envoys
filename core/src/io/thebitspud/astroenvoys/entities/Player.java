@@ -15,14 +15,14 @@ public class Player extends Entity {
 	private boolean moveIssued;
 
 	public Player(AstroEnvoys app) {
-		super(0, 0, 250, EntityID.PLAYER, app);
+		super(0, 0, 100, EntityID.PLAYER, app);
 
 		r = new Random();
 	}
 
 	public void init() {
-		maxHealth = 250;
-		health = 250;
+		maxHealth = 100;
+		health = 100;
 		moveSpeed = 1500;
 		setCenter(Gdx.graphics.getWidth() * 0.5f, Gdx.graphics.getHeight() * 0.25f);
 
@@ -62,6 +62,7 @@ public class Player extends Entity {
 	@Override
 	public void adjustHealth(int value) {
 		health += value;
+		app.gameScreen.setHealthIndicatorText(getHealthText());
 
 		if (health > maxHealth) health = maxHealth;
 		else if (health <= 0) app.gameScreen.game.endGame(false);
@@ -84,5 +85,9 @@ public class Player extends Entity {
 			float scale = (float) (moveSpeed * delta / hyp);
 			translate(dx * scale,  dy * scale);
 		}
+	}
+
+	public String getHealthText() {
+		return Math.round((float) health / maxHealth * 100) + "%";
 	}
 }

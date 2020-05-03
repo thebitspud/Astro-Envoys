@@ -11,7 +11,7 @@ public class Raider extends Enemy {
 	private JTimerUtil attackTimer;
 
 	public Raider(int x, int y, float xVel, float yVel, AstroEnvoys app) {
-		super(x, y, xVel, yVel, 150, EntityID.AZ_RAIDER, app);
+		super(x, y, xVel, yVel, 75, EntityID.AZ_RAIDER, app);
 		r = new Random();
 		attackTimer = new JTimerUtil(2.5, true, true) {
 			@Override
