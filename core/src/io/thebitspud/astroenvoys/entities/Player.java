@@ -62,7 +62,7 @@ public class Player extends Entity {
 	@Override
 	public void adjustHealth(int value) {
 		health += value;
-		app.gameScreen.setHealthIndicatorText(getHealthText());
+		app.gameScreen.setHealthIndicatorText(getHealthPercent());
 
 		if (health > maxHealth) health = maxHealth;
 		else if (health <= 0) app.gameScreen.game.endGame(false);
@@ -87,7 +87,7 @@ public class Player extends Entity {
 		}
 	}
 
-	public String getHealthText() {
-		return Math.round((float) health / maxHealth * 100) + "%";
+	public float getHealthPercent() {
+		return Math.round((float) health / maxHealth * 100);
 	}
 }

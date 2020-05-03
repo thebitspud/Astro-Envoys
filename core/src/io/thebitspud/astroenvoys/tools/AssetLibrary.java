@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -95,6 +96,7 @@ public class AssetLibrary extends AssetManager {
 		parameter.incremental = true;
 
 		parameter.size = Gdx.graphics.getWidth() / 6;
+		parameter.spaceX = 3;
 		titleStyle = new Label.LabelStyle(generator.generateFont(parameter), new Color(1, 0.2f, 0.2f, 1));
 
 		parameter.size = Gdx.graphics.getWidth() / 7;
@@ -104,6 +106,7 @@ public class AssetLibrary extends AssetManager {
 		subTitleStyle = new Label.LabelStyle(generator.generateFont(parameter), Color.WHITE);
 
 		parameter.size = Gdx.graphics.getWidth() / 25;
+		parameter.spaceY = parameter.size / 3;
 		textStyle = new Label.LabelStyle(generator.generateFont(parameter), Color.WHITE);
 
 		generator.dispose();

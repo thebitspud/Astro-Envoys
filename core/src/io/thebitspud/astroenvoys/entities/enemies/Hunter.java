@@ -18,10 +18,10 @@ public class Hunter extends Enemy {
 			@Override
 			public void onActivation() {
 				app.gameScreen.game.addProjectile((int) getX() + 13, (int) getY() + 20,
-						r.nextInt(100) - 50, -1000, EntityID.ENERGY_SHOT);
+						r.nextInt(100) - 75, -1000, EntityID.ENERGY_SHOT);
 
 				app.gameScreen.game.addProjectile((int) getX() + 113, (int) getY() + 20,
-						r.nextInt(100) - 50, -1000, EntityID.ENERGY_SHOT);
+						r.nextInt(100) - 25, -1000, EntityID.ENERGY_SHOT);
 
 				app.gameScreen.game.addProjectile((int) getX(), (int) getY() + 20,
 						r.nextInt(100) - 200, -1000, EntityID.ENERGY_SHOT);

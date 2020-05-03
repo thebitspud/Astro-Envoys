@@ -3,13 +3,11 @@ package io.thebitspud.astroenvoys.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import io.thebitspud.astroenvoys.AstroEnvoys;
@@ -36,9 +34,9 @@ public class GameScreen implements Screen {
 		InputMultiplexer multiplexer = new InputMultiplexer(hud, gameInput);
 		Gdx.input.setInputProcessor(multiplexer);
 
-		healthIndicator = new Label(game.player.getHealthText(), app.assets.subTitleStyle);
-		healthIndicator.setPosition(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() - 140);
-		healthIndicator.setColor(1, 1,1, 0.5f);
+		healthIndicator = new Label("HP: 100%", app.assets.subTitleStyle);
+		healthIndicator.setPosition(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() - 100);
+		healthIndicator.setColor(0, 1,0, 0.75f);
 
 		ImageButton pauseButton = new ImageButton(app.assets.buttons[12][0], app.assets.buttons[12][1]);
 		pauseButton.addListener(new JInputListener() {
@@ -95,7 +93,8 @@ public class GameScreen implements Screen {
 		hud.dispose();
 	}
 
-	public void setHealthIndicatorText(String text) {
-		healthIndicator.setText(text);
+	public void setHealthIndicatorText(float percent) {
+		healthIndicator.setText("HP: " + Math.round(percent) + "%");
+		healthIndicator.setColor(Math.min(100 - percent, 100) / 100f, Math.min(percent, 100) / 100f, 0, 0.75f);
 	}
 }

@@ -38,13 +38,16 @@ public class LevelSelectScreen implements Screen {
 		levelTitle.setPosition(midX - (levelTitle.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.67f);
 		levelTitle.setAlignment(Align.center);
 
-		Label levelDesc = new Label("*Insert description here*", app.assets.textStyle);
-		levelDesc.setPosition(midX - (levelDesc.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.62f);
-		levelDesc.setAlignment(Align.center);
+		Label levelDesc = new Label("Pilot, we have a parcel that needs to be sent to the Sokar system. " +
+				"If you can deliver it for us, we will reward you handsomely.", app.assets.textStyle);
+		levelDesc.setPosition(Gdx.graphics.getWidth() * 0.1f, Gdx.graphics.getHeight() * 0.62f);
+		levelDesc.setWrap(true);
+		levelDesc.setWidth(Gdx.graphics.getWidth() * 0.8f);
+		levelDesc.setAlignment(Align.topLeft);
 
-		Label levelName = new Label("Level 01", app.assets.subTitleStyle);
-		levelName.setPosition(midX - (levelName.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.322f);
-		levelName.setAlignment(Align.center);
+		Label levelNum = new Label("Level 01", app.assets.subTitleStyle);
+		levelNum.setPosition(midX - (levelNum.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.322f);
+		levelNum.setAlignment(Align.center);
 
 		ImageButton playButton = new ImageButton(app.assets.buttons[0][0], app.assets.buttons[0][1]);
 		playButton.addListener(new JInputListener() {
@@ -77,7 +80,7 @@ public class LevelSelectScreen implements Screen {
 		stage.addActor(title);
 		stage.addActor(levelTitle);
 		stage.addActor(levelDesc);
-		stage.addActor(levelName);
+		stage.addActor(levelNum);
 		stage.addActor(playButton);
 		stage.addActor(prevButton);
 		stage.addActor(nextButton);
