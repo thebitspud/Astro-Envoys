@@ -10,16 +10,21 @@ import io.thebitspud.astroenvoys.entities.enemies.Enemy;
 
 public class Projectile extends Entity {
 	private float xVel, yVel;
-	private boolean canHitPlayers, canHitEnemies;
+	private boolean hitPlayers, hitEnemies;
 
-	Projectile(int x, int y, int damage, float xVel, float yVel,
-	           boolean canHitPlayers, boolean canHitEnemies, EntityID id, AstroEnvoys app) {
+	public Projectile(int x, int y, float xVel, float yVel, int damage, boolean isPlayerProjectile, EntityID id, AstroEnvoys app) {
 		super(x, y, damage, id, app);
 
 		this.xVel = xVel;
 		this.yVel = yVel;
-		this.canHitPlayers = canHitPlayers;
-		this.canHitEnemies = canHitEnemies;
+
+		if (isPlayerProjectile) {
+			hitEnemies = true;
+			hitPlayers = false;
+		} else {
+			hitEnemies = false;
+			hitPlayers = true;
+		}
 	}
 
 	@Override
@@ -39,14 +44,14 @@ public class Projectile extends Entity {
 	}
 
 	public void checkForCollision(Enemy e) {
-		if(!canHitEnemies && !(e.getID() == EntityID.ASTEROID)) return;
+		if(!hitEnemies && !(e.getID() == EntityID.ASTEROID)) return;
 		if(yVel < 0) {
 			if(e.circleContains(getX() + getWidth() / 2, getY())) onHit(e);
 		} else if(e.circleContains(getX() + getWidth() / 2, getY() + getHeight())) onHit(e);
 	}
 
 	public void checkForCollision(Player p) {
-		if(!canHitPlayers) return;
+		if(!hitPlayers) return;
 		if (p.overlaps(getBoundingRectangle())) onHit(p);
 	}
 

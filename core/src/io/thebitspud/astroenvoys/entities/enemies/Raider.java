@@ -25,9 +25,7 @@ public class Raider extends Enemy {
 	}
 
 	@Override
-	public void tick(float delta) {
-		translate(xVel * delta, yVel * delta);
-		checkBounds();
+	protected void tickAI(float delta) {
 		attackTimer.tick(delta);
 	}
 }

@@ -9,9 +9,6 @@ import io.thebitspud.astroenvoys.entities.enemies.Enemy;
 import io.thebitspud.astroenvoys.entities.enemies.Hunter;
 import io.thebitspud.astroenvoys.entities.enemies.Predator;
 import io.thebitspud.astroenvoys.entities.enemies.Raider;
-import io.thebitspud.astroenvoys.entities.projectiles.PlasmaShot;
-import io.thebitspud.astroenvoys.entities.projectiles.HeavyPlasmaShot;
-import io.thebitspud.astroenvoys.entities.projectiles.EnergyShot;
 import io.thebitspud.astroenvoys.entities.projectiles.Projectile;
 import io.thebitspud.astroenvoys.levels.Level;
 
@@ -87,14 +84,14 @@ public class CampaignGame {
 	public void addProjectile(int x, int y, float xVel, float yVel, EntityID id) {
 		switch (id) {
 			case ENERGY_SHOT:
-				projectiles.add(new EnergyShot(x, y, xVel, yVel, app));
+				projectiles.add(new Projectile(x, y, xVel, yVel, 7, true, id, app));
 				break;
 			case HEAVY_PLASMA_SHOT:
-				projectiles.add(new HeavyPlasmaShot(x, y, xVel, yVel, app));
+				projectiles.add(new Projectile(x, y, xVel, yVel, 12, false, id, app));
 				break;
 			case PLASMA_SHOT:
 			default:
-				projectiles.add(new PlasmaShot(x, y, xVel, yVel, app));
+				projectiles.add(new Projectile(x, y, xVel, yVel, 5, false, id, app));
 				break;
 		}
 	}

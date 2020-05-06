@@ -17,9 +17,7 @@ public class Asteroid extends Enemy {
 	}
 
 	@Override
-	public void tick(float delta) {
-		translate(xVel * delta, yVel * delta);
+	protected void tickAI(float delta) {
 		rotate(aVel * delta);
-		checkBounds();
 	}
 }

@@ -4,7 +4,7 @@ public abstract class JTimerUtil {
 	private double timeElapsed, timerDuration;
 	private boolean autoRepeat, active;
 
-	public JTimerUtil(double duration, boolean autoRepeat, boolean active) {
+	protected JTimerUtil(double duration, boolean autoRepeat, boolean active) {
 		this.timerDuration = duration;
 		this.autoRepeat = autoRepeat;
 
@@ -15,7 +15,7 @@ public abstract class JTimerUtil {
 	 * A JTimerUtil that counts endlessly and never activates
 	 */
 
-	public JTimerUtil(boolean active) {
+	protected JTimerUtil(boolean active) {
 		this.timerDuration = Double.MAX_VALUE;
 		this.autoRepeat = true;
 

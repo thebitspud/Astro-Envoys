@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -54,7 +53,7 @@ public class AssetLibrary extends AssetManager {
 
 		projectiles[0] = new TextureRegion(this.get("projectiles.png", Texture.class), 0, 0, 25, 50);
 		projectiles[1] = new TextureRegion(this.get("projectiles.png", Texture.class), 25, 0, 25, 50);
-		projectiles[2] = new TextureRegion(this.get("projectiles.png", Texture.class), 50, 0, 40, 50);
+		projectiles[2] = new TextureRegion(this.get("projectiles.png", Texture.class), 50, 0, 40, 60);
 		projectiles[1].flip(false, true);
 		projectiles[2].flip(false, true);
 

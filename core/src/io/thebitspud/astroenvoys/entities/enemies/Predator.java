@@ -1,5 +1,7 @@
 package io.thebitspud.astroenvoys.entities.enemies;
 
+import com.badlogic.gdx.Gdx;
+
 import java.util.Random;
 
 import io.thebitspud.astroenvoys.AstroEnvoys;
@@ -26,9 +28,7 @@ public class Predator extends Enemy {
 	}
 
 	@Override
-	public void tick(float delta) {
-		translate(xVel * delta, yVel * delta);
-		checkBounds();
+	protected void tickAI(float delta) {
 		attackTimer.tick(delta);
 	}
 }
