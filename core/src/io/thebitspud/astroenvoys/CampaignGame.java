@@ -9,6 +9,7 @@ import io.thebitspud.astroenvoys.entities.enemies.Enemy;
 import io.thebitspud.astroenvoys.entities.enemies.Hunter;
 import io.thebitspud.astroenvoys.entities.enemies.Predator;
 import io.thebitspud.astroenvoys.entities.enemies.Raider;
+import io.thebitspud.astroenvoys.entities.enemies.Reaper;
 import io.thebitspud.astroenvoys.entities.projectiles.Projectile;
 import io.thebitspud.astroenvoys.levels.Level;
 
@@ -70,8 +71,9 @@ public class CampaignGame {
 				break;
 			case AZ_PREDATOR: enemies.add(new Predator(x, y, app));
 				break;
-			case ASTEROID:
-				enemies.add(new Asteroid(x, y, app));
+			case AZ_REAPER: enemies.add(new Reaper(x, y, app));
+				break;
+			case ASTEROID: enemies.add(new Asteroid(x, y, app));
 				break;
 		}
 	}
@@ -86,12 +88,11 @@ public class CampaignGame {
 			case ENERGY_SHOT:
 				projectiles.add(new Projectile(x, y, xVel, yVel, 7, true, id, app));
 				break;
+			case PLASMA_SHOT:
+				projectiles.add(new Projectile(x, y, xVel, yVel, 5, false, id, app));
+				break;
 			case HEAVY_PLASMA_SHOT:
 				projectiles.add(new Projectile(x, y, xVel, yVel, 12, false, id, app));
-				break;
-			case PLASMA_SHOT:
-			default:
-				projectiles.add(new Projectile(x, y, xVel, yVel, 5, false, id, app));
 				break;
 		}
 	}

@@ -21,7 +21,7 @@ public class Raider extends Enemy {
 			@Override
 			public void onActivation() {
 				app.gameScreen.game.addProjectile((int) getX() + 48, (int) getY() + 20,
-						r.nextInt(200) - 100 + xVel, -1000, EntityID.PLASMA_SHOT);
+						r.nextInt(200) - (100 - xVel), -1000, EntityID.PLASMA_SHOT);
 			}
 		};
 

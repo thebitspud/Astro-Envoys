@@ -25,6 +25,10 @@ public class Projectile extends Entity {
 			hitEnemies = false;
 			hitPlayers = true;
 		}
+
+		final double degrees = (Math.atan2(-xVel, yVel) * 180.0 / Math.PI);
+
+		setRotation((float) degrees);
 	}
 
 	@Override

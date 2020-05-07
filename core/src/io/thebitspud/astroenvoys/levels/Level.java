@@ -50,7 +50,7 @@ public class Level {
 			public void onActivation() {
 				int x = r.nextInt(sWidth * 3/5) + sWidth / 5 - 75;
 				game.spawnEnemy(x, y, EntityID.AZ_HUNTER);
-				if(getTimerDuration() > 5.0) setTimerDuration(getTimerDuration() * 0.90f);
+				if(getTimerDuration() > 6.0) setTimerDuration(getTimerDuration() * 0.90f);
 			}
 		});
 
@@ -59,7 +59,16 @@ public class Level {
 			public void onActivation() {
 				int x = r.nextInt(sWidth - 150);
 				game.spawnEnemy(x, y, EntityID.AZ_PREDATOR);
-				if(getTimerDuration() > 8.0) setTimerDuration(getTimerDuration() * 0.90f);
+				if(getTimerDuration() > 10.0) setTimerDuration(getTimerDuration() * 0.90f);
+			}
+		});
+
+		timers.add(new JTimerUtil(200.0, true, true) {
+			@Override
+			public void onActivation() {
+				int x = r.nextInt(sWidth - 250);
+				game.spawnEnemy(x, y, EntityID.AZ_REAPER);
+				if(getTimerDuration() > 18.0) setTimerDuration(getTimerDuration() * 0.84f);
 			}
 		});
 	}
