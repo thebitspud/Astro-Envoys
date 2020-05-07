@@ -7,7 +7,7 @@ import io.thebitspud.astroenvoys.entities.Entity;
 import io.thebitspud.astroenvoys.entities.EntityID;
 
 public abstract class Enemy extends Entity {
-	private float xVel, yVel;
+	float xVel, yVel;
 	int cYOffset; // Circle collision detection offset
 
 	Enemy(int x, int y, float xVel, float yVel, int health, EntityID id, AstroEnvoys app) {

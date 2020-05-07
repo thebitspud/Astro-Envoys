@@ -6,26 +6,23 @@ import io.thebitspud.astroenvoys.AstroEnvoys;
 import io.thebitspud.astroenvoys.entities.EntityID;
 import io.thebitspud.astroenvoys.tools.JTimerUtil;
 
-public class Raider extends Enemy {
+public class Reaper extends Enemy {
 	private Random r;
 	private JTimerUtil attackTimer;
 
-	public Raider(int x, int y, AstroEnvoys app) {
-		super(x, y, 0, -60, 75, EntityID.AZ_RAIDER, app);
+	public Reaper(int x, int y, AstroEnvoys app) {
+		super(x, y, 0, -40, 250, EntityID.AZ_REAPER, app);
 
 		r = new Random();
-		xVel = r.nextInt(35) + 15;
-		if(r.nextBoolean()) xVel = -xVel;
-
-		attackTimer = new JTimerUtil(2.0, true, true) {
+		attackTimer = new JTimerUtil(1.0, true, true) {
 			@Override
 			public void onActivation() {
-				app.gameScreen.game.addProjectile((int) getX() + 48, (int) getY() + 20,
-						r.nextInt(200) - 100 + xVel, -1000, EntityID.PLASMA_SHOT);
+				app.gameScreen.game.addProjectile((int) getX() + 55, (int) getY() + 150,
+						r.nextInt(60) - 30, -1500, EntityID.HEAVY_PLASMA_SHOT);
 			}
 		};
 
-		cYOffset = -20;
+		cYOffset = -75;
 	}
 
 	@Override

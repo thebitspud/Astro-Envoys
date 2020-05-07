@@ -62,16 +62,16 @@ public class CampaignGame {
 		}
 	}
 
-	public void spawnEnemy(int x, int y, float xVel, float yVel, EntityID id) {
+	public void spawnEnemy(int x, int y, EntityID id) {
 		switch (id) {
-			case AZ_RAIDER: enemies.add(new Raider(x, y, xVel, yVel, app));
+			case AZ_RAIDER: enemies.add(new Raider(x, y, app));
 				break;
-			case AZ_HUNTER: enemies.add(new Hunter(x, y, xVel, yVel, app));
+			case AZ_HUNTER: enemies.add(new Hunter(x, y, app));
 				break;
-			case AZ_PREDATOR: enemies.add(new Predator(x, y, xVel, yVel, app));
+			case AZ_PREDATOR: enemies.add(new Predator(x, y, app));
 				break;
 			case ASTEROID:
-				enemies.add(new Asteroid(x, y, xVel, yVel, app));
+				enemies.add(new Asteroid(x, y, app));
 				break;
 		}
 	}

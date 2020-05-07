@@ -10,10 +10,11 @@ public class Hunter extends Enemy {
 	private Random r;
 	private JTimerUtil attackTimer;
 
-	public Hunter(int x, int y, float xVel, float yVel,  AstroEnvoys app) {
-		super(x, y, xVel, yVel, 120, EntityID.AZ_HUNTER, app);
+	public Hunter(int x, int y, AstroEnvoys app) {
+		super(x, y, 0, -40, 120, EntityID.AZ_HUNTER, app);
 
 		r = new Random();
+
 		attackTimer = new JTimerUtil(5.0, true, true) {
 			@Override
 			public void onActivation() {
