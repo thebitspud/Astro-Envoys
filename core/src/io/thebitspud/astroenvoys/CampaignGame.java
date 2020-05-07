@@ -12,6 +12,9 @@ import io.thebitspud.astroenvoys.entities.enemies.Raider;
 import io.thebitspud.astroenvoys.entities.enemies.Reaper;
 import io.thebitspud.astroenvoys.entities.projectiles.Projectile;
 import io.thebitspud.astroenvoys.levels.Level;
+import io.thebitspud.astroenvoys.levels.Level_1;
+import io.thebitspud.astroenvoys.levels.Level_Endless;
+import io.thebitspud.astroenvoys.screens.LevelSelectScreen;
 
 public class CampaignGame {
 	private AstroEnvoys app;
@@ -20,7 +23,7 @@ public class CampaignGame {
 	public ArrayList<Enemy> enemies;
 	public ArrayList<Projectile> projectiles;
 
-	private Level level;
+	public Level level;
 
 	public CampaignGame(AstroEnvoys app) {
 		this.app = app;
@@ -29,12 +32,11 @@ public class CampaignGame {
 		projectiles = new ArrayList<>();
 
 		player = new Player(app);
-		level = new Level(this);
-
-		init();
 	}
 
 	public void init() {
+		level = app.levelSelectScreen.getSelectedLevel();
+
 		player.init();
 		projectiles.clear();
 		enemies.clear();

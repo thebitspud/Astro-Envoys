@@ -25,7 +25,8 @@ public class AstroEnvoys extends Game {
 	public AssetLibrary assets;
 
 	public GameScreen gameScreen;
-	public Screen menuScreen, winScreen, lossScreen, levelSelectScreen, creditsScreen, pauseScreen;
+	public LevelSelectScreen levelSelectScreen;
+	public Screen menuScreen, creditsScreen, pauseScreen, winScreen, lossScreen;
 	private Screen settingsScreen, loadoutScreen, lastScreen;
 
 	@Override
@@ -37,9 +38,9 @@ public class AstroEnvoys extends Game {
 
 		menuScreen = new MenuScreen(this);
 		gameScreen = new GameScreen(this);
+		levelSelectScreen = new LevelSelectScreen(this);
 		winScreen = new WinScreen(this);
 		lossScreen = new LossScreen(this);
-		levelSelectScreen = new LevelSelectScreen(this);
 		settingsScreen = new SettingsScreen(this);
 		loadoutScreen = new LoadoutScreen(this);
 		creditsScreen = new CreditsScreen(this);

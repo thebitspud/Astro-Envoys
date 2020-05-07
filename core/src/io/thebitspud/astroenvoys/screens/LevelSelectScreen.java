@@ -2,7 +2,6 @@ package io.thebitspud.astroenvoys.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -10,44 +9,62 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import java.util.ArrayList;
+
 import io.thebitspud.astroenvoys.AstroEnvoys;
+import io.thebitspud.astroenvoys.levels.*;
 import io.thebitspud.astroenvoys.tools.JInputListener;
 
 public class LevelSelectScreen implements Screen {
 	private AstroEnvoys app;
 	private Stage stage;
-	private Camera camera;
+	private Label levelID, levelTitle, levelDesc;
+	private ArrayList<Level> levels;
+	private int currentLevelIndex;
 
 	public LevelSelectScreen(AstroEnvoys app) {
 		this.app = app;
+
+		levels = new ArrayList<>();
+
+		levels.add(new Level_Endless(app.gameScreen.game));
+		levels.add(new Level_1(app.gameScreen.game));
+		levels.add(new Level_2(app.gameScreen.game));
+		levels.add(new Level_3(app.gameScreen.game));
+
+		currentLevelIndex = 1;
 	}
 
 	@Override
 	public void show() {
 		app.setLastScreen(this);
-		stage = new Stage(new ScreenViewport(camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())));
+		stage = new Stage(new ScreenViewport(new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())));
 		Gdx.input.setInputProcessor(stage);
 
+		initActors();
+		updateLevelText();
+	}
+
+	private void initActors() {
 		final int midX = Gdx.graphics.getWidth() / 2;
 
 		Label title = new Label("Level\nSelect", app.assets.titleStyle);
-		title.setPosition(midX - (title.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.75f);
+		title.setPosition(midX - (title.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.80f);
 		title.setAlignment(Align.center);
 
-		Label levelTitle = new Label("01: The Delivery", app.assets.subTitleStyle);
-		levelTitle.setPosition(midX - (levelTitle.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.67f);
+		levelID = new Label(" ", app.assets.subTitleStyle);
+		levelID.setPosition(midX - (levelID.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.322f);
+		levelID.setAlignment(Align.center);
+
+		levelTitle = new Label(" ", app.assets.subTitleStyle);
+		levelTitle.setPosition(midX - (levelTitle.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.72f);
 		levelTitle.setAlignment(Align.center);
 
-		Label levelDesc = new Label("Pilot, we have a parcel that needs to be sent to the Sokar system. " +
-				"If you can deliver it for us, we will reward you handsomely.", app.assets.textStyle);
-		levelDesc.setPosition(Gdx.graphics.getWidth() * 0.1f, Gdx.graphics.getHeight() * 0.62f);
+		levelDesc = new Label(" ", app.assets.textStyle);
+		levelDesc.setPosition(Gdx.graphics.getWidth() * 0.1f, Gdx.graphics.getHeight() * 0.67f);
 		levelDesc.setWrap(true);
 		levelDesc.setWidth(Gdx.graphics.getWidth() * 0.8f);
 		levelDesc.setAlignment(Align.topLeft);
-
-		Label levelNum = new Label("Level 01", app.assets.subTitleStyle);
-		levelNum.setPosition(midX - (levelNum.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.322f);
-		levelNum.setAlignment(Align.center);
 
 		ImageButton playButton = new ImageButton(app.assets.buttons[0][0], app.assets.buttons[0][1]);
 		playButton.addListener(new JInputListener() {
@@ -63,7 +80,9 @@ public class LevelSelectScreen implements Screen {
 		prevButton.addListener(new JInputListener() {
 			@Override
 			public void onClick() {
-
+				currentLevelIndex--;
+				if(currentLevelIndex < 0) currentLevelIndex = levels.size() - 1;
+				updateLevelText();
 			}
 		});
 		prevButton.setPosition(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() * 0.30f);
@@ -72,21 +91,29 @@ public class LevelSelectScreen implements Screen {
 		nextButton.addListener(new JInputListener() {
 			@Override
 			public void onClick() {
-
+				currentLevelIndex++;
+				if(currentLevelIndex >= levels.size()) currentLevelIndex = 0;
+				updateLevelText();
 			}
 		});
 		nextButton.setPosition((Gdx.graphics.getWidth() * 0.95f) - 180, Gdx.graphics.getHeight() * 0.30f);
 
 		stage.addActor(title);
+		stage.addActor(levelID);
 		stage.addActor(levelTitle);
 		stage.addActor(levelDesc);
-		stage.addActor(levelNum);
 		stage.addActor(playButton);
 		stage.addActor(prevButton);
 		stage.addActor(nextButton);
 		app.addBackButton(stage, app.menuScreen);
 		app.addLoadoutButton(stage);
 		app.addSettingsButton(stage);
+	}
+
+	private void updateLevelText() {
+		levelID.setText(levels.get(currentLevelIndex).id());
+		levelTitle.setText(levels.get(currentLevelIndex).title());
+		levelDesc.setText(levels.get(currentLevelIndex).desc());
 	}
 
 	@Override
@@ -117,5 +144,9 @@ public class LevelSelectScreen implements Screen {
 	@Override
 	public void dispose() {
 		stage.dispose();
+	}
+
+	public Level getSelectedLevel() {
+		return levels.get(currentLevelIndex);
 	}
 }

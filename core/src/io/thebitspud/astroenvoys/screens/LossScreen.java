@@ -44,7 +44,6 @@ public class LossScreen implements Screen {
 
 		stage.addActor(title);
 		stage.addActor(playButton);
-		app.addBackButton(stage, app.menuScreen);
 		app.addLoadoutButton(stage);
 		app.addSettingsButton(stage);
 	}

@@ -28,7 +28,7 @@ public class CreditsScreen implements Screen {
 		title.setAlignment(Align.center);
 
 		Label creditRoll = new Label("Programming:\nJames Zhong\n\nGame Design:\nJames Zhong\n\nAssets: itch.io,\nOpenGameArt,\nMillionthVector", app.assets.subTitleStyle);
-		creditRoll.setPosition(Gdx.graphics.getWidth() * 0.15f, Gdx.graphics.getHeight() * 0.45f);
+		creditRoll.setPosition(Gdx.graphics.getWidth() * 0.1f, Gdx.graphics.getHeight() * 0.45f);
 
 		stage.addActor(title);
 		stage.addActor(creditRoll);
