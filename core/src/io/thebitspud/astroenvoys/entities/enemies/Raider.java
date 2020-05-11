@@ -14,7 +14,7 @@ public class Raider extends Enemy {
 		super(x, y, 0, -60, 75, EntityID.AZ_RAIDER, app);
 
 		r = new Random();
-		xVel = r.nextInt(35) + 15;
+		xVel = r.nextInt(100) - 50;
 		if(r.nextBoolean()) xVel = -xVel;
 
 		attackTimer = new JTimerUtil(2.0, true, true) {
@@ -24,6 +24,8 @@ public class Raider extends Enemy {
 						r.nextInt(200) - (100 - xVel), -1000, EntityID.PLASMA_SHOT);
 			}
 		};
+
+		attackTimer.setTimeElapsed(-r.nextFloat());
 
 		cYOffset = -20;
 	}

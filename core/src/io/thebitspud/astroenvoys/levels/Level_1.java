@@ -24,7 +24,7 @@ public class Level_1 extends Level {
 	@Override
 	public String desc() {
 		return "Pilot, we have a parcel that needs to be sent to the Sokar system. The sector " +
-				"has had pirate problems recently, so we will reward you generously if you deliver our package.";
+				"has pirate problems, but we will reward you generously if you deliver our package.";
 	}
 
 	@Override
@@ -32,18 +32,50 @@ public class Level_1 extends Level {
 		final int y = Gdx.graphics.getHeight();
 		final int scrWidth = Gdx.graphics.getWidth(); // screen width
 
-		timers.add(new JTimerUtil(1.0, true, true) {
+		for(int i = 0; i < 4; i++) game.spawnEnemy(scrWidth / 8 * (i * 2 + 1), y + 100, EntityID.ASTEROID);
+
+		timers.add(new JTimerUtil(100, true, true) {
+			private boolean checked;
 			@Override
 			public void onActivation() {
-				if(game.enemies.isEmpty()) game.endGame(true);
+				if (checked) game.endGame(true);
+				else setTimerDuration(0.25);
+
+				if(game.allEnemiesCleared()) {
+					checked = true;
+					setTimerDuration(1.0);
+				}
 			}
 		});
-		timers.get(timers.size() - 1).setTimeElapsed(-300.0);
 
-		timers.add(new JTimerUtil(5.0, true, true) {
+		timers.add(new JTimerUtil(2, true, true) {
 			@Override
 			public void onActivation() {
 				game.spawnEnemy(r.nextInt(scrWidth - 100), y, EntityID.ASTEROID);
+			}
+		});
+
+		timers.add(new JTimerUtil(12, true, true) {
+			private int activations = 0;
+
+			@Override
+			public void onActivation() {
+				if(levelTime.getTimeElapsed() >= 100) {
+					setActive(false);
+					summon();
+					summon();
+				}
+
+				setTimerDuration(getTimerDuration() * 0.95f);
+
+				activations++;
+				summon();
+				if(activations % 3 == 0) setTimeElapsed(getTimerDuration() * 0.8);
+				if(activations % 8 == 0) summon();
+			}
+
+			private void summon() {
+				game.spawnEnemy(r.nextInt(scrWidth - 100), y, EntityID.AZ_RAIDER);
 			}
 		});
 	}

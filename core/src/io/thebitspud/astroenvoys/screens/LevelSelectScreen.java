@@ -31,6 +31,7 @@ public class LevelSelectScreen implements Screen {
 		levels.add(new Level_1(app.gameScreen.game));
 		levels.add(new Level_2(app.gameScreen.game));
 		levels.add(new Level_3(app.gameScreen.game));
+		levels.add(new Level_4(app.gameScreen.game));
 
 		currentLevelIndex = 1;
 	}

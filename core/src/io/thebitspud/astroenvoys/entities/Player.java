@@ -72,6 +72,12 @@ public class Player extends Entity {
 		this.moveIssued = true;
 		this.desX = x;
 		this.desY = y;
+
+		if(desX > Gdx.graphics.getWidth() - getWidth() / 3) desX = Gdx.graphics.getWidth() - getWidth() / 3;
+		else if (desX < 0 + getWidth() / 3) desX = getWidth() / 3;
+
+		if(desY > Gdx.graphics.getHeight()) desY = Gdx.graphics.getHeight();
+		if(desY < getHeight() / 3) desY = getHeight() / 3;
 	}
 
 	private void move() {
@@ -87,7 +93,7 @@ public class Player extends Entity {
 		}
 	}
 
-	public float getHealthPercent() {
+	private float getHealthPercent() {
 		return Math.round((float) health / maxHealth * 100);
 	}
 }

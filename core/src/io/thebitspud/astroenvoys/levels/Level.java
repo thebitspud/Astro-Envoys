@@ -8,18 +8,26 @@ import io.thebitspud.astroenvoys.tools.JTimerUtil;
 
 public abstract class Level {
 	protected CampaignGame game;
-	protected ArrayList<JTimerUtil> timers;
-	protected Random r;
+	ArrayList<JTimerUtil> timers;
+	JTimerUtil levelTime;
+	Random r;
 
-	public Level(CampaignGame game) {
+	Level(CampaignGame game) {
 		this.game = game;
 
 		r = new Random();
 		timers =  new ArrayList<>();
+		levelTime = new JTimerUtil(true) {
+			@Override
+			public void onActivation() {
+
+			}
+		};
 	}
 
 	public void init() {
 		timers.clear();
+		levelTime.setTimeElapsed(0);
 
 		addEvents();
 	}
@@ -31,6 +39,7 @@ public abstract class Level {
 
 	public void tick(float delta) {
 		for(JTimerUtil timer : timers) timer.tick(delta);
+		levelTime.tick(delta);
 	}
 
 	public void addTimer(JTimerUtil timer) {

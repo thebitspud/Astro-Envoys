@@ -27,13 +27,13 @@ public abstract class JTimerUtil {
 
 		timeElapsed += delta;
 		if(timeElapsed >= timerDuration) {
-			onActivation();
-
 			if(autoRepeat) timeElapsed -= timerDuration;
 			else {
 				timeElapsed = 0;
 				active = false;
 			}
+
+			onActivation();
 		}
 	}
 

@@ -12,16 +12,13 @@ import io.thebitspud.astroenvoys.entities.enemies.Raider;
 import io.thebitspud.astroenvoys.entities.enemies.Reaper;
 import io.thebitspud.astroenvoys.entities.projectiles.Projectile;
 import io.thebitspud.astroenvoys.levels.Level;
-import io.thebitspud.astroenvoys.levels.Level_1;
-import io.thebitspud.astroenvoys.levels.Level_Endless;
-import io.thebitspud.astroenvoys.screens.LevelSelectScreen;
 
 public class CampaignGame {
 	private AstroEnvoys app;
 
 	public Player player;
 	public ArrayList<Enemy> enemies;
-	public ArrayList<Projectile> projectiles;
+	private ArrayList<Projectile> projectiles;
 
 	public Level level;
 
@@ -78,6 +75,16 @@ public class CampaignGame {
 			case ASTEROID: enemies.add(new Asteroid(x, y, app));
 				break;
 		}
+	}
+
+	// No enemies on screen (excludes asteroids)
+
+	public boolean allEnemiesCleared() {
+		for(Enemy e : enemies) {
+			if (e.getID() != EntityID.ASTEROID) return false;
+		}
+
+		return true;
 	}
 
 	public void endGame(boolean victory) {

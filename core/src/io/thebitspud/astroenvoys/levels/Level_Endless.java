@@ -18,7 +18,7 @@ public class Level_Endless extends Level {
 
 	@Override
 	public String title() {
-		return "High Score: 100000";
+		return "High Score: 0";
 	}
 
 	@Override
