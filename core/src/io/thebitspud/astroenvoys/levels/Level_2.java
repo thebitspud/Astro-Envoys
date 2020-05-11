@@ -50,27 +50,27 @@ public class Level_2 extends Level {
 			}
 		});
 
-		timers.add(new JTimerUtil(4, true, true) {
+		timers.add(new JTimerUtil(3, true, true) {
 			@Override
 			public void onActivation() {
-				if(levelTime.getTimeElapsed() >= 21) setTimerDuration(10);
+				if(getTimerDuration() == 3) setTimerDuration(6);
 				for(int i = 0; i < 3; i++) game.spawnEnemy(scrWidth / 6 * (i * 2 + 1), y, EntityID.ASTEROID);
 			}
 		});
 
-		timers.add(new JTimerUtil(5, true, true) {
-			private int activations = 0;
+		timers.add(new JTimerUtil(3, true, true) {
+			private int activations = 1;
 
 			@Override
 			public void onActivation() {
-				if(activations == 0) setTimerDuration(10);
+				if(activations == 1) setTimerDuration(7);
 
 				if(levelTime.getTimeElapsed() >= 120) {
 					setActive(false);
 					summon();
 				}
 
-				if(getTimerDuration() > 5) setTimerDuration(getTimerDuration() * 0.97f);
+				if(getTimerDuration() > 5) setTimerDuration(getTimerDuration() * 0.98f);
 
 				activations++;
 				summon();
@@ -92,10 +92,7 @@ public class Level_2 extends Level {
 				game.spawnEnemy(r.nextInt(scrWidth * 3/5) + scrWidth / 5 - 75, y, EntityID.AZ_HUNTER);
 				activations++;
 
-				if(activations == 4) {
-					setActive(false);
-					game.spawnEnemy(r.nextInt(scrWidth - 100), y, EntityID.AZ_RAIDER);
-				}
+				if(activations == 4) setActive(false);
 			}
 		});
 	}

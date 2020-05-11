@@ -77,7 +77,7 @@ public class Level_3 extends Level {
 			public void onActivation() {
 				if(getTimerDuration() >= 20) setTimerDuration(getTimerDuration() - 5);
 
-				game.spawnEnemy(r.nextInt(scrWidth * 3/5) + scrWidth / 5 - 75, y + 50, EntityID.AZ_HUNTER);
+				game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 2/5 - 75, y + 50, EntityID.AZ_HUNTER);
 				activations++;
 
 				if(activations == 6) {
