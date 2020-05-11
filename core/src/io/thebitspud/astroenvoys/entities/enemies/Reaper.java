@@ -30,7 +30,7 @@ public class Reaper extends Enemy {
 		secondStageActive = false;
 		nextSpawnHP = health;
 
-		attackTimer = new JTimerUtil(0.27, true, true) {
+		attackTimer = new JTimerUtil(0.25, true, true) {
 			@Override
 			public void onActivation() {
 				final float dx = (player.getX() + player.getWidth() / 2) - (getX() + getWidth() / 2);
@@ -83,7 +83,7 @@ public class Reaper extends Enemy {
 			summonTimer.setTimeElapsed(10 + summonTimer.getTimeElapsed());
 
 			if(secondStageActive) nextSpawnHP -= 40;
-			else nextSpawnHP -= 80;
+			else nextSpawnHP -= 60;
 		}
 
 		if (health > maxHealth) health = maxHealth;

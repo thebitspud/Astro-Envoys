@@ -34,9 +34,8 @@ public class Level_4 extends Level {
 		final int scrWidth = Gdx.graphics.getWidth();
 
 		for(int i = 0; i < 4; i++) game.spawnEnemy(scrWidth / 8 * (i * 2 + 1), y + 100, EntityID.ASTEROID);
-		for(int i = 0; i < 4; i++) game.spawnEnemy(scrWidth / 8 * (i * 2 + 1), y + 100, EntityID.ASTEROID);
 
-		timers.add(new JTimerUtil(8, true, true) {
+		timers.add(new JTimerUtil(10, true, true) {
 			@Override
 			public void onActivation() {
 				for(int i = 0; i < 3; i++) game.spawnEnemy(scrWidth / 6 * (i * 2 + 1), y, EntityID.ASTEROID);
@@ -64,16 +63,19 @@ public class Level_4 extends Level {
 
 				switch (activations) {
 					case 1: game.spawnEnemy(scrWidth - 220, y + 100, EntityID.AZ_RAIDER);
-						game.spawnEnemy(r.nextInt(scrWidth - 100), y + 200, EntityID.AZ_RAIDER);
+						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 2/5 - 60, y + 200, EntityID.AZ_RAIDER);
 						game.spawnEnemy(100, y + 100, EntityID.AZ_RAIDER);
 						break;
 					case 2:
 						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 2/5 - 75, y + 50, EntityID.AZ_HUNTER);
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth / 5 - 60, y + 200, EntityID.AZ_RAIDER);
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 3/5 - 60, y + 200, EntityID.AZ_RAIDER);
+						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth / 5 - 60, y + 100, EntityID.AZ_RAIDER);
+						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 3/5 - 60, y + 100, EntityID.AZ_RAIDER);
+						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth / 5 - 60, y + 300, EntityID.AZ_RAIDER);
+						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 3/5 - 60, y + 300, EntityID.AZ_RAIDER);
 						break;
 					case 3:
 						game.spawnEnemy(scrWidth / 2 - 75, y + 150, EntityID.AZ_PREDATOR);
+						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 2/5 - 75, y + 100, EntityID.AZ_HUNTER);
 						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth / 5 - 60, y + 100, EntityID.AZ_RAIDER);
 						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 3/5 - 60, y + 100, EntityID.AZ_RAIDER);
 						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth / 5 - 60, y + 300, EntityID.AZ_RAIDER);
@@ -81,6 +83,8 @@ public class Level_4 extends Level {
 						break;
 					case 4:
 						game.spawnEnemy(scrWidth / 2 - 75, y + 100, EntityID.AZ_PREDATOR);
+						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth / 5 - 60, y + 100, EntityID.AZ_RAIDER);
+						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 3/5 - 60, y + 100, EntityID.AZ_RAIDER);
 						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth / 5 - 75, y + 100, EntityID.AZ_HUNTER);
 						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 3/5 - 75, y + 100, EntityID.AZ_HUNTER);
 						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth / 5 - 60, y + 300, EntityID.AZ_RAIDER);
