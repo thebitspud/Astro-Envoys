@@ -11,7 +11,8 @@ public enum EntityID {
 
 	ENERGY_SHOT(Type.PROJECTILE, 0),
 	PLASMA_SHOT(Type.PROJECTILE, 1),
-	HEAVY_PLASMA_SHOT(Type.PROJECTILE, 2);
+	HEAVY_ENERGY_SHOT(Type.PROJECTILE, 2),
+	HEAVY_PLASMA_SHOT(Type.PROJECTILE, 3);
 
 	private final Type type;
 	private final int numID;

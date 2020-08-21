@@ -26,11 +26,11 @@ public class Player extends Entity {
 		moveSpeed = 1500;
 		setCenter(Gdx.graphics.getWidth() * 0.5f, Gdx.graphics.getHeight() * 0.25f);
 
-		attackTimer = new JTimerUtil(0.2, true, true) {
+		attackTimer = new JTimerUtil(0.25, true, true) {
 			@Override
 			public void onActivation() {
 				app.gameScreen.game.addProjectile((int) getX() + 77, (int) getY() + 50,
-						r.nextInt(100) - 50, 1500, EntityID.ENERGY_SHOT);
+						r.nextInt(100) - 50, 2000, EntityID.HEAVY_ENERGY_SHOT);
 			}
 		};
 	}

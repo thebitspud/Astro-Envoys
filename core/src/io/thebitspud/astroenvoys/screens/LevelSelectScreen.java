@@ -32,6 +32,8 @@ public class LevelSelectScreen implements Screen {
 		levels.add(new Level_2(app.gameScreen.game));
 		levels.add(new Level_3(app.gameScreen.game));
 		levels.add(new Level_4(app.gameScreen.game));
+		levels.add(new Level_Win(app.gameScreen.game));
+		levels.add(new Level_Loss(app.gameScreen.game));
 
 		currentLevelIndex = 1;
 	}
@@ -92,9 +94,7 @@ public class LevelSelectScreen implements Screen {
 		nextButton.addListener(new JInputListener() {
 			@Override
 			public void onClick() {
-				currentLevelIndex++;
-				if(currentLevelIndex >= levels.size()) currentLevelIndex = 0;
-				updateLevelText();
+				incrLevelIndex();
 			}
 		});
 		nextButton.setPosition((Gdx.graphics.getWidth() * 0.95f) - 180, Gdx.graphics.getHeight() * 0.30f);
@@ -149,5 +149,12 @@ public class LevelSelectScreen implements Screen {
 
 	public Level getSelectedLevel() {
 		return levels.get(currentLevelIndex);
+	}
+
+	public void incrLevelIndex() {
+		currentLevelIndex++;
+		if(currentLevelIndex >= levels.size()) currentLevelIndex = 0;
+
+		updateLevelText();
 	}
 }

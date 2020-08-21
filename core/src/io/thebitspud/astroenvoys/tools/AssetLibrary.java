@@ -56,6 +56,7 @@ public class AssetLibrary extends AssetManager {
 		projectiles[0] = new TextureRegion(this.get("projectiles.png", Texture.class), 0, 0, 25, 50);
 		projectiles[1] = new TextureRegion(this.get("projectiles.png", Texture.class), 25, 0, 25, 50);
 		projectiles[2] = new TextureRegion(this.get("projectiles.png", Texture.class), 50, 0, 40, 60);
+		projectiles[3] = new TextureRegion(this.get("projectiles.png", Texture.class), 90, 0, 40, 60);
 
 		for (int i = 0; i < 6; i++) {
 			buttons[i] = getButton(0, i * 180, 800);

@@ -35,7 +35,7 @@ public class Level_3 extends Level {
 
 		for(int i = 0; i < 4; i++) game.spawnEnemy(scrWidth / 8 * (i * 2 + 1), y + 100, EntityID.ASTEROID);
 
-		timers.add(new JTimerUtil(6, true, true) {
+		timers.add(new JTimerUtil(7, true, true) {
 			@Override
 			public void onActivation() {
 				for(int i = 0; i < 3; i++) game.spawnEnemy(scrWidth / 6 * (i * 2 + 1), y, EntityID.ASTEROID);
@@ -77,7 +77,7 @@ public class Level_3 extends Level {
 			public void onActivation() {
 				if(getTimerDuration() >= 20) setTimerDuration(getTimerDuration() - 5);
 
-				game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 2/5 - 75, y + 50, EntityID.AZ_HUNTER);
+				game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 2/5 - 75, y, EntityID.AZ_HUNTER);
 				activations++;
 
 				if(activations == 6) {
