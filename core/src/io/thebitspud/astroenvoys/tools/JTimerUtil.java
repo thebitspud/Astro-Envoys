@@ -13,6 +13,7 @@ public abstract class JTimerUtil {
 
 	/**
 	 * A JTimerUtil that counts endlessly and never activates
+	 * Can be used as a stopwatch
 	 */
 
 	protected JTimerUtil(boolean active) {

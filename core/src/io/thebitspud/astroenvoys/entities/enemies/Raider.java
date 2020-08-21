@@ -11,13 +11,13 @@ public class Raider extends Enemy {
 	private JTimerUtil attackTimer;
 
 	public Raider(int x, int y, AstroEnvoys app) {
-		super(x, y, 0, -60, 75, EntityID.AZ_RAIDER, app);
+		super(x, y, 0, 0, 75, EntityID.AZ_RAIDER, app);
 
 		r = new Random();
-		xVel = r.nextInt(100) - 50;
-		if(r.nextBoolean()) xVel = -xVel;
+		xVel = r.nextInt(120) - 60;
+		yVel = (float) -Math.sqrt(4900 - xVel*xVel);
 
-		attackTimer = new JTimerUtil(2.0, true, true) {
+		attackTimer = new JTimerUtil(1.5, true, true) {
 			@Override
 			public void onActivation() {
 				app.gameScreen.game.addProjectile((int) getX() + 48, (int) getY() + 20,

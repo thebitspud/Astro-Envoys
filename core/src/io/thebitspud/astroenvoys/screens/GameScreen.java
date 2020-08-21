@@ -34,7 +34,7 @@ public class GameScreen implements Screen {
 		InputMultiplexer multiplexer = new InputMultiplexer(hud, gameInput);
 		Gdx.input.setInputProcessor(multiplexer);
 
-		healthIndicator = new Label("100%", app.assets.subTitleStyle);
+		healthIndicator = new Label(game.player.getHealthPercent() + "%", app.assets.subTitleStyle);
 		healthIndicator.setPosition(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() - 100);
 		healthIndicator.setColor(0, 1,0, 0.75f);
 
@@ -93,8 +93,8 @@ public class GameScreen implements Screen {
 		hud.dispose();
 	}
 
-	public void setHealthIndicatorText(float percent) {
-		healthIndicator.setText(Math.round(percent) + "%");
+	public void setHealthIndicatorText(int percent) {
+		healthIndicator.setText(percent + "%");
 		healthIndicator.setColor(Math.min(100 - percent, 100) / 100f, Math.min(percent, 100) / 100f, 0, 0.75f);
 	}
 }

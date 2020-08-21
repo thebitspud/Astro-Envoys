@@ -33,7 +33,7 @@ public class Level_4 extends Level {
 		final int y = Gdx.graphics.getHeight();
 		final int scrWidth = Gdx.graphics.getWidth();
 
-		for(int i = 0; i < 4; i++) game.spawnEnemy(scrWidth / 8 * (i * 2 + 1), y + 100, EntityID.ASTEROID);
+		for(int i = 0; i < 4; i++) game.spawnEnemy(scrWidth / 8 * (i * 2 + 1), y + 50, EntityID.ASTEROID);
 
 		timers.add(new JTimerUtil(10, true, true) {
 			@Override

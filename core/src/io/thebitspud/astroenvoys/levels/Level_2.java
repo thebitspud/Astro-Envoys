@@ -34,9 +34,9 @@ public class Level_2 extends Level {
 		final int y = Gdx.graphics.getHeight();
 		final int scrWidth = Gdx.graphics.getWidth();
 
-		for(int i = 0; i < 4; i++) game.spawnEnemy(scrWidth / 8 * (i * 2 + 1), y + 100, EntityID.ASTEROID);
+		for(int i = 0; i < 4; i++) game.spawnEnemy(scrWidth / 8 * (i * 2 + 1), y + 50, EntityID.ASTEROID);
 
-		timers.add(new JTimerUtil(120, true, true) {
+		timers.add(new JTimerUtil(125, true, true) {
 			private boolean checked;
 			@Override
 			public void onActivation() {
@@ -57,23 +57,23 @@ public class Level_2 extends Level {
 			}
 		});
 
-		timers.add(new JTimerUtil(3, true, true) {
-			private int activations = 1;
+		timers.add(new JTimerUtil(2, true, true) {
+			private int activations = 0;
 
 			@Override
 			public void onActivation() {
-				if(activations == 1) setTimerDuration(7);
+				if(activations == 0) setTimerDuration(6);
 
 				if(levelTime.getTimeElapsed() >= 120) {
 					setActive(false);
 					summon();
 				}
 
-				if(getTimerDuration() > 5) setTimerDuration(getTimerDuration() * 0.98f);
+				if(getTimerDuration() > 5) setTimerDuration(getTimerDuration() * 0.99);
 
 				activations++;
 				summon();
-				if(activations % 4 == 0) setTimeElapsed(getTimerDuration() * 0.8);
+				if(activations % 5 == 3 || activations % 5 == 4) setTimeElapsed(getTimerDuration() * 0.5);
 			}
 
 			private void summon() {
@@ -81,17 +81,17 @@ public class Level_2 extends Level {
 			}
 		});
 
-		timers.add(new JTimerUtil(45, true, true) {
+		timers.add(new JTimerUtil(30, true, true) {
 			private int activations = 0;
 
 			@Override
 			public void onActivation() {
-				setTimerDuration(getTimerDuration() - 10);
+				setTimerDuration(getTimerDuration() * 0.9);
 
 				game.spawnEnemy(r.nextInt(scrWidth * 3/5) + scrWidth / 5 - 75, y, EntityID.AZ_HUNTER);
 				activations++;
 
-				if(activations == 4) setActive(false);
+				if(activations == 5) setActive(false);
 			}
 		});
 	}

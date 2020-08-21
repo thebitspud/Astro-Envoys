@@ -38,6 +38,8 @@ public class CampaignGame {
 		projectiles.clear();
 		enemies.clear();
 		level.init();
+
+		app.gameScreen.setHealthIndicatorText(player.getHealthPercent());
 	}
 
 	public void tick(float delta) {

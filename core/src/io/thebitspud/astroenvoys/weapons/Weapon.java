@@ -1,4 +1,9 @@
 package io.thebitspud.astroenvoys.weapons;
 
-public class Weapon {
+import io.thebitspud.astroenvoys.tools.JTimerUtil;
+
+public abstract class Weapon extends JTimerUtil {
+	protected Weapon(double duration) {
+		super(duration, true, true);
+	}
 }

@@ -41,8 +41,8 @@ public class Predator extends Enemy {
 		final float dx = (player.getX() + player.getWidth() / 2) - (getX() + getWidth() / 2);
 
 		if(yVel != 0 && getY() <= Gdx.graphics.getHeight() * 0.6f) yVel = 0;
-		if(Math.abs(dx) < 75) xVel = 0;
-		else if(dx > 0 && xVel <= 0) xVel = 100;
-		else if(dx < 0 && xVel >= 0) xVel = -100;
+		if(Math.abs(dx) < 80) xVel = 0;
+		else if(dx > 0 && xVel <= 0) xVel = 125;
+		else if(dx < 0 && xVel >= 0) xVel = -125;
 	}
 }

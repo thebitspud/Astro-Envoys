@@ -26,11 +26,13 @@ public class Player extends Entity {
 		moveSpeed = 1500;
 		setCenter(Gdx.graphics.getWidth() * 0.5f, Gdx.graphics.getHeight() * 0.25f);
 
-		attackTimer = new JTimerUtil(0.25, true, true) {
+		attackTimer = new JTimerUtil(0.2, true, true) {
 			@Override
 			public void onActivation() {
 				app.gameScreen.game.addProjectile((int) getX() + 77, (int) getY() + 50,
-						r.nextInt(100) - 50, 2000, EntityID.HEAVY_ENERGY_SHOT);
+						r.nextInt(100) - 50, 2000, EntityID.ENERGY_SHOT);
+//				app.gameScreen.game.addProjectile((int) getX() + 70, (int) getY() + 50,
+//						r.nextInt(100) - 50, 2000, EntityID.HEAVY_ENERGY_SHOT);
 			}
 		};
 	}
@@ -49,7 +51,7 @@ public class Player extends Entity {
 	public boolean overlaps(Rectangle r) {
 		if (!getBoundingRectangle().overlaps(r)) return false;
 
-		float dx = r.x - getX(), dy = r.y - getY();
+		float dx = r.getX() - getX(), dy = r.getY() - getY();
 
 		if (dy < 20) return true;
 		if (r.contains(getX() + getWidth() / 2, getY() + getHeight())) return true;
@@ -93,7 +95,7 @@ public class Player extends Entity {
 		}
 	}
 
-	private float getHealthPercent() {
+	public int getHealthPercent() {
 		return Math.round((float) health / maxHealth * 100);
 	}
 }
