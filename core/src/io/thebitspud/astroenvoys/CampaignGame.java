@@ -100,6 +100,9 @@ public class CampaignGame {
 			case PLASMA_SHOT:
 				projectiles.add(new Projectile(x, y, xVel, yVel, 5, false, id, app));
 				break;
+			case HEAVY_ENERGY_SHOT:
+				projectiles.add(new Projectile(x, y, xVel, yVel, 15, true, id, app));
+				break;
 			case HEAVY_PLASMA_SHOT:
 				projectiles.add(new Projectile(x, y, xVel, yVel, 12, false, id, app));
 				break;

@@ -42,8 +42,18 @@ public class LossScreen implements Screen {
 		});
 		playButton.setPosition(midX - 400, Gdx.graphics.getHeight() * 0.6f);
 
+		ImageButton quitButton = new ImageButton(app.assets.buttons[5][0], app.assets.buttons[5][1]);
+		quitButton.addListener(new JInputListener() {
+			@Override
+			public void onClick() {
+				app.setScreen(app.levelSelectScreen);
+			}
+		});
+		quitButton.setPosition(midX - 400, Gdx.graphics.getHeight() * 0.45f);
+
 		stage.addActor(title);
 		stage.addActor(playButton);
+		stage.addActor(quitButton);
 		app.addLoadoutButton(stage);
 		app.addSettingsButton(stage);
 	}

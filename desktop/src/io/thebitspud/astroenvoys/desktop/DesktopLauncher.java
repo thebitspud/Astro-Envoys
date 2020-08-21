@@ -10,7 +10,7 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
 		config.allowSoftwareMode = true;
-		config.width = 400;
+		config.width = 600;
 		config.height = 800;
 		config.resizable = false;
 		config.title = "Astro Envoys";

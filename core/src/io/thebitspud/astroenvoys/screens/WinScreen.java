@@ -32,17 +32,39 @@ public class WinScreen implements Screen {
 		title.setPosition(midX - (title.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.75f);
 		title.setAlignment(Align.center);
 
-		ImageButton playButton = new ImageButton(app.assets.buttons[2][0], app.assets.buttons[2][1]);
+		ImageButton nextButton = new ImageButton(app.assets.buttons[2][0], app.assets.buttons[2][1]);
+		nextButton.addListener(new JInputListener() {
+			@Override
+			public void onClick() {
+				app.setScreen(app.levelSelectScreen);
+				app.levelSelectScreen.incrLevelIndex();
+			}
+		});
+		nextButton.setPosition(midX - 400, Gdx.graphics.getHeight() * 0.6f);
+
+		ImageButton playButton = new ImageButton(app.assets.buttons[1][0], app.assets.buttons[1][1]);
 		playButton.addListener(new JInputListener() {
+			@Override
+			public void onClick() {
+				app.setScreen(app.gameScreen);
+				app.gameScreen.game.init();
+			}
+		});
+		playButton.setPosition(midX - 400, Gdx.graphics.getHeight() * 0.45f);
+
+		ImageButton quitButton = new ImageButton(app.assets.buttons[5][0], app.assets.buttons[5][1]);
+		quitButton.addListener(new JInputListener() {
 			@Override
 			public void onClick() {
 				app.setScreen(app.levelSelectScreen);
 			}
 		});
-		playButton.setPosition(midX - 400, Gdx.graphics.getHeight() * 0.6f);
+		quitButton.setPosition(midX - 400, Gdx.graphics.getHeight() * 0.3f);
 
 		stage.addActor(title);
+		stage.addActor(nextButton);
 		stage.addActor(playButton);
+		stage.addActor(quitButton);
 		app.addLoadoutButton(stage);
 		app.addSettingsButton(stage);
 	}

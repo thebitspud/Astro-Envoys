@@ -32,7 +32,7 @@ public class Level_1 extends Level {
 		final int y = Gdx.graphics.getHeight();
 		final int scrWidth = Gdx.graphics.getWidth(); // screen width
 
-		for(int i = 0; i < 4; i++) game.spawnEnemy(scrWidth / 8 * (i * 2 + 1), y + 100, EntityID.ASTEROID);
+		for(int i = 0; i < 3; i++) game.spawnEnemy(scrWidth / 6 * (i * 2 + 1), y + 100, EntityID.ASTEROID);
 
 		timers.add(new JTimerUtil(100, true, true) {
 			private boolean checked;
@@ -48,7 +48,7 @@ public class Level_1 extends Level {
 			}
 		});
 
-		timers.add(new JTimerUtil(2, true, true) {
+		timers.add(new JTimerUtil(3, true, true) {
 			@Override
 			public void onActivation() {
 				game.spawnEnemy(r.nextInt(scrWidth - 100), y, EntityID.ASTEROID);
