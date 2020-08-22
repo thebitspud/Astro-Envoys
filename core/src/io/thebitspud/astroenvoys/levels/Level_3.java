@@ -61,7 +61,7 @@ public class Level_3 extends Level {
 
 			@Override
 			public void onActivation() {
-				setTimerDuration(7);
+				setTimerDuration(6);
 				if(levelTime.getTimeElapsed() >= 140) setActive(false);
 
 				activations++;

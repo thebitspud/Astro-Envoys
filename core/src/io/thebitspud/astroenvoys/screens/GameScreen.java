@@ -51,6 +51,11 @@ public class GameScreen implements Screen {
 		hud.addActor(pauseButton);
 	}
 
+	public void setHealthIndicatorText(int percent) {
+		healthIndicator.setText(percent + "%");
+		healthIndicator.setColor(Math.min(100 - percent, 100) / 100f, Math.min(percent, 100) / 100f, 0, 0.75f);
+	}
+
 	@Override
 	public void render(float delta) {
 		camera.update();
@@ -91,10 +96,5 @@ public class GameScreen implements Screen {
 	@Override
 	public void dispose() {
 		hud.dispose();
-	}
-
-	public void setHealthIndicatorText(int percent) {
-		healthIndicator.setText(percent + "%");
-		healthIndicator.setColor(Math.min(100 - percent, 100) / 100f, Math.min(percent, 100) / 100f, 0, 0.75f);
 	}
 }

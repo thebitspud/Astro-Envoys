@@ -18,7 +18,7 @@ public class Reaper extends Enemy {
 	private float yLimit;
 
 	public Reaper(int x, int y, AstroEnvoys app) {
-		super(x, y, 0, -80, 420, EntityID.AZ_REAPER, app);
+		super(x, y, 0, -80, 600, EntityID.AZ_REAPER, app);
 
 		r = new Random();
 		player = app.gameScreen.game.player;
@@ -73,7 +73,7 @@ public class Reaper extends Enemy {
 	public void adjustHealth(int value) {
 		health += value;
 
-		if(!secondStageActive && health <= 180) {
+		if(!secondStageActive && health <= 280) {
 			yLimit = Gdx.graphics.getHeight() * 0.5f;
 			attackTimer.setTimerDuration(0.225);
 			secondStageActive = true;
@@ -83,8 +83,8 @@ public class Reaper extends Enemy {
 		if(health <= nextSpawnHP) {
 			summonTimer.setTimeElapsed(10 + summonTimer.getTimeElapsed());
 
-			if(secondStageActive) nextSpawnHP -= 40;
-			else nextSpawnHP -= 60;
+			if(secondStageActive) nextSpawnHP -= 55;
+			else nextSpawnHP -= 80;
 		}
 
 		if (health > maxHealth) health = maxHealth;

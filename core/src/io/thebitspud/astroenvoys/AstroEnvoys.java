@@ -26,8 +26,9 @@ public class AstroEnvoys extends Game {
 
 	public GameScreen gameScreen;
 	public LevelSelectScreen levelSelectScreen;
+	public LoadoutScreen loadoutScreen;
 	public Screen menuScreen, creditsScreen, pauseScreen, winScreen, lossScreen;
-	private Screen settingsScreen, loadoutScreen, lastScreen;
+	private Screen settingsScreen, lastScreen;
 
 	@Override
 	public void create() {
@@ -107,6 +108,19 @@ public class AstroEnvoys extends Game {
 		loadoutButton.setPosition(Gdx.graphics.getWidth() * 0.5f - 90, Gdx.graphics.getWidth() * 0.05f);
 
 		stage.addActor(loadoutButton);
+	}
+
+	public void addStatsButton(Stage stage) {
+		ImageButton statsButton = new ImageButton(assets.buttons[13][0], assets.buttons[13][1]);
+		statsButton.addListener(new JInputListener() {
+			@Override
+			public void onClick() {
+				// Empty for now
+			}
+		});
+		statsButton.setPosition(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getWidth() * 0.05f);
+
+		stage.addActor(statsButton);
 	}
 
 	@Override

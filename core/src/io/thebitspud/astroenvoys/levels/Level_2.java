@@ -50,7 +50,7 @@ public class Level_2 extends Level {
 			}
 		});
 
-		timers.add(new JTimerUtil(4, true, true) {
+		timers.add(new JTimerUtil(5, true, true) {
 			@Override
 			public void onActivation() {
 				for(int i = 0; i < 2; i++) game.spawnEnemy(scrWidth / 4 * (i * 2 + 1), y, EntityID.ASTEROID);
@@ -69,7 +69,7 @@ public class Level_2 extends Level {
 					summon();
 				}
 
-				if(getTimerDuration() > 5) setTimerDuration(getTimerDuration() * 0.99);
+				if(getTimerDuration() > 4) setTimerDuration(getTimerDuration() * 0.985);
 
 				activations++;
 				summon();

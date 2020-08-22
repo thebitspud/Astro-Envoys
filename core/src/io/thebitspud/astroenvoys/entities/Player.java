@@ -6,10 +6,12 @@ import com.badlogic.gdx.math.Rectangle;
 import java.util.Random;
 
 import io.thebitspud.astroenvoys.AstroEnvoys;
-import io.thebitspud.astroenvoys.tools.JTimerUtil;
+import io.thebitspud.astroenvoys.weapons.PlasmaB;
+import io.thebitspud.astroenvoys.weapons.ScatterB;
+import io.thebitspud.astroenvoys.weapons.Weapon;
 
 public class Player extends Entity {
-	private JTimerUtil attackTimer;
+	private Weapon primary, secondary;
 	private float moveSpeed, desX, desY;
 	private Random r;
 	private boolean moveIssued;
@@ -26,20 +28,18 @@ public class Player extends Entity {
 		moveSpeed = 1500;
 		setCenter(Gdx.graphics.getWidth() * 0.5f, Gdx.graphics.getHeight() * 0.25f);
 
-		attackTimer = new JTimerUtil(0.2, true, true) {
-			@Override
-			public void onActivation() {
-				app.gameScreen.game.addProjectile((int) getX() + 77, (int) getY() + 50,
-						r.nextInt(100) - 50, 2000, EntityID.ENERGY_SHOT);
-//				app.gameScreen.game.addProjectile((int) getX() + 70, (int) getY() + 50,
-//						r.nextInt(100) - 50, 2000, EntityID.HEAVY_ENERGY_SHOT);
-			}
-		};
+		primary = app.loadoutScreen.getSelectedPrimary();
+		secondary = app.loadoutScreen.getSelectedSecondary();
+
+		primary.init();
+		secondary.init();
 	}
 
 	@Override
 	public void tick(float delta) {
-		attackTimer.tick(delta);
+		primary.tick(delta);
+		secondary.tick(delta);
+
 		if(moveIssued) {
 			move();
 			moveIssued = false;
@@ -70,7 +70,7 @@ public class Player extends Entity {
 		else if (health <= 0) app.gameScreen.game.endGame(false);
 	}
 
-	public void setDesignation(float x, float y) {
+	public void setDestination(float x, float y) {
 		this.moveIssued = true;
 		this.desX = x;
 		this.desY = y;

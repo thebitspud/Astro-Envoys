@@ -18,7 +18,7 @@ public class AssetLibrary extends AssetManager {
 	private TextureRegion[] playerShips, enemyShips, projectiles;
 
 	public AssetLibrary() {
-		buttons = new TextureRegionDrawable[13][2];
+		buttons = new TextureRegionDrawable[14][2];
 		playerShips = new TextureRegion[4];
 		enemyShips = new TextureRegion[16];
 		projectiles = new TextureRegion[16];
@@ -64,6 +64,7 @@ public class AssetLibrary extends AssetManager {
 		}
 
 		buttons[12] = getButton(1600, 1080, 180);
+		buttons[13] = getButton(1600, 1260, 180);
 	}
 
 	private TextureRegionDrawable[] getButton(int x, int y, int width) {

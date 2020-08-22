@@ -17,7 +17,7 @@ public class InputManager implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		player.setDesignation(screenX, Gdx.graphics.getHeight() - screenY);
+		player.setDestination(screenX, Gdx.graphics.getHeight() - screenY);
 
 		return true;
 	}
@@ -29,7 +29,7 @@ public class InputManager implements InputProcessor {
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		player.setDesignation(screenX, Gdx.graphics.getHeight() - screenY);
+		player.setDestination(screenX, Gdx.graphics.getHeight() - screenY);
 
 		return true;
 	}

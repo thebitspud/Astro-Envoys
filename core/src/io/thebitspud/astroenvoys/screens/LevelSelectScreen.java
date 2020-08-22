@@ -20,7 +20,7 @@ public class LevelSelectScreen implements Screen {
 	private Stage stage;
 	private Label levelID, levelTitle, levelDesc;
 	private ArrayList<Level> levels;
-	private int currentLevelIndex;
+	private int cLevelIndex; // Current level index
 
 	public LevelSelectScreen(AstroEnvoys app) {
 		this.app = app;
@@ -35,7 +35,7 @@ public class LevelSelectScreen implements Screen {
 		levels.add(new Level_Win(app.gameScreen.game));
 		levels.add(new Level_Loss(app.gameScreen.game));
 
-		currentLevelIndex = 1;
+		cLevelIndex = 1;
 	}
 
 	@Override
@@ -83,8 +83,8 @@ public class LevelSelectScreen implements Screen {
 		prevButton.addListener(new JInputListener() {
 			@Override
 			public void onClick() {
-				currentLevelIndex--;
-				if(currentLevelIndex < 0) currentLevelIndex = levels.size() - 1;
+				cLevelIndex--;
+				if(cLevelIndex < 0) cLevelIndex = levels.size() - 1;
 				updateLevelText();
 			}
 		});
@@ -112,9 +112,20 @@ public class LevelSelectScreen implements Screen {
 	}
 
 	private void updateLevelText() {
-		levelID.setText(levels.get(currentLevelIndex).id());
-		levelTitle.setText(levels.get(currentLevelIndex).title());
-		levelDesc.setText(levels.get(currentLevelIndex).desc());
+		levelID.setText(levels.get(cLevelIndex).id());
+		levelTitle.setText(levels.get(cLevelIndex).title());
+		levelDesc.setText(levels.get(cLevelIndex).desc());
+	}
+
+	public Level getSelectedLevel() {
+		return levels.get(cLevelIndex);
+	}
+
+	public void incrLevelIndex() {
+		cLevelIndex++;
+		if(cLevelIndex >= levels.size()) cLevelIndex = 0;
+
+		updateLevelText();
 	}
 
 	@Override
@@ -145,16 +156,5 @@ public class LevelSelectScreen implements Screen {
 	@Override
 	public void dispose() {
 		stage.dispose();
-	}
-
-	public Level getSelectedLevel() {
-		return levels.get(currentLevelIndex);
-	}
-
-	public void incrLevelIndex() {
-		currentLevelIndex++;
-		if(currentLevelIndex >= levels.size()) currentLevelIndex = 0;
-
-		updateLevelText();
 	}
 }

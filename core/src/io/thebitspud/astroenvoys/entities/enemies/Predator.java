@@ -14,7 +14,7 @@ public class Predator extends Enemy {
 	private JTimerUtil attackTimer;
 
 	public Predator(int x, int y, AstroEnvoys app) {
-		super(x, y, 0, -60, 180, EntityID.AZ_PREDATOR, app);
+		super(x, y, 0, -60, 200, EntityID.AZ_PREDATOR, app);
 
 		r = new Random();
 		cYOffset = -50;
@@ -41,8 +41,8 @@ public class Predator extends Enemy {
 		final float dx = (player.getX() + player.getWidth() / 2) - (getX() + getWidth() / 2);
 
 		if(yVel != 0 && getY() <= Gdx.graphics.getHeight() * 0.6f) yVel = 0;
-		if(Math.abs(dx) < 80) xVel = 0;
-		else if(dx > 0 && xVel <= 0) xVel = 125;
-		else if(dx < 0 && xVel >= 0) xVel = -125;
+		if(Math.abs(dx) < 50) xVel = dx * 4;
+		else if(dx > 0 && xVel <= 0) xVel = 200;
+		else if(dx < 0 && xVel >= 0) xVel = -200;
 	}
 }
