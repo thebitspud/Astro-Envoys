@@ -39,6 +39,7 @@ public class GameScreen implements Screen {
 
 		shieldIndicator = new Label("", app.assets.subTitleStyle);
 		shieldIndicator.setPosition(Gdx.graphics.getWidth() * 0.35f, Gdx.graphics.getHeight() * 0.98f - 25);
+		shieldIndicator.setColor(0, 0, 0, 0);
 
 		ImageButton pauseButton = new ImageButton(app.assets.buttons[12][0], app.assets.buttons[12][1]);
 		pauseButton.addListener(new JInputListener() {
@@ -63,6 +64,8 @@ public class GameScreen implements Screen {
 	}
 
 	public void setShieldIndicatorText(int percent) {
+		if(!game.player.isShieldActive()) return;
+
 		shieldIndicator.setText(percent + "%");
 		float shieldOpacity = 0.40f + percent / 300f;
 		if(percent == 0) shieldOpacity = 0.25f;

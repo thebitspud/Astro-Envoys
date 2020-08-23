@@ -67,7 +67,7 @@ public class Level_3 extends Level {
 
 			@Override
 			public void onActivation() {
-				setTimerDuration(6);
+				if(activations == 0) setTimerDuration(6);
 				if(levelTime.getTimeElapsed() >= 140) setActive(false);
 
 				activations++;
@@ -81,23 +81,20 @@ public class Level_3 extends Level {
 
 			@Override
 			public void onActivation() {
-				if(getTimerDuration() >= 20) setTimerDuration(getTimerDuration() - 5);
+				if(getTimerDuration() > 20) setTimerDuration(getTimerDuration() - 5);
 
 				game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 2/5 - 75, y, EntityID.AZ_HUNTER);
 				activations++;
 
-				if(activations == 7) {
-					game.spawnEnemy(scrWidth / 2 - 75, y + 100, EntityID.AZ_PREDATOR);
-					setActive(false);
-				}
+				if(activations == 6) setActive(false);
 			}
 		});
 
 		timers.add(new JTimerUtil(55, true, true) {
 			@Override
 			public void onActivation() {
-				setTimerDuration(getTimerDuration() - 10);
 				if(getTimerDuration() == 35) setActive(false);
+				setTimerDuration(getTimerDuration() - 10);
 
 				game.spawnEnemy(scrWidth / 2 - 75, y + 100, EntityID.AZ_PREDATOR);
 			}

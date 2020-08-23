@@ -77,7 +77,8 @@ public class Level_1 extends Level {
 
 				activations++;
 				summon();
-				if(activations % 3 == 0 || activations % 8 == 0) setTimeElapsed(getTimerDuration() * 0.75);
+				if(activations % 3 == 0) setTimeElapsed(getTimerDuration() * 0.75);
+				if(activations % 8 == 0) summon();
 			}
 
 			private void summon() {

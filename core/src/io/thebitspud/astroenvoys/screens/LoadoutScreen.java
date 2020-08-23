@@ -62,13 +62,14 @@ public class LoadoutScreen implements Screen {
 	private void initPrimarySelector() {
 		Label primaryText = new Label("Primary", app.assets.subTitleStyle);
 		primaryText.setPosition((Gdx.graphics.getWidth() - primaryText.getPrefWidth()) / 2,
-				Gdx.graphics.getHeight() * 0.77f);
+				Gdx.graphics.getHeight() * 0.75f);
 		primaryText.setAlignment(Align.center);
 
-		Label weaponTitle = new Label(primaries.get(cPrimaryIndex).id(), app.assets.subTitleStyle);
+		Label weaponTitle = new Label("", app.assets.subTitleStyle);
 		weaponTitle.setPosition((Gdx.graphics.getWidth() - weaponTitle.getPrefWidth()) / 2,
-				Gdx.graphics.getHeight() * 0.67f);
+				Gdx.graphics.getHeight() * 0.65f + 90);
 		weaponTitle.setAlignment(Align.center);
+		weaponTitle.setText(primaries.get(cPrimaryIndex).id());
 
 		ImageButton prevButton = new ImageButton(app.assets.buttons[10][0], app.assets.buttons[10][1]);
 		prevButton.addListener(new JInputListener() {
@@ -101,13 +102,14 @@ public class LoadoutScreen implements Screen {
 	private void initSecondarySelector() {
 		Label secondaryText = new Label("Secondary", app.assets.subTitleStyle);
 		secondaryText.setPosition((Gdx.graphics.getWidth() - secondaryText.getPrefWidth()) / 2,
-				Gdx.graphics.getHeight() * 0.47f);
+				Gdx.graphics.getHeight() * 0.45f);
 		secondaryText.setAlignment(Align.center);
 
-		Label weaponTitle = new Label(secondaries.get(cSecondaryIndex).id(), app.assets.subTitleStyle);
+		Label weaponTitle = new Label("", app.assets.subTitleStyle);
 		weaponTitle.setPosition((Gdx.graphics.getWidth() - weaponTitle.getPrefWidth()) / 2,
-				Gdx.graphics.getHeight() * 0.37f);
+				Gdx.graphics.getHeight() * 0.35f + 90);
 		weaponTitle.setAlignment(Align.center);
+		weaponTitle.setText(secondaries.get(cSecondaryIndex).id());
 
 		ImageButton prevButton = new ImageButton(app.assets.buttons[10][0], app.assets.buttons[10][1]);
 		prevButton.addListener(new JInputListener() {

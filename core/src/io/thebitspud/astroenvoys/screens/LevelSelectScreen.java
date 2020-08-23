@@ -51,8 +51,8 @@ public class LevelSelectScreen implements Screen {
 		title.setPosition(midX - (title.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.80f);
 		title.setAlignment(Align.center);
 
-		levelID = new Label(" ", app.assets.subTitleStyle);
-		levelID.setPosition(midX - (levelID.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.322f);
+		levelID = new Label("", app.assets.subTitleStyle);
+		levelID.setPosition(midX - (levelID.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.3f + 90);
 		levelID.setAlignment(Align.center);
 
 		levelTitle = new Label(" ", app.assets.subTitleStyle);
@@ -60,9 +60,9 @@ public class LevelSelectScreen implements Screen {
 		levelTitle.setAlignment(Align.center);
 
 		levelDesc = new Label(" ", app.assets.textStyle);
-		levelDesc.setPosition(Gdx.graphics.getWidth() * 0.1f, Gdx.graphics.getHeight() * 0.67f);
+		levelDesc.setPosition(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() * 0.67f);
 		levelDesc.setWrap(true);
-		levelDesc.setWidth(Gdx.graphics.getWidth() * 0.8f);
+		levelDesc.setWidth(Gdx.graphics.getWidth() * 0.9f);
 		levelDesc.setAlignment(Align.topLeft);
 
 		ImageButton playButton = new ImageButton(app.assets.buttons[0][0], app.assets.buttons[0][1]);
@@ -108,9 +108,15 @@ public class LevelSelectScreen implements Screen {
 	}
 
 	private void updateLevelText() {
-		levelID.setText(levels.get(cLevelIndex).id());
-		levelTitle.setText(levels.get(cLevelIndex).title());
-		levelDesc.setText(levels.get(cLevelIndex).desc());
+		Level level = levels.get(cLevelIndex);
+
+		levelID.setText(level.id());
+		levelTitle.setText(level.title());
+		levelDesc.setText(level.desc());
+
+		if(level.getClass().equals(Level_Endless.class)) levelID.setColor(1, 1, 1, 1);
+		else if(level.isCleared()) levelID.setColor(0.5f, 1, 0.5f, 1);
+		else levelID.setColor(1, 0.5f, 0.5f, 1);
 	}
 
 	public Level getSelectedLevel() {

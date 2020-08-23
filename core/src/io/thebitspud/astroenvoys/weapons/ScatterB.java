@@ -20,7 +20,7 @@ public class ScatterB extends Weapon {
 
 	@Override
 	public String desc() {
-		return "A small, easily concealable plasma launcher that has recently gained infamy for its use " +
+		return "A compact, easily concealable plasma launcher that has recently gained infamy for its use " +
 				"by pirate and raider parties.";
 	}
 
@@ -29,9 +29,10 @@ public class ScatterB extends Weapon {
 		final int x = (int) game.player.getX() + 77,
 				y = (int) game.player.getY() + 50;
 
-		game.addProjectile(x, y, r.nextInt(50) + 125, 1480, EntityID.ENERGY_SHOT);
-		game.addProjectile(x, y, r.nextInt(50) + 50, 1490, EntityID.ENERGY_SHOT);
-		game.addProjectile(x, y, r.nextInt(50) - 100, 1490, EntityID.ENERGY_SHOT);
-		game.addProjectile(x, y, r.nextInt(50) - 175, 1480, EntityID.ENERGY_SHOT);
+		game.addProjectile(x, y, r.nextInt(100) + 200, 1475, EntityID.ENERGY_SHOT);
+		game.addProjectile(x, y, r.nextInt(50) + 100, 1490, EntityID.ENERGY_SHOT);
+		game.addProjectile(x, y, r.nextInt(50) - 25, 1500, EntityID.ENERGY_SHOT);
+		game.addProjectile(x, y, r.nextInt(50) - 150, 1490, EntityID.ENERGY_SHOT);
+		game.addProjectile(x, y, r.nextInt(100) - 300, 1475, EntityID.ENERGY_SHOT);
 	}
 }

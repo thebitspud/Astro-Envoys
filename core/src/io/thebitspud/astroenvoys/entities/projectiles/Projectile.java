@@ -9,10 +9,8 @@ import io.thebitspud.astroenvoys.entities.Player;
 import io.thebitspud.astroenvoys.entities.enemies.Enemy;
 
 public class Projectile extends Entity {
-	private final float xVel;
-	private final float yVel;
-	private final boolean hitPlayers;
-	private final boolean hitEnemies;
+	private final float xVel, yVel;
+	private final boolean hitPlayers, hitEnemies;
 
 	public Projectile(int x, int y, float xVel, float yVel, int damage, boolean isPlayerProjectile, EntityID id, AstroEnvoys app) {
 		super(x, y, damage, id, app);

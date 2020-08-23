@@ -8,15 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 
-import io.thebitspud.astroenvoys.screens.CreditsScreen;
-import io.thebitspud.astroenvoys.screens.GameScreen;
-import io.thebitspud.astroenvoys.screens.LevelSelectScreen;
-import io.thebitspud.astroenvoys.screens.LoadoutScreen;
-import io.thebitspud.astroenvoys.screens.LossScreen;
-import io.thebitspud.astroenvoys.screens.MenuScreen;
-import io.thebitspud.astroenvoys.screens.PauseScreen;
-import io.thebitspud.astroenvoys.screens.SettingsScreen;
-import io.thebitspud.astroenvoys.screens.WinScreen;
+import io.thebitspud.astroenvoys.screens.*;
 import io.thebitspud.astroenvoys.tools.AssetLibrary;
 import io.thebitspud.astroenvoys.tools.JInputListener;
 
@@ -28,7 +20,7 @@ public class AstroEnvoys extends Game {
 	public LevelSelectScreen levelSelectScreen;
 	public LoadoutScreen loadoutScreen;
 	public Screen menuScreen, creditsScreen, pauseScreen, winScreen, lossScreen;
-	private Screen settingsScreen, lastScreen;
+	private Screen settingsScreen, statsScreen, lastScreen;
 
 	@Override
 	public void create() {
@@ -46,6 +38,7 @@ public class AstroEnvoys extends Game {
 		loadoutScreen = new LoadoutScreen(this);
 		creditsScreen = new CreditsScreen(this);
 		pauseScreen = new PauseScreen(this);
+		statsScreen = new StatsScreen(this);
 
 		setScreen(menuScreen);
 	}
@@ -115,7 +108,7 @@ public class AstroEnvoys extends Game {
 		statsButton.addListener(new JInputListener() {
 			@Override
 			public void onClick() {
-				// Empty for now
+				setScreen(statsScreen);
 			}
 		});
 		statsButton.setPosition(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getWidth() * 0.05f);

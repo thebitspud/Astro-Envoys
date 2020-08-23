@@ -65,6 +65,7 @@ public class WinScreen implements Screen {
 		stage.addActor(nextButton);
 		stage.addActor(playButton);
 		stage.addActor(quitButton);
+		app.addStatsButton(stage);
 		app.addLoadoutButton(stage);
 		app.addSettingsButton(stage);
 	}
