@@ -3,17 +3,21 @@ package io.thebitspud.astroenvoys.levels;
 import java.util.ArrayList;
 import java.util.Random;
 
+import io.thebitspud.astroenvoys.AstroEnvoys;
 import io.thebitspud.astroenvoys.CampaignGame;
 import io.thebitspud.astroenvoys.tools.JTimerUtil;
 
 public abstract class Level {
+	protected AstroEnvoys app;
 	protected CampaignGame game;
 	ArrayList<JTimerUtil> timers;
 	JTimerUtil levelTime;
+	private boolean levelCleared;
 	Random r;
 
-	Level(CampaignGame game) {
-		this.game = game;
+	Level(AstroEnvoys app) {
+		this.app = app;
+		game = app.gameScreen.game;
 
 		r = new Random();
 		timers =  new ArrayList<>();
@@ -32,9 +36,17 @@ public abstract class Level {
 		addEvents();
 	}
 
+	public void clearLevel() {
+		if(levelCleared) return;
+
+		onClear();
+		levelCleared = true;
+	}
+
 	public abstract String id();
 	public abstract String title();
 	public abstract String desc();
+	protected abstract void onClear();
 	protected abstract void addEvents();
 
 	public void tick(float delta) {
@@ -48,5 +60,9 @@ public abstract class Level {
 
 	public void removeTimer(JTimerUtil timer) {
 		timers.remove(timer);
+	}
+
+	public boolean isCleared() {
+		return levelCleared;
 	}
 }

@@ -14,11 +14,11 @@ import io.thebitspud.astroenvoys.entities.projectiles.Projectile;
 import io.thebitspud.astroenvoys.levels.Level;
 
 public class CampaignGame {
-	private AstroEnvoys app;
+	private final AstroEnvoys app;
 
 	public Player player;
 	public ArrayList<Enemy> enemies;
-	private ArrayList<Projectile> projectiles;
+	private final ArrayList<Projectile> projectiles;
 
 	public Level level;
 
@@ -88,8 +88,10 @@ public class CampaignGame {
 	}
 
 	public void endGame(boolean victory) {
-		if(victory) app.setScreen(app.winScreen);
-		else app.setScreen(app.lossScreen);
+		if(victory) {
+			app.levelSelectScreen.getSelectedLevel().clearLevel();
+			app.setScreen(app.winScreen);
+		} else app.setScreen(app.lossScreen);
 	}
 
 	public void addProjectile(int x, int y, float xVel, float yVel, EntityID id) {

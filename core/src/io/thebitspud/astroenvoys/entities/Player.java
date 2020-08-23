@@ -10,14 +10,14 @@ import io.thebitspud.astroenvoys.weapons.Weapon;
 public class Player extends Entity {
 	private Weapon primary, secondary;
 	private float moveSpeed, desX, desY;
-	private boolean moveIssued;
+	private boolean moveIssued, shieldActive;
 	private float shield, maxShield;
 	private final JTimerUtil shieldRegen;
 
 	public Player(AstroEnvoys app) {
 		super(0, 0, 100, EntityID.PLAYER, app);
 
-		shieldRegen = new JTimerUtil(0.5, true, true) {
+		shieldRegen = new JTimerUtil(0.5, true, false) {
 			@Override
 			public void onActivation() {
 				if(shield < maxShield) {
@@ -26,21 +26,26 @@ public class Player extends Entity {
 				}
 			}
 		};
+
+		shieldActive = false;
 	}
 
 	public void init() {
 		maxHealth = 100;
 		health = 100;
 		maxShield = 25;
-		shield = 25;
 		moveSpeed = 1500;
+
+		if(shieldActive) {
+			shield = 25;
+			shieldRegen.setTimeElapsed(0);
+		} else shield = 0;
 
 		primary = app.loadoutScreen.getSelectedPrimary();
 		secondary = app.loadoutScreen.getSelectedSecondary();
 
 		primary.init();
 		secondary.init();
-		shieldRegen.setTimeElapsed(0);
 
 		setCenter(Gdx.graphics.getWidth() * 0.5f, Gdx.graphics.getHeight() * 0.25f);
 		app.gameScreen.setHealthIndicatorText(getHealthPercent());
@@ -84,6 +89,11 @@ public class Player extends Entity {
 
 		if (health > maxHealth) health = maxHealth;
 		else if (health <= 0) app.gameScreen.game.endGame(false);
+	}
+
+	public void unlockShield() {
+		shieldActive = true;
+		shieldRegen.setActive(true);
 	}
 
 	private int adjustShield(int value) {

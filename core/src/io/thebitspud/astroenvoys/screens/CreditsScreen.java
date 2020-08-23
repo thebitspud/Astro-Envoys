@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.thebitspud.astroenvoys.AstroEnvoys;
 
 public class CreditsScreen implements Screen {
-	private AstroEnvoys app;
+	private final AstroEnvoys app;
 	private Stage stage;
 
 	public CreditsScreen(AstroEnvoys app) {

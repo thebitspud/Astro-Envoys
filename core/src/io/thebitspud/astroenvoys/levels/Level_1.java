@@ -2,13 +2,14 @@ package io.thebitspud.astroenvoys.levels;
 
 import com.badlogic.gdx.Gdx;
 
-import io.thebitspud.astroenvoys.CampaignGame;
+import io.thebitspud.astroenvoys.AstroEnvoys;
 import io.thebitspud.astroenvoys.entities.EntityID;
 import io.thebitspud.astroenvoys.tools.JTimerUtil;
+import io.thebitspud.astroenvoys.weapons.ScatterA;
 
 public class Level_1 extends Level {
-	public Level_1(CampaignGame game) {
-		super(game);
+	public Level_1(AstroEnvoys app) {
+		super(app);
 	}
 
 	@Override
@@ -25,6 +26,12 @@ public class Level_1 extends Level {
 	public String desc() {
 		return "Pilot, we have a parcel that needs to be sent to the Sokar system. The sector " +
 				"has pirate problems, but we will reward you generously if you deliver our package.";
+	}
+
+	@Override
+	protected void onClear() {
+		app.loadoutScreen.addSecondary(new ScatterA(game));
+		app.levelSelectScreen.addLevel(new Level_2(app));
 	}
 
 	@Override

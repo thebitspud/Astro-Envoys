@@ -10,8 +10,8 @@ import io.thebitspud.astroenvoys.entities.Player;
 import io.thebitspud.astroenvoys.tools.JTimerUtil;
 
 public class Predator extends Enemy {
-	private Random r;
-	private JTimerUtil attackTimer;
+	private final Random r;
+	private final JTimerUtil attackTimer;
 
 	public Predator(int x, int y, AstroEnvoys app) {
 		super(x, y, 0, -60, 200, EntityID.AZ_PREDATOR, app);

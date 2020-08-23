@@ -1,14 +1,14 @@
 package io.thebitspud.astroenvoys.levels;
 
 import com.badlogic.gdx.Gdx;
-
-import io.thebitspud.astroenvoys.CampaignGame;
+import io.thebitspud.astroenvoys.AstroEnvoys;
 import io.thebitspud.astroenvoys.entities.EntityID;
 import io.thebitspud.astroenvoys.tools.JTimerUtil;
+import io.thebitspud.astroenvoys.weapons.HeavyA;
 
 public class Level_3 extends Level {
-	public Level_3(CampaignGame game) {
-		super(game);
+	public Level_3(AstroEnvoys app) {
+		super(app);
 	}
 
 	@Override
@@ -26,6 +26,12 @@ public class Level_3 extends Level {
 		return "Since your last mission, we have located multiple new Azikan stations, including an " +
 			"isolated shipyard still under construction. We are requesting your aid in " +
 			"taking it out before they finish building it.";
+	}
+
+	@Override
+	protected void onClear() {
+		app.loadoutScreen.addPrimary(new HeavyA(game));
+		app.levelSelectScreen.addLevel(new Level_4(app));
 	}
 
 	@Override

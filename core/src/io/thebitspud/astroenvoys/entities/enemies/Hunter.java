@@ -7,8 +7,8 @@ import io.thebitspud.astroenvoys.entities.EntityID;
 import io.thebitspud.astroenvoys.tools.JTimerUtil;
 
 public class Hunter extends Enemy {
-	private Random r;
-	private JTimerUtil attackTimer;
+	private final Random r;
+	private final JTimerUtil attackTimer;
 
 	public Hunter(int x, int y, AstroEnvoys app) {
 		super(x, y, 0, -40, 150, EntityID.AZ_HUNTER, app);

@@ -16,10 +16,10 @@ import io.thebitspud.astroenvoys.levels.*;
 import io.thebitspud.astroenvoys.tools.JInputListener;
 
 public class LevelSelectScreen implements Screen {
-	private AstroEnvoys app;
+	private final AstroEnvoys app;
 	private Stage stage;
 	private Label levelID, levelTitle, levelDesc;
-	private ArrayList<Level> levels;
+	private final ArrayList<Level> levels;
 	private int cLevelIndex; // Current level index
 
 	public LevelSelectScreen(AstroEnvoys app) {
@@ -27,15 +27,11 @@ public class LevelSelectScreen implements Screen {
 
 		levels = new ArrayList<>();
 
-		levels.add(new Level_Endless(app.gameScreen.game));
-		levels.add(new Level_1(app.gameScreen.game));
-		levels.add(new Level_2(app.gameScreen.game));
-		levels.add(new Level_3(app.gameScreen.game));
-		levels.add(new Level_4(app.gameScreen.game));
-		levels.add(new Level_Win(app.gameScreen.game));
-		levels.add(new Level_Loss(app.gameScreen.game));
+		levels.add(new Level_1(app));
+//		levels.add(new Level_Win(app));
+//		levels.add(new Level_Loss(app));
 
-		cLevelIndex = 1;
+		cLevelIndex = 0;
 	}
 
 	@Override
@@ -119,6 +115,11 @@ public class LevelSelectScreen implements Screen {
 
 	public Level getSelectedLevel() {
 		return levels.get(cLevelIndex);
+	}
+
+	public void addLevel(Level level) {
+		if(cLevelIndex < levels.size() - 1) levels.add(cLevelIndex + 1, level);
+		else levels.add(level);
 	}
 
 	public void incrLevelIndex() {

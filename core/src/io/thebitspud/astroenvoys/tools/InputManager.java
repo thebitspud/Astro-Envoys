@@ -7,8 +7,8 @@ import io.thebitspud.astroenvoys.AstroEnvoys;
 import io.thebitspud.astroenvoys.entities.Player;
 
 public class InputManager implements InputProcessor {
-	private AstroEnvoys app;
-	private Player player;
+	private final AstroEnvoys app;
+	private final Player player;
 
 	public InputManager(AstroEnvoys app, Player player) {
 		this.app = app;

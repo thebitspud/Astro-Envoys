@@ -14,7 +14,7 @@ import io.thebitspud.astroenvoys.entities.EntityID;
 import io.thebitspud.astroenvoys.tools.JInputListener;
 
 public class MenuScreen implements Screen {
-	private AstroEnvoys app;
+	private final AstroEnvoys app;
 	private Stage stage;
 	private OrthographicCamera camera;
 

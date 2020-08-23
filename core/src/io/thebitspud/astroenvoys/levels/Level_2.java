@@ -2,13 +2,13 @@ package io.thebitspud.astroenvoys.levels;
 
 import com.badlogic.gdx.Gdx;
 
-import io.thebitspud.astroenvoys.CampaignGame;
+import io.thebitspud.astroenvoys.AstroEnvoys;
 import io.thebitspud.astroenvoys.entities.EntityID;
 import io.thebitspud.astroenvoys.tools.JTimerUtil;
 
 public class Level_2 extends Level {
-	public Level_2(CampaignGame game) {
-		super(game);
+	public Level_2(AstroEnvoys app) {
+		super(app);
 	}
 
 	@Override
@@ -27,6 +27,12 @@ public class Level_2 extends Level {
 			"a presence in the outskirts of the system. Pilot, we need you to " +
 			"pinpoint where the bugs are coming from.";
 
+	}
+
+	@Override
+	protected void onClear() {
+		game.player.unlockShield();
+		app.levelSelectScreen.addLevel(new Level_3(app));
 	}
 
 	@Override

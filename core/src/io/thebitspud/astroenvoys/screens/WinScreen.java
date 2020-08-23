@@ -13,7 +13,7 @@ import io.thebitspud.astroenvoys.AstroEnvoys;
 import io.thebitspud.astroenvoys.tools.JInputListener;
 
 public class WinScreen implements Screen {
-	private AstroEnvoys app;
+	private final AstroEnvoys app;
 	private Stage stage;
 
 	public WinScreen(AstroEnvoys app) {

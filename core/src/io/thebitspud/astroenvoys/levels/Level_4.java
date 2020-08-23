@@ -1,14 +1,15 @@
 package io.thebitspud.astroenvoys.levels;
 
 import com.badlogic.gdx.Gdx;
-
-import io.thebitspud.astroenvoys.CampaignGame;
+import io.thebitspud.astroenvoys.AstroEnvoys;
 import io.thebitspud.astroenvoys.entities.EntityID;
 import io.thebitspud.astroenvoys.tools.JTimerUtil;
+import io.thebitspud.astroenvoys.weapons.PlasmaB;
+import io.thebitspud.astroenvoys.weapons.ScatterB;
 
 public class Level_4 extends Level {
-	public Level_4(CampaignGame game) {
-		super(game);
+	public Level_4(AstroEnvoys app) {
+		super(app);
 	}
 
 	@Override
@@ -26,6 +27,13 @@ public class Level_4 extends Level {
 		return "Our scanners have detected a large, unidentified ship headed your way. Records " +
 				"indicate that we've never encountered an Azikan vessel of this class before. " +
 				"Be careful, pilot.";
+	}
+
+	@Override
+	protected void onClear() {
+		app.loadoutScreen.addPrimary(new PlasmaB(game));
+		app.loadoutScreen.addSecondary(new ScatterB(game));
+		app.levelSelectScreen.addLevel(new Level_Endless(app));
 	}
 
 	@Override

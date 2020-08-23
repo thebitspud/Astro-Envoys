@@ -13,14 +13,15 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.thebitspud.astroenvoys.AstroEnvoys;
 import io.thebitspud.astroenvoys.CampaignGame;
 import io.thebitspud.astroenvoys.tools.JInputListener;
-import io.thebitspud.astroenvoys.weapons.*;
+import io.thebitspud.astroenvoys.weapons.NoWeapon;
+import io.thebitspud.astroenvoys.weapons.PlasmaA;
+import io.thebitspud.astroenvoys.weapons.Weapon;
 
 import java.util.ArrayList;
 
 public class LoadoutScreen implements Screen {
-	private AstroEnvoys app;
+	private final AstroEnvoys app;
 	private Stage stage;
-	private Camera camera;
 	private ArrayList<Weapon> primaries, secondaries;
 	private int cPrimaryIndex, cSecondaryIndex; // Current primary/secondary weapon index
 
@@ -36,12 +37,7 @@ public class LoadoutScreen implements Screen {
 		secondaries = new ArrayList<>();
 
 		primaries.add(new PlasmaA(game));
-		primaries.add(new HeavyA(game));
-		primaries.add(new PlasmaB(game));
-
 		secondaries.add(new NoWeapon(game));
-		secondaries.add(new ScatterA(game));
-		secondaries.add(new ScatterB(game));
 
 		cPrimaryIndex = 0;
 		cSecondaryIndex = 0;
@@ -49,7 +45,7 @@ public class LoadoutScreen implements Screen {
 
 	@Override
 	public void show() {
-		stage = new Stage(new ScreenViewport(camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())));
+		stage = new Stage(new ScreenViewport(new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())));
 		Gdx.input.setInputProcessor(stage);
 
 		Label title = new Label("Loadout", app.assets.smallTitleStyle);
@@ -147,6 +143,18 @@ public class LoadoutScreen implements Screen {
 
 	public Weapon getSelectedSecondary() {
 		return secondaries.get(cSecondaryIndex);
+	}
+
+	public void addPrimary(Weapon weapon) {
+		if(!weapon.isSecondary()) {
+			primaries.add(weapon);
+			cPrimaryIndex = primaries.size() - 1;
+		}
+	}
+
+	public void addSecondary(Weapon weapon) {
+		secondaries.add(weapon);
+		cSecondaryIndex = secondaries.size() - 1;
 	}
 
 	@Override

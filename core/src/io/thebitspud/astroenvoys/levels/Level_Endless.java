@@ -2,13 +2,13 @@ package io.thebitspud.astroenvoys.levels;
 
 import com.badlogic.gdx.Gdx;
 
-import io.thebitspud.astroenvoys.CampaignGame;
+import io.thebitspud.astroenvoys.AstroEnvoys;
 import io.thebitspud.astroenvoys.entities.EntityID;
 import io.thebitspud.astroenvoys.tools.JTimerUtil;
 
 public class Level_Endless extends Level {
-	public Level_Endless(CampaignGame game) {
-		super(game);
+	public Level_Endless(AstroEnvoys app) {
+		super(app);
 	}
 
 	@Override
@@ -25,6 +25,11 @@ public class Level_Endless extends Level {
 	public String desc() {
 		return "Test your skills and your resolve by surviving for as long as you can in this " +
 				"limitless onslaught.";
+	}
+
+	@Override
+	protected void onClear() {
+
 	}
 
 	@Override

@@ -1,10 +1,11 @@
 package io.thebitspud.astroenvoys.levels;
 
+import io.thebitspud.astroenvoys.AstroEnvoys;
 import io.thebitspud.astroenvoys.CampaignGame;
 
 public class Level_Win extends Level {
-	public Level_Win(CampaignGame game) {
-		super(game);
+	public Level_Win(AstroEnvoys app) {
+		super(app);
 	}
 
 	@Override
@@ -20,6 +21,11 @@ public class Level_Win extends Level {
 	@Override
 	public String desc() {
 		return "Developer level for internal testing";
+	}
+
+	@Override
+	protected void onClear() {
+
 	}
 
 	@Override

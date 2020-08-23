@@ -17,7 +17,7 @@ import io.thebitspud.astroenvoys.tools.JInputListener;
 
 public class GameScreen implements Screen {
 	public CampaignGame game;
-	private AstroEnvoys app;
+	private final AstroEnvoys app;
 	private Stage hud;
 	private Label healthIndicator, shieldIndicator;
 	private OrthographicCamera camera;
@@ -34,13 +34,11 @@ public class GameScreen implements Screen {
 		InputMultiplexer multiplexer = new InputMultiplexer(hud, gameInput);
 		Gdx.input.setInputProcessor(multiplexer);
 
-		healthIndicator = new Label(game.player.getHealthPercent() + "%", app.assets.subTitleStyle);
-		healthIndicator.setPosition(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() * 0.95f - 20);
-		healthIndicator.setColor(0, 1,0, 0.75f);
+		healthIndicator = new Label("", app.assets.subTitleStyle);
+		healthIndicator.setPosition(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() * 0.98f - 25);
 
-		shieldIndicator = new Label(game.player.getShieldPercent() + "%", app.assets.subTitleStyle);
-		shieldIndicator.setPosition(Gdx.graphics.getWidth() * 0.30f, Gdx.graphics.getHeight() * 0.95f - 20);
-		shieldIndicator.setColor(0, 1,1, 0.75f);
+		shieldIndicator = new Label("", app.assets.subTitleStyle);
+		shieldIndicator.setPosition(Gdx.graphics.getWidth() * 0.35f, Gdx.graphics.getHeight() * 0.98f - 25);
 
 		ImageButton pauseButton = new ImageButton(app.assets.buttons[12][0], app.assets.buttons[12][1]);
 		pauseButton.addListener(new JInputListener() {
@@ -54,6 +52,9 @@ public class GameScreen implements Screen {
 		hud.addActor(healthIndicator);
 		hud.addActor(shieldIndicator);
 		hud.addActor(pauseButton);
+
+		setHealthIndicatorText(game.player.getHealthPercent());
+		setShieldIndicatorText(game.player.getShieldPercent());
 	}
 
 	public void setHealthIndicatorText(int percent) {

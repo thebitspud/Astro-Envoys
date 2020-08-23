@@ -10,9 +10,10 @@ import io.thebitspud.astroenvoys.entities.Player;
 import io.thebitspud.astroenvoys.tools.JTimerUtil;
 
 public class Reaper extends Enemy {
-	private Random r;
-	private JTimerUtil attackTimer, summonTimer;
-	private Player player;
+	private final Random r;
+	private final JTimerUtil attackTimer;
+	private final JTimerUtil summonTimer;
+	private final Player player;
 	private int rotYPos, nextSpawnHP;
 	private boolean secondStageActive;
 	private float yLimit;

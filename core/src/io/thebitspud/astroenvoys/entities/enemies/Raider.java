@@ -7,8 +7,8 @@ import io.thebitspud.astroenvoys.entities.EntityID;
 import io.thebitspud.astroenvoys.tools.JTimerUtil;
 
 public class Raider extends Enemy {
-	private Random r;
-	private JTimerUtil attackTimer;
+	private final Random r;
+	private final JTimerUtil attackTimer;
 
 	public Raider(int x, int y, AstroEnvoys app) {
 		super(x, y, 0, 0, 75, EntityID.AZ_RAIDER, app);
