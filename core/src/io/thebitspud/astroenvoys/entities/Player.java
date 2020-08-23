@@ -3,42 +3,55 @@ package io.thebitspud.astroenvoys.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 
-import java.util.Random;
-
 import io.thebitspud.astroenvoys.AstroEnvoys;
-import io.thebitspud.astroenvoys.weapons.PlasmaB;
-import io.thebitspud.astroenvoys.weapons.ScatterB;
+import io.thebitspud.astroenvoys.tools.JTimerUtil;
 import io.thebitspud.astroenvoys.weapons.Weapon;
 
 public class Player extends Entity {
 	private Weapon primary, secondary;
 	private float moveSpeed, desX, desY;
-	private Random r;
 	private boolean moveIssued;
+	private float shield, maxShield;
+	private final JTimerUtil shieldRegen;
 
 	public Player(AstroEnvoys app) {
 		super(0, 0, 100, EntityID.PLAYER, app);
 
-		r = new Random();
+		shieldRegen = new JTimerUtil(0.5, true, true) {
+			@Override
+			public void onActivation() {
+				if(shield < maxShield) {
+					shield += maxShield / 100;
+					app.gameScreen.setShieldIndicatorText(getShieldPercent());
+				}
+			}
+		};
 	}
 
 	public void init() {
 		maxHealth = 100;
 		health = 100;
+		maxShield = 25;
+		shield = 25;
 		moveSpeed = 1500;
-		setCenter(Gdx.graphics.getWidth() * 0.5f, Gdx.graphics.getHeight() * 0.25f);
 
 		primary = app.loadoutScreen.getSelectedPrimary();
 		secondary = app.loadoutScreen.getSelectedSecondary();
 
 		primary.init();
 		secondary.init();
+		shieldRegen.setTimeElapsed(0);
+
+		setCenter(Gdx.graphics.getWidth() * 0.5f, Gdx.graphics.getHeight() * 0.25f);
+		app.gameScreen.setHealthIndicatorText(getHealthPercent());
+		app.gameScreen.setShieldIndicatorText(getShieldPercent());
 	}
 
 	@Override
 	public void tick(float delta) {
 		primary.tick(delta);
 		secondary.tick(delta);
+		shieldRegen.tick(delta);
 
 		if(moveIssued) {
 			move();
@@ -63,11 +76,27 @@ public class Player extends Entity {
 
 	@Override
 	public void adjustHealth(int value) {
+		if(value < 0) value = adjustShield(value);
+		app.gameScreen.setShieldIndicatorText(getShieldPercent());
+
 		health += value;
 		app.gameScreen.setHealthIndicatorText(getHealthPercent());
 
 		if (health > maxHealth) health = maxHealth;
 		else if (health <= 0) app.gameScreen.game.endGame(false);
+	}
+
+	private int adjustShield(int value) {
+		if (shield != 0) shieldRegen.setTimeElapsed(-1.5);
+
+		if(shield >= -value) {
+			shield += value;
+			return 0;
+		} else {
+			int adjValue = value + (int) shield;
+			shield = 0;
+			return adjValue;
+		}
 	}
 
 	public void setDestination(float x, float y) {
@@ -97,5 +126,9 @@ public class Player extends Entity {
 
 	public int getHealthPercent() {
 		return Math.round((float) health / maxHealth * 100);
+	}
+
+	public int getShieldPercent() {
+		return Math.round(shield / maxShield * 100);
 	}
 }

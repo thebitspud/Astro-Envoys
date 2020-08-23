@@ -14,7 +14,7 @@ import io.thebitspud.astroenvoys.entities.EntityID;
 public class AssetLibrary extends AssetManager {
 	public TextureRegionDrawable[][] buttons;
 	public Label.LabelStyle titleStyle, smallTitleStyle, subTitleStyle, textStyle;
-	private TextureRegion missing;
+	public TextureRegion missing, shield;
 	private TextureRegion[] playerShips, enemyShips, projectiles;
 
 	public AssetLibrary() {
@@ -31,6 +31,7 @@ public class AssetLibrary extends AssetManager {
 		this.load("asteroid.png", Texture.class);
 		this.load("missing.png", Texture.class);
 		this.load("player.png", Texture.class);
+		this.load("shield.png", Texture.class);
 		this.load("az_raider.png", Texture.class);
 		this.load("az_hunter.png", Texture.class);
 		this.load("az_predator.png", Texture.class);
@@ -43,6 +44,7 @@ public class AssetLibrary extends AssetManager {
 
 	private void assign() {
 		missing = new TextureRegion(this.get("missing.png", Texture.class));
+		shield = new TextureRegion(this.get("shield.png", Texture.class));
 
 		for (int i = 0; i < 4; i++)
 			playerShips[i] = new TextureRegion(this.get("player.png", Texture.class), i * 180, 0, 180, 180);

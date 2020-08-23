@@ -15,7 +15,7 @@ public class Hunter extends Enemy {
 
 		r = new Random();
 
-		attackTimer = new JTimerUtil(4.0, true, true) {
+		attackTimer = new JTimerUtil(3.0, true, true) {
 			@Override
 			public void onActivation() {
 				app.gameScreen.game.addProjectile((int) getX(), (int) getY() + 20,

@@ -38,8 +38,6 @@ public class CampaignGame {
 		projectiles.clear();
 		enemies.clear();
 		level.init();
-
-		app.gameScreen.setHealthIndicatorText(player.getHealthPercent());
 	}
 
 	public void tick(float delta) {
@@ -103,7 +101,7 @@ public class CampaignGame {
 				projectiles.add(new Projectile(x, y, xVel, yVel, 5, false, id, app));
 				break;
 			case HEAVY_ENERGY_SHOT:
-				projectiles.add(new Projectile(x, y, xVel, yVel, 15, true, id, app));
+				projectiles.add(new Projectile(x, y, xVel, yVel, 17, true, id, app));
 				break;
 			case HEAVY_PLASMA_SHOT:
 				projectiles.add(new Projectile(x, y, xVel, yVel, 12, false, id, app));
@@ -115,5 +113,11 @@ public class CampaignGame {
 		for (Projectile p : projectiles) p.draw(app.batch);
 		for (Enemy e : enemies) e.draw(app.batch);
 		player.draw(app.batch);
+
+		float shieldOpacity = 0.25f + (float) player.getShieldPercent() / 200;
+		if(player.getShieldPercent() == 0) shieldOpacity = 0;
+
+		app.batch.setColor(1, 1, 1, shieldOpacity);
+		app.batch.draw(app.assets.shield, player.getX() - 35, player.getY() - 35);
 	}
 }

@@ -19,7 +19,7 @@ public class GameScreen implements Screen {
 	public CampaignGame game;
 	private AstroEnvoys app;
 	private Stage hud;
-	private Label healthIndicator;
+	private Label healthIndicator, shieldIndicator;
 	private OrthographicCamera camera;
 
 	public GameScreen(AstroEnvoys app) {
@@ -35,8 +35,12 @@ public class GameScreen implements Screen {
 		Gdx.input.setInputProcessor(multiplexer);
 
 		healthIndicator = new Label(game.player.getHealthPercent() + "%", app.assets.subTitleStyle);
-		healthIndicator.setPosition(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() - 100);
+		healthIndicator.setPosition(Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() * 0.95f - 20);
 		healthIndicator.setColor(0, 1,0, 0.75f);
+
+		shieldIndicator = new Label(game.player.getShieldPercent() + "%", app.assets.subTitleStyle);
+		shieldIndicator.setPosition(Gdx.graphics.getWidth() * 0.30f, Gdx.graphics.getHeight() * 0.95f - 20);
+		shieldIndicator.setColor(0, 1,1, 0.75f);
 
 		ImageButton pauseButton = new ImageButton(app.assets.buttons[12][0], app.assets.buttons[12][1]);
 		pauseButton.addListener(new JInputListener() {
@@ -48,12 +52,20 @@ public class GameScreen implements Screen {
 		pauseButton.setPosition(Gdx.graphics.getWidth() - 180, Gdx.graphics.getHeight() - 180);
 
 		hud.addActor(healthIndicator);
+		hud.addActor(shieldIndicator);
 		hud.addActor(pauseButton);
 	}
 
 	public void setHealthIndicatorText(int percent) {
 		healthIndicator.setText(percent + "%");
-		healthIndicator.setColor(Math.min(100 - percent, 100) / 100f, Math.min(percent, 100) / 100f, 0, 0.75f);
+		healthIndicator.setColor((100 - percent) / 100f, percent / 100f, 0, 0.75f);
+	}
+
+	public void setShieldIndicatorText(int percent) {
+		shieldIndicator.setText(percent + "%");
+		float shieldOpacity = 0.40f + percent / 300f;
+		if(percent == 0) shieldOpacity = 0.25f;
+		shieldIndicator.setColor(0, 1, 1, shieldOpacity);
 	}
 
 	@Override

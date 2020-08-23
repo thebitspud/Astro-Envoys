@@ -5,7 +5,7 @@ import io.thebitspud.astroenvoys.entities.EntityID;
 
 public class HeavyA extends Weapon {
 	public HeavyA(CampaignGame game) {
-		super(0.35, false, game);
+		super(0.4, false, game);
 	}
 
 	@Override
