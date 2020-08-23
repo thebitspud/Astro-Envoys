@@ -29,10 +29,11 @@ public class ScatterB extends Weapon {
 		final int x = (int) game.player.getX() + 77,
 				y = (int) game.player.getY() + 50;
 
-		game.addProjectile(x, y, r.nextInt(100) + 200, 1475, EntityID.ENERGY_SHOT);
-		game.addProjectile(x, y, r.nextInt(50) + 100, 1490, EntityID.ENERGY_SHOT);
-		game.addProjectile(x, y, r.nextInt(50) - 25, 1500, EntityID.ENERGY_SHOT);
-		game.addProjectile(x, y, r.nextInt(50) - 150, 1490, EntityID.ENERGY_SHOT);
-		game.addProjectile(x, y, r.nextInt(100) - 300, 1475, EntityID.ENERGY_SHOT);
+		game.addProjectile(x, y, r.nextInt(80) + 335, 1460, EntityID.ENERGY_SHOT);
+		game.addProjectile(x, y, r.nextInt(60) + 220, 1485, EntityID.ENERGY_SHOT);
+		game.addProjectile(x, y, r.nextInt(50) + 100, 1495, EntityID.ENERGY_SHOT);
+		game.addProjectile(x, y, r.nextInt(50) - 150, 1495, EntityID.ENERGY_SHOT);
+		game.addProjectile(x, y, r.nextInt(60) - 280, 1485, EntityID.ENERGY_SHOT);
+		game.addProjectile(x, y, r.nextInt(80) - 415, 1460, EntityID.ENERGY_SHOT);
 	}
 }

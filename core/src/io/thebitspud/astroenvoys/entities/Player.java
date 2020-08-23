@@ -17,9 +17,9 @@ public class Player extends Entity {
 	public Player(AstroEnvoys app) {
 		super(0, 0, 100, EntityID.PLAYER, app);
 
-		shieldRegen = new JTimerUtil(0.4, true, false) {
+		shieldRegen = new JTimerUtil(0.5, true, false) {
 			@Override
-			public void onActivation() { // 0.625 shield regen per sec
+			public void onActivation() {
 				if(shield < maxShield) {
 					shield += maxShield / 100;
 					app.gameScreen.setShieldIndicatorText(getShieldPercent());
@@ -97,7 +97,7 @@ public class Player extends Entity {
 	}
 
 	private int adjustShield(int value) {
-		if (shield != 0) shieldRegen.setTimeElapsed(-1.6);
+		if (shield != 0) shieldRegen.setTimeElapsed(-1.5);
 
 		if(shield >= -value) {
 			shield += value;

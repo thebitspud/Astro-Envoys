@@ -24,20 +24,25 @@ public class PlasmaB extends Weapon {
 				"of high-velocity plasma";
 	}
 
+	private boolean leftFirst = false;
+
 	@Override
 	public void onActivation() {
 		final int x = (int) game.player.getX() + 77,
 				y = (int) game.player.getY() + 50;
 
 		if(getTimerDuration() == 0.05) {
-			game.addProjectile(x, y, r.nextInt(50) + 25, 1485, EntityID.ENERGY_SHOT);
+			if(leftFirst) game.addProjectile(x, y, r.nextInt(50) - 75, 1485, EntityID.ENERGY_SHOT);
+			else game.addProjectile(x, y, r.nextInt(50) + 25, 1485, EntityID.ENERGY_SHOT);
 			setTimerDuration(0.051);
 		} else if(getTimerDuration() == 0.051) {
-			game.addProjectile(x, y, r.nextInt(50) - 75, 1485, EntityID.ENERGY_SHOT);
+			if(leftFirst) game.addProjectile(x, y, r.nextInt(50) + 25, 1485, EntityID.ENERGY_SHOT);
+			else game.addProjectile(x, y, r.nextInt(50) - 75, 1485, EntityID.ENERGY_SHOT);
 			setTimerDuration(0.3);
 		} else {
 			game.addProjectile(x, y, r.nextInt(50) - 25, 1500, EntityID.ENERGY_SHOT);
 			setTimerDuration(0.05);
+			leftFirst = !leftFirst;
 		}
 	}
 }
