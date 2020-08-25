@@ -36,6 +36,7 @@ public class AssetLibrary extends AssetManager {
 		this.load("az_hunter.png", Texture.class);
 		this.load("az_predator.png", Texture.class);
 		this.load("az_reaper.png", Texture.class);
+		this.load("az_sniper.png", Texture.class);
 		this.load("projectiles.png", Texture.class);
 
 		finishLoading();
@@ -54,6 +55,7 @@ public class AssetLibrary extends AssetManager {
 		enemyShips[2] = new TextureRegion(this.get("az_hunter.png", Texture.class));
 		enemyShips[3] = new TextureRegion(this.get("az_predator.png", Texture.class));
 		enemyShips[4] = new TextureRegion(this.get("az_reaper.png", Texture.class));
+		enemyShips[5] = new TextureRegion(this.get("az_sniper.png", Texture.class));
 
 		projectiles[0] = new TextureRegion(this.get("projectiles.png", Texture.class), 0, 0, 25, 50);
 		projectiles[1] = new TextureRegion(this.get("projectiles.png", Texture.class), 25, 0, 25, 50);

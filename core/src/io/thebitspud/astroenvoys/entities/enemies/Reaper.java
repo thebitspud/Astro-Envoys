@@ -16,7 +16,7 @@ public class Reaper extends Enemy {
 	private final Player player;
 	private int rotYPos, nextSpawnHP;
 	private boolean secondStageActive;
-	private float yLimit;
+	private float yLimit, dx, dy;
 
 	public Reaper(int x, int y, AstroEnvoys app) {
 		super(x, y, 0, -80, 600, EntityID.AZ_REAPER, app);
@@ -34,16 +34,12 @@ public class Reaper extends Enemy {
 		attackTimer = new JTimerUtil(0.25, true, true) {
 			@Override
 			public void onActivation() {
-				final float dx = (player.getX() + player.getWidth() / 2) - (getX() + getWidth() / 2);
-				final float dy = (player.getY() + player.getHeight() / 2) - rotYPos - 20;
-
-				double hyp = Math.hypot(dx, dy);
+				final int yAdjust = -20;
+				double hyp = Math.hypot(dx, dy + yAdjust);
 				float scale = (float) (1200 / hyp);
-				final float xv = dx * scale, yv = dy * scale;
+				final float xv = dx * scale, yv = (dy + yAdjust) * scale;
 
-				final double degrees = (Math.atan2(-xv, yv) * 180.0 / Math.PI);
-				setRotation((float) degrees);
-				app.gameScreen.game.addProjectile((int) getX() + 78, rotYPos - 20, xv, yv, EntityID.PLASMA_SHOT);
+				app.gameScreen.game.addProjectile((int) getX() + 78, rotYPos + yAdjust, xv, yv, EntityID.PLASMA_SHOT);
 			}
 		};
 
@@ -64,8 +60,8 @@ public class Reaper extends Enemy {
 		if(yVel != 0 && getY() <= yLimit) yVel = 0;
 
 		rotYPos = (int) (getY() + getOriginY());
-		final float dx = (player.getX() + player.getWidth() / 2) - (getX() + getWidth() / 2);
-		final float dy = (player.getY() + player.getHeight() / 2) - rotYPos;
+		dx = (player.getX() + player.getWidth() / 2) - (getX() + getWidth() / 2);
+		dy = (player.getY() + player.getHeight() / 2) - rotYPos;
 		final double degrees = (Math.atan2(dx, -dy) * 180.0 / Math.PI);
 		setRotation((float) degrees);
 	}

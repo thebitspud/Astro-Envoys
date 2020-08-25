@@ -20,7 +20,7 @@ public class Level_Win extends Level {
 
 	@Override
 	public String desc() {
-		return "Developer level for internal testing";
+		return "Dev level for internal testing";
 	}
 
 	@Override

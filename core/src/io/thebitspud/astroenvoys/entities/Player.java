@@ -71,7 +71,7 @@ public class Player extends Entity {
 
 		float dx = r.getX() - getX(), dy = r.getY() - getY();
 
-		if (dy < 20) return true;
+		if (dy < 20) return false;
 		if (r.contains(getX() + getWidth() / 2, getY() + getHeight())) return true;
 
 		if (dx + r.getWidth() / 2 < getWidth() / 2)

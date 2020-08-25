@@ -4,14 +4,10 @@ import java.util.ArrayList;
 
 import io.thebitspud.astroenvoys.entities.EntityID;
 import io.thebitspud.astroenvoys.entities.Player;
-import io.thebitspud.astroenvoys.entities.enemies.Asteroid;
-import io.thebitspud.astroenvoys.entities.enemies.Enemy;
-import io.thebitspud.astroenvoys.entities.enemies.Hunter;
-import io.thebitspud.astroenvoys.entities.enemies.Predator;
-import io.thebitspud.astroenvoys.entities.enemies.Raider;
-import io.thebitspud.astroenvoys.entities.enemies.Reaper;
+import io.thebitspud.astroenvoys.entities.enemies.*;
 import io.thebitspud.astroenvoys.entities.projectiles.Projectile;
 import io.thebitspud.astroenvoys.levels.Level;
+import io.thebitspud.astroenvoys.levels.Level_Endless;
 
 public class CampaignGame {
 	private final AstroEnvoys app;
@@ -72,6 +68,8 @@ public class CampaignGame {
 				break;
 			case AZ_REAPER: enemies.add(new Reaper(x, y, app));
 				break;
+			case AZ_SNIPER: enemies.add(new Sniper(x, y, app));
+				break;
 			case ASTEROID: enemies.add(new Asteroid(x, y, app));
 				break;
 		}
@@ -91,6 +89,8 @@ public class CampaignGame {
 		if(victory) {
 			app.levelSelectScreen.getSelectedLevel().clearLevel();
 			app.setScreen(app.winScreen);
+		} else if(level.getClass() == Level_Endless.class) {
+			((Level_Endless) level).setHighScore();
 		} else app.setScreen(app.lossScreen);
 	}
 
@@ -121,5 +121,6 @@ public class CampaignGame {
 
 		app.batch.setColor(1, 1, 1, shieldOpacity);
 		app.batch.draw(app.assets.shield, player.getX() - 35, player.getY() - 35);
+		app.batch.setColor(1, 1, 1, 1);
 	}
 }

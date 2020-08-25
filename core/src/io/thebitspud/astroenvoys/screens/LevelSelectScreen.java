@@ -28,8 +28,9 @@ public class LevelSelectScreen implements Screen {
 		levels = new ArrayList<>();
 
 		levels.add(new Level_1(app));
-//		levels.add(new Level_Win(app));
-//		levels.add(new Level_Loss(app));
+		//levels.add(new Level_Test(app));
+		//levels.add(new Level_Win(app));
+		//levels.add(new Level_Loss(app));
 
 		cLevelIndex = 0;
 	}

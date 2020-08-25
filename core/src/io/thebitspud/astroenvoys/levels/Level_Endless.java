@@ -11,6 +11,8 @@ public class Level_Endless extends Level {
 		super(app);
 	}
 
+	long highScore = 0;
+
 	@Override
 	public String id() {
 		return "Endless";
@@ -18,7 +20,7 @@ public class Level_Endless extends Level {
 
 	@Override
 	public String title() {
-		return "High Score: 0";
+		return "High Score: " + highScore;
 	}
 
 	@Override
@@ -53,7 +55,7 @@ public class Level_Endless extends Level {
 				game.spawnEnemy(r.nextInt(scrWidth - 120), y, EntityID.AZ_RAIDER);
 
 				if(getTimerDuration() == 2) setTimerDuration(6);
-				else if(getTimerDuration() > 2.5) setTimerDuration(getTimerDuration() * 0.98);
+				else if(getTimerDuration() > 2.5) setTimerDuration(getTimerDuration() * 0.99);
 			}
 		});
 
@@ -62,7 +64,7 @@ public class Level_Endless extends Level {
 			public void onActivation() {
 				int x = r.nextInt(scrWidth * 3/5) + scrWidth / 5 - 75;
 				game.spawnEnemy(x, y, EntityID.AZ_HUNTER);
-				if(getTimerDuration() > 6.0) setTimerDuration(getTimerDuration() * 0.95);
+				if(getTimerDuration() > 6.0) setTimerDuration(getTimerDuration() * 0.98);
 			}
 		});
 
@@ -70,7 +72,7 @@ public class Level_Endless extends Level {
 			@Override
 			public void onActivation() {
 				game.spawnEnemy(r.nextInt(scrWidth - 150), y, EntityID.AZ_PREDATOR);
-				if(getTimerDuration() > 10.0) setTimerDuration(getTimerDuration() * 0.9);
+				if(getTimerDuration() > 10.0) setTimerDuration(getTimerDuration() * 0.95);
 			}
 		});
 
@@ -78,8 +80,12 @@ public class Level_Endless extends Level {
 			@Override
 			public void onActivation() {
 				game.spawnEnemy(scrWidth / 2 - 90, y, EntityID.AZ_REAPER);
-				if(getTimerDuration() > 25.0) setTimerDuration(getTimerDuration() * 0.8);
+				if(getTimerDuration() > 25.0) setTimerDuration(getTimerDuration() * 0.9);
 			}
 		});
+	}
+
+	public void setHighScore() {
+		highScore = 0; // temp
 	}
 }
