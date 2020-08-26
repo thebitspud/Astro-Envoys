@@ -72,7 +72,7 @@ public class Reaper extends Enemy {
 
 		if(!secondStageActive && health <= 280) {
 			yLimit = Gdx.graphics.getHeight() * 0.5f;
-			attackTimer.setTimerDuration(0.225);
+			attackTimer.setTimerDuration(0.22);
 			secondStageActive = true;
 			yVel = -80;
 		}

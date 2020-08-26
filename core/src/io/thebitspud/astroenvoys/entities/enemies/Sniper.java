@@ -32,7 +32,7 @@ public class Sniper extends Enemy {
 			public void onActivation() {
 				final int yAdjust = -30;
 				double hyp = Math.hypot(dx, dy + yAdjust);
-				float scale = (float) (1800 / hyp);
+				float scale = (float) (1500 / hyp);
 				final float xv = dx * scale, yv = (dy + yAdjust) * scale;
 
 				app.gameScreen.game.addProjectile((int) getX() + 55, rotYPos + yAdjust, xv, yv,
