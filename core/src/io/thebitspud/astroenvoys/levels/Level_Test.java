@@ -34,6 +34,7 @@ public class Level_Test extends Level {
 		final int y = Gdx.graphics.getHeight();
 		final int scrWidth = Gdx.graphics.getWidth(); // screen width
 
-		game.spawnEnemy(r.nextInt(scrWidth - 100), y, EntityID.AZ_SNIPER);
+		game.spawnEnemy(r.nextInt(scrWidth - 100), y, EntityID.AZ_RAIDER);
+		game.spawnEnemy(r.nextInt(scrWidth - 150), y, EntityID.AZ_SNIPER);
 	}
 }

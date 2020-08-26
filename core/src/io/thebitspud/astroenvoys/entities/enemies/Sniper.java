@@ -19,22 +19,23 @@ public class Sniper extends Enemy {
 
 		r = new Random();
 		player = app.gameScreen.game.player;
-		cYOffset = 25;
+		cYOffset = 30;
 		setOrigin(getWidth() / 2, (getHeight() / 2 + cYOffset));
 		rotYPos = (int) (getY() + getOriginY());
 
-		xVel = r.nextInt(120) - 60;
-		yVel = (float) -80;
+		xVel = r.nextInt(60) + 90;
+		if(!r.nextBoolean()) xVel = -xVel;
+		yVel = (float) -50;
 
-		attackTimer = new JTimerUtil(2, true, true) {
+		attackTimer = new JTimerUtil(1.5, true, true) {
 			@Override
 			public void onActivation() {
-				final int yAdjust = -28;
+				final int yAdjust = -30;
 				double hyp = Math.hypot(dx, dy + yAdjust);
-				float scale = (float) (1600 / hyp);
+				float scale = (float) (1800 / hyp);
 				final float xv = dx * scale, yv = (dy + yAdjust) * scale;
 
-				app.gameScreen.game.addProjectile((int) getX() + 42, rotYPos + yAdjust, xv, yv,
+				app.gameScreen.game.addProjectile((int) getX() + 55, rotYPos + yAdjust, xv, yv,
 						EntityID.HEAVY_PLASMA_SHOT);
 			}
 		};
