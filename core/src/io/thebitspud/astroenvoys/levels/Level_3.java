@@ -24,8 +24,8 @@ public class Level_3 extends Level {
 	@Override
 	public String desc() {
 		return "Since your last mission, we have located multiple new Azikan stations, including an " +
-			"isolated shipyard still under construction. We are requesting your aid in " +
-			"taking it out before they finish building it.";
+			"isolated shipyard still under construction. Scout out the region and identify any potential " +
+			"openings in their defense.";
 	}
 
 	@Override
@@ -71,8 +71,8 @@ public class Level_3 extends Level {
 				if(levelTime.getTimeElapsed() >= 140) setActive(false);
 
 				activations++;
-				game.spawnEnemy(r.nextInt(scrWidth - 100), y, EntityID.AZ_RAIDER);
-				if(activations % 4 == 1 || activations % 7 == 4) setTimeElapsed(getTimerDuration() * 0.75);
+				game.spawnEnemy(r.nextInt(scrWidth - 120), y, EntityID.AZ_RAIDER);
+				if(activations % 4 == 1 || activations % 7 == 4) setTimeElapsed(getTimerDuration() * 0.9);
 			}
 		});
 
@@ -96,7 +96,7 @@ public class Level_3 extends Level {
 				if(getTimerDuration() == 35) setActive(false);
 				setTimerDuration(getTimerDuration() - 10);
 
-				game.spawnEnemy(scrWidth / 2 - 75, y + 100, EntityID.AZ_PREDATOR);
+				game.spawnEnemy(scrWidth / 2 - 75, y, EntityID.AZ_PREDATOR);
 			}
 		});
 	}

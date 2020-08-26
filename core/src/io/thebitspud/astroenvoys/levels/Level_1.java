@@ -24,8 +24,9 @@ public class Level_1 extends Level {
 
 	@Override
 	public String desc() {
-		return "Pilot, we have a parcel that needs to be sent to the Sokar system. The sector " +
-				"has pirate problems, but we will reward you generously if you deliver our package.";
+		return "Pilot, we have a classified shipment that needs to be sent to the Sokar system. A number of " +
+				"civilian freighters have recently disappeared here without explanation, so you will be " +
+				"compensated generously if you deliver the package.";
 	}
 
 	@Override
@@ -82,7 +83,7 @@ public class Level_1 extends Level {
 			}
 
 			private void summon() {
-				game.spawnEnemy(r.nextInt(scrWidth - 100), y, EntityID.AZ_RAIDER);
+				game.spawnEnemy(r.nextInt(scrWidth - 120), y, EntityID.AZ_RAIDER);
 			}
 		});
 	}

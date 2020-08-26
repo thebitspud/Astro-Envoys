@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import io.thebitspud.astroenvoys.AstroEnvoys;
 import io.thebitspud.astroenvoys.entities.EntityID;
 import io.thebitspud.astroenvoys.tools.JTimerUtil;
-import io.thebitspud.astroenvoys.weapons.PlasmaB;
 import io.thebitspud.astroenvoys.weapons.ScatterB;
 
 public class Level_4 extends Level {
@@ -19,21 +18,20 @@ public class Level_4 extends Level {
 
 	@Override
 	public String title() {
-		return "04: Vengeance";
+		return "04: Diversion";
 	}
 
 	@Override
 	public String desc() {
-		return "Our scanners have detected a large, unidentified ship headed your way. Records " +
-				"indicate that we've never encountered an Azikan vessel of this class before. " +
-				"Be careful, pilot.";
+		return "Our sensors have detected some Azikan energy signatures that Coalition forces have never " +
+				"encountered before. We will distract their main battle swarm with a small decoy fleet while you " +
+				"move in and destroy the shipyard.";
 	}
 
 	@Override
 	protected void onClear() {
-		app.loadoutScreen.addPrimary(new PlasmaB(game));
 		app.loadoutScreen.addSecondary(new ScatterB(game));
-		app.levelSelectScreen.addLevel(new Level_Endless(app));
+		app.levelSelectScreen.addLevel(new Level_5(app));
 	}
 
 	@Override
@@ -41,69 +39,77 @@ public class Level_4 extends Level {
 		final int y = Gdx.graphics.getHeight();
 		final int scrWidth = Gdx.graphics.getWidth();
 
-		for(int i = 0; i < 4; i++) game.spawnEnemy(scrWidth / 8 * (i * 2 + 1), y + 50, EntityID.ASTEROID);
+		for(int i = 0; i < 3; i++) game.spawnEnemy(scrWidth / 6 * (i * 2 + 1), y + 50, EntityID.ASTEROID);
 
-		timers.add(new JTimerUtil(10, true, true) {
+		timers.add(new JTimerUtil(8, true, true) {
 			@Override
 			public void onActivation() {
 				for(int i = 0; i < 3; i++) game.spawnEnemy(scrWidth / 6 * (i * 2 + 1), y, EntityID.ASTEROID);
 			}
 		});
 
-		timers.add(new JTimerUtil(5, true, true) {
-			private boolean checked = false;
+		timers.add(new JTimerUtil(150, true, true) {
+			private boolean checked;
+			@Override
+			public void onActivation() {
+				if (checked) game.endGame(true);
+				else setTimerDuration(0.25);
+
+				if(game.allEnemiesCleared()) {
+					checked = true;
+					setTimerDuration(1.0);
+				}
+			}
+		});
+
+		timers.add(new JTimerUtil(3, true, true) {
 			private int activations = 0;
 
 			@Override
 			public void onActivation() {
-				if (checked) {
-					game.endGame(true);
-					return;
-				}
+				if(activations == 0) setTimerDuration(7);
+				if(levelTime.getTimeElapsed() >= 140) setActive(false);
 
-				if (game.allEnemiesCleared()) {
-					activations++;
-					setTimerDuration(5);
-				} else {
-					setTimerDuration(0.25);
-					return;
-				}
+				activations++;
+				game.spawnEnemy(r.nextInt(scrWidth - 120), y, EntityID.AZ_RAIDER);
+				if(activations % 5 == 1 || activations % 5 == 2) setTimeElapsed(getTimerDuration() * 0.5);
+			}
+		});
 
-				switch (activations) {
-					case 1: game.spawnEnemy(scrWidth - 220, y + 100, EntityID.AZ_RAIDER);
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 2/5 - 60, y + 200, EntityID.AZ_RAIDER);
-						game.spawnEnemy(100, y + 100, EntityID.AZ_RAIDER);
-						break;
-					case 2:
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 2/5 - 75, y + 50, EntityID.AZ_HUNTER);
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth / 5 - 60, y + 100, EntityID.AZ_RAIDER);
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 3/5 - 60, y + 100, EntityID.AZ_RAIDER);
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth / 5 - 60, y + 300, EntityID.AZ_RAIDER);
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 3/5 - 60, y + 300, EntityID.AZ_RAIDER);
-						break;
-					case 3:
-						game.spawnEnemy(scrWidth / 2 - 75, y + 150, EntityID.AZ_PREDATOR);
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 2/5 - 75, y + 100, EntityID.AZ_HUNTER);
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth / 5 - 60, y + 100, EntityID.AZ_RAIDER);
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 3/5 - 60, y + 100, EntityID.AZ_RAIDER);
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth / 5 - 60, y + 300, EntityID.AZ_RAIDER);
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 3/5 - 60, y + 300, EntityID.AZ_RAIDER);
-						break;
-					case 4:
-						game.spawnEnemy(scrWidth / 2 - 75, y + 100, EntityID.AZ_PREDATOR);
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth / 5 - 60, y + 100, EntityID.AZ_RAIDER);
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 3/5 - 60, y + 100, EntityID.AZ_RAIDER);
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth / 5 - 75, y + 100, EntityID.AZ_HUNTER);
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 3/5 - 75, y + 100, EntityID.AZ_HUNTER);
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth / 5 - 60, y + 300, EntityID.AZ_RAIDER);
-						game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 3/5 - 60, y + 300, EntityID.AZ_RAIDER);
-						break;
-					case 5: game.spawnEnemy(Gdx.graphics.getWidth() / 2 - 90, y + 50, EntityID.AZ_REAPER);
-						break;
-					case 6:
-						checked = true;
-						setTimerDuration(1);
-						break;
+		timers.add(new JTimerUtil(10, true, true) {
+			private int activations = 0;
+
+			@Override
+			public void onActivation() {
+				if(activations == 0) setTimerDuration(30);
+				if(getTimerDuration() > 20) setTimerDuration(getTimerDuration() - 5);
+
+				game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 2/5 - 75, y, EntityID.AZ_HUNTER);
+				activations++;
+
+				if(activations == 7) setActive(false);
+			}
+		});
+
+		timers.add(new JTimerUtil(45, true, true) {
+			@Override
+			public void onActivation() {
+				if(getTimerDuration() == 30) setActive(false);
+				setTimerDuration(getTimerDuration() - 5);
+
+				game.spawnEnemy(scrWidth / 2 - 75, y, EntityID.AZ_PREDATOR);
+			}
+		});
+
+		timers.add(new JTimerUtil(25, true, true) {
+			int activations = 0;
+			@Override
+			public void onActivation() {
+				game.spawnEnemy(r.nextInt(scrWidth - 150), y, EntityID.AZ_SNIPER);
+				activations++;
+				if(activations == 6) {
+					setActive(false);
+					game.spawnEnemy(r.nextInt(scrWidth / 5) + scrWidth * 2/5 - 75, y, EntityID.AZ_HUNTER);
 				}
 			}
 		});

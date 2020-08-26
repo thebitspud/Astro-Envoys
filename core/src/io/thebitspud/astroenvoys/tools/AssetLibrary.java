@@ -110,7 +110,7 @@ public class AssetLibrary extends AssetManager {
 		parameter.size = Gdx.graphics.getWidth() / 15;
 		subTitleStyle = new Label.LabelStyle(generator.generateFont(parameter), Color.WHITE);
 
-		parameter.size = Gdx.graphics.getWidth() / 25;
+		parameter.size = Gdx.graphics.getWidth() / 28;
 		parameter.spaceY = parameter.size / 3;
 		textStyle = new Label.LabelStyle(generator.generateFont(parameter), Color.WHITE);
 

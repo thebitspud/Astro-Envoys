@@ -23,10 +23,8 @@ public class Level_2 extends Level {
 
 	@Override
 	public String desc() {
-		return "Our battle confirmed rumours that the Azikan Swarm has established " +
-			"a presence in the outskirts of the system. Pilot, we need you to " +
-			"pinpoint where the bugs are coming from.";
-
+		return "Your delivery has confirmed rumours that the Azikan Swarm has established a presence in the " +
+				"outskirts of the system. Pilot, we need you to determine where their ships are coming from.";
 	}
 
 	@Override
@@ -83,7 +81,7 @@ public class Level_2 extends Level {
 			}
 
 			private void summon() {
-				game.spawnEnemy(r.nextInt(scrWidth - 100), y, EntityID.AZ_RAIDER);
+				game.spawnEnemy(r.nextInt(scrWidth - 120), y, EntityID.AZ_RAIDER);
 			}
 		});
 

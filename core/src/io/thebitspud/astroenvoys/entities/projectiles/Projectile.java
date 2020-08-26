@@ -38,13 +38,10 @@ public class Projectile extends Entity {
 	}
 
 	private void checkBounds() {
-		if (xVel > 0) {
-			if (getX() > Gdx.graphics.getWidth()) kill();
-		} else if (getX() + getWidth() < 0) kill();
-
-		if (yVel > 0) {
-			if (getY() > Gdx.graphics.getHeight()) kill();
-		} else if (getY() + getHeight() < 0) kill();
+		if (getX() > Gdx.graphics.getWidth()) kill();
+		if (getX() + getWidth() < 0) kill();
+		if (getY() > Gdx.graphics.getHeight()) kill();
+		if (getY() + getHeight() < 0) kill();
 	}
 
 	public void checkForCollision(Enemy e) {
