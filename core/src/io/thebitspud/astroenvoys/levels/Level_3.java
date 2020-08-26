@@ -72,7 +72,7 @@ public class Level_3 extends Level {
 
 				activations++;
 				game.spawnEnemy(r.nextInt(scrWidth - 120), y, EntityID.AZ_RAIDER);
-				if(activations % 4 == 1 || activations % 7 == 4) setTimeElapsed(getTimerDuration() * 0.9);
+				if(activations % 4 == 1 || activations % 7 == 4) setTimeElapsed(getTimerDuration() * 0.75);
 			}
 		});
 
