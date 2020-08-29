@@ -90,11 +90,11 @@ public class Level_3 extends Level {
 			}
 		});
 
-		timers.add(new JTimerUtil(55, true, true) {
+		timers.add(new JTimerUtil(42.5, true, true) {
 			@Override
 			public void onActivation() {
-				if(getTimerDuration() == 35) setActive(false);
-				setTimerDuration(getTimerDuration() - 10);
+				if(getTimerDuration() == 27.5) setActive(false);
+				setTimerDuration(getTimerDuration() - 5);
 
 				game.spawnEnemy(scrWidth / 2 - 75, y, EntityID.AZ_PREDATOR);
 			}

@@ -25,14 +25,14 @@ public class Sniper extends Enemy {
 
 		xVel = r.nextInt(60) + 90;
 		if(!r.nextBoolean()) xVel = -xVel;
-		yVel = (float) -50;
+		yVel = (float) -60;
 
 		attackTimer = new JTimerUtil(1.5, true, true) {
 			@Override
 			public void onActivation() {
 				final int yAdjust = -30;
 				double hyp = Math.hypot(dx, dy + yAdjust);
-				float scale = (float) (1600 / hyp);
+				float scale = (float) (1500 / hyp);
 				final float xv = dx * scale, yv = (dy + yAdjust) * scale;
 
 				app.gameScreen.game.addProjectile((int) getX() + 55, rotYPos + yAdjust, xv, yv,
