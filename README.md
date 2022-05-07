@@ -4,7 +4,7 @@ This is a mobile space shooter I created in 2020 using LibGDX and Android Studio
 ## Installation
 1. Download [astro-envoys-1.0.1.apk](./astro-envoys-1.0.1.apk) to your Android device
 2. Locate the .apk file in your downloads or file system
-3. Open the .apk file and install the application from (don't worry, it's safe)
+3. Open the .apk file and install the application (don't worry, it's safe)
 4. Play the game!
 
 I do not plan on uploading this game to Google Play so it must be manually installed.
