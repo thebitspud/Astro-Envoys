@@ -25,7 +25,7 @@ public class Reaper extends Enemy {
 		cYOffset = -75;
 		setOrigin(getWidth() / 2, (getHeight() / 2 + cYOffset));
 		rotYPos = (int) (getY() + getOriginY());
-		yLimit = Gdx.graphics.getHeight() * 0.7f;
+		yLimit = Gdx.graphics.getHeight() * 0.75f;
 
 		secondStageActive = false;
 		nextSpawnHP = health;
@@ -94,18 +94,16 @@ public class Reaper extends Enemy {
 		health += value;
 
 		if(!secondStageActive && health <= 400) {
-			yLimit = Gdx.graphics.getHeight() * 0.5f;
+			yLimit = Gdx.graphics.getHeight() * 0.6f;
 			mainAttackTimer.setTimerDuration(0.2);
-			burstAttackTimer.setTimerDuration(0.8);
+			burstAttackTimer.setTimerDuration(1.0);
 			secondStageActive = true;
 			yVel = -80;
 		}
 
 		if(health <= nextSpawnHP) {
 			summonTimer.setTimeElapsed(10 + summonTimer.getTimeElapsed());
-
-			if(secondStageActive) nextSpawnHP -= 55;
-			else nextSpawnHP -= 80;
+			nextSpawnHP -= 80;
 		}
 
 		if (health > maxHealth) health = maxHealth;

@@ -1,8 +1,8 @@
 # <img align="left" src="./android/res/mipmap-mdpi/ic_launcher.png" alt="app icon">Astro Envoys
-This is an Android space shooter I created in 2020 using LibGDX and Android Studio.
+This is a mobile space shooter I created in 2020 using LibGDX and Android Studio.
 
 ## Installation
-1. Download [astro-envoys.apk](./astro-envoys.apk) to your Android device
+1. Download [astro-envoys-1.0.1.apk](./astro-envoys-1.0.1.apk) to your Android device
 2. Locate the .apk file in your downloads or file system
 3. Open the .apk file and install the application from (don't worry, it's safe)
 4. Play the game!
@@ -16,7 +16,9 @@ I do not plan on uploading this game to Google Play so it must be manually insta
 - A sense of pride and accomplishment
 
 ## Screenshots
-WIP
+| ![1](screenshots/1.jpg) | ![2](screenshots/2.jpg) | ![3](screenshots/3.jpg) |
+|-------------------------|-------------------------|-------------------------|
+| ![4](screenshots/4.jpg) | ![5](screenshots/5.jpg) | ![6](screenshots/6.jpg) |
 
 ## Assets Used
 Player ship from [Starfighter Pack 01 by Wobblegut Studios](https://wobblegut-studios.itch.io/sf01) \

@@ -46,6 +46,7 @@ public class PauseScreen implements Screen {
 		restartButton.addListener(new JInputListener() {
 			@Override
 			public void onClick() {
+				app.gameScreen.game.endGame(false);
 				app.setScreen(app.gameScreen);
 				app.gameScreen.game.init();
 			}
@@ -56,6 +57,7 @@ public class PauseScreen implements Screen {
 		quitButton.addListener(new JInputListener() {
 			@Override
 			public void onClick() {
+				app.gameScreen.game.endGame(false);
 				app.setScreen(app.levelSelectScreen);
 			}
 		});

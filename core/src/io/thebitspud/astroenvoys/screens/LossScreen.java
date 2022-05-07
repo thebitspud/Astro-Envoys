@@ -15,6 +15,7 @@ import io.thebitspud.astroenvoys.tools.JInputListener;
 public class LossScreen implements Screen {
 	private final AstroEnvoys app;
 	private Stage stage;
+	private Label title;
 
 	public LossScreen(AstroEnvoys app) {
 		this.app = app;
@@ -28,7 +29,7 @@ public class LossScreen implements Screen {
 
 		final int midX = Gdx.graphics.getWidth() / 2;
 
-		Label title = new Label("Level\nFailed", app.assets.titleStyle);
+		title = new Label("Level\nFailed", app.assets.titleStyle);
 		title.setPosition(midX - (title.getPrefWidth() / 2), Gdx.graphics.getHeight() * 0.75f);
 		title.setAlignment(Align.center);
 
@@ -57,6 +58,10 @@ public class LossScreen implements Screen {
 		app.addStatsButton(stage);
 		app.addLoadoutButton(stage);
 		app.addSettingsButton(stage);
+	}
+
+	public void setTitleLabel(String text) {
+		title.setText(text);
 	}
 
 	@Override

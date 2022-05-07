@@ -8,6 +8,7 @@ import io.thebitspud.astroenvoys.entities.enemies.*;
 import io.thebitspud.astroenvoys.entities.projectiles.Projectile;
 import io.thebitspud.astroenvoys.levels.Level;
 import io.thebitspud.astroenvoys.levels.Level_Endless;
+import io.thebitspud.astroenvoys.screens.LossScreen;
 
 public class CampaignGame {
 	private final AstroEnvoys app;
@@ -75,8 +76,7 @@ public class CampaignGame {
 		}
 	}
 
-	// No enemies on screen (excludes asteroids)
-
+	// Returns true if there are no enemies on screen (excludes asteroids)
 	public boolean allEnemiesCleared() {
 		for(Enemy e : enemies) {
 			if (e.getID() != EntityID.ASTEROID) return false;
@@ -86,14 +86,19 @@ public class CampaignGame {
 	}
 
 	public void endGame(boolean victory) {
-		if(level instanceof Level_Endless) {
-			((Level_Endless) level).setHighScore();
-		}
-
 		if(victory) {
 			app.levelSelectScreen.getSelectedLevel().clearLevel();
 			app.setScreen(app.winScreen);
-		} else app.setScreen(app.lossScreen);
+		} else {
+			app.setScreen(app.lossScreen);
+
+			if(level instanceof Level_Endless) {
+				((Level_Endless) level).setHighScore();
+				((LossScreen) app.lossScreen).setTitleLabel("Score:\n" + ((Level_Endless) level).getLastScore());
+			} else {
+				((LossScreen) app.lossScreen).setTitleLabel("Level\nFailed");
+			}
+		}
 	}
 
 	public void addProjectile(int x, int y, float xVel, float yVel, EntityID id) {
