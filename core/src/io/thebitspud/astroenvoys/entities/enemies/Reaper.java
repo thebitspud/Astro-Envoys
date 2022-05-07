@@ -11,15 +11,14 @@ import io.thebitspud.astroenvoys.tools.JTimerUtil;
 
 public class Reaper extends Enemy {
 	private final Random r;
-	private final JTimerUtil attackTimer;
-	private final JTimerUtil summonTimer;
+	private final JTimerUtil mainAttackTimer, burstAttackTimer, summonTimer;
 	private final Player player;
 	private int rotYPos, nextSpawnHP;
 	private boolean secondStageActive;
 	private float yLimit, dx, dy;
 
 	public Reaper(int x, int y, AstroEnvoys app) {
-		super(x, y, 0, -80, 600, EntityID.AZ_REAPER, app);
+		super(x, y, 0, -80, 800, EntityID.AZ_REAPER, app);
 
 		r = new Random();
 		player = app.gameScreen.game.player;
@@ -31,7 +30,7 @@ public class Reaper extends Enemy {
 		secondStageActive = false;
 		nextSpawnHP = health;
 
-		attackTimer = new JTimerUtil(0.25, true, true) {
+		mainAttackTimer = new JTimerUtil(0.25, true, true) {
 			@Override
 			public void onActivation() {
 				final int yAdjust = -20;
@@ -39,7 +38,30 @@ public class Reaper extends Enemy {
 				float scale = (float) (1200 / hyp);
 				final float xv = dx * scale, yv = (dy + yAdjust) * scale;
 
-				app.gameScreen.game.addProjectile((int) getX() + 78, rotYPos + yAdjust, xv, yv, EntityID.PLASMA_SHOT);
+				app.gameScreen.game.addProjectile((int) getX() + 78, rotYPos + yAdjust, xv, yv,
+						EntityID.PLASMA_SHOT);
+			}
+		};
+
+		burstAttackTimer = new JTimerUtil(1.25, true, true) {
+			@Override
+			public void onActivation() {
+				final int yAdjust = -20;
+				double hyp = Math.hypot(dx, dy + yAdjust);
+				float scale = (float) (1500 / hyp);
+				final float xv = dx * scale, yv = (dy + yAdjust) * scale;
+
+				app.gameScreen.game.addProjectile((int) getX() + 71, rotYPos + yAdjust, xv, yv,
+						EntityID.HEAVY_PLASMA_SHOT);
+
+				// Linear algebra trick lol
+				float s = (float) Math.sin(0.25), c = (float) Math.cos(0.25);
+				app.gameScreen.game.addProjectile((int) getX() + 71, rotYPos + yAdjust,
+						xv * c - yv * s, xv * s + yv * c, EntityID.HEAVY_PLASMA_SHOT);
+
+				app.gameScreen.game.addProjectile((int) getX() + 71, rotYPos + yAdjust,
+						xv * c + yv * s, yv * c - xv * s,
+						EntityID.HEAVY_PLASMA_SHOT);
 			}
 		};
 
@@ -55,7 +77,8 @@ public class Reaper extends Enemy {
 
 	@Override
 	protected void tickAI(float delta) {
-		attackTimer.tick(delta);
+		mainAttackTimer.tick(delta);
+		burstAttackTimer.tick(delta);
 
 		if(yVel != 0 && getY() <= yLimit) yVel = 0;
 
@@ -70,9 +93,10 @@ public class Reaper extends Enemy {
 	public void adjustHealth(int value) {
 		health += value;
 
-		if(!secondStageActive && health <= 280) {
+		if(!secondStageActive && health <= 400) {
 			yLimit = Gdx.graphics.getHeight() * 0.5f;
-			attackTimer.setTimerDuration(0.2);
+			mainAttackTimer.setTimerDuration(0.2);
+			burstAttackTimer.setTimerDuration(0.8);
 			secondStageActive = true;
 			yVel = -80;
 		}

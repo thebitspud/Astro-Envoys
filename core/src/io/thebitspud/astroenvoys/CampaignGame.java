@@ -86,11 +86,13 @@ public class CampaignGame {
 	}
 
 	public void endGame(boolean victory) {
+		if(level instanceof Level_Endless) {
+			((Level_Endless) level).setHighScore();
+		}
+
 		if(victory) {
 			app.levelSelectScreen.getSelectedLevel().clearLevel();
 			app.setScreen(app.winScreen);
-		} else if(level.getClass() == Level_Endless.class) {
-			((Level_Endless) level).setHighScore();
 		} else app.setScreen(app.lossScreen);
 	}
 
