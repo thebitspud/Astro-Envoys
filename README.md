@@ -19,4 +19,8 @@ I do not plan on uploading this game to Google Play so it must be manually insta
 WIP
 
 ## Assets Used
-WIP
+Player ship from [Starfighter Pack 01 by Wobblegut Studios](https://wobblegut-studios.itch.io/sf01) \
+Enemies from [Alien Top-down Ships by MillionthVector](http://millionthvector.blogspot.com/2013/07/free-alien-top-down-spaceship-sprites.html) \
+[Azikan Sniper](./android/assets/az_sniper.png), [Projectiles](./android/assets/projectiles.png) and [Shield](./android/assets/shield.png) are my own \
+[Asteroid](./android/assets/asteroid.png) and [Buttons](./android/assets/buttons.png) from unknown/unavailable source \
+Main font is [Good Times by Typodermic Fonts](https://www.dafont.com/good-times.font)
